@@ -12,7 +12,7 @@ Creator: Jason Andersen <br>
 
 
 ## SECTION 01 Scope:
-A task app that is solely meant for a user’s daily tasks. Or in another persepctive "Your daily tasks rollover if not completed". I believe that I can implement: <br>
+A task app that is solely meant for a user’s daily tasks. Or in another persepctive "Your daily tasks rollover if not completed".  I believe that I can implement: <br>
 * user Auth
 * user Profile 
 * account signup/login/logout 
