@@ -1,12 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
-
 <div class="box">
     <form action="{% url 'tasks' %}" method='POST'>
         {% csrf_token %}
         <input class="input" type="text" name="taskName" placeholder="... enter a task name">
-    </form>
-    
+    </form>  
 </div>
 <div class="columns">
     <div class="column is-one-fifth">
@@ -50,7 +48,4 @@
         {% endfor %}
     </div>
 </div>
-
-
-
 {% endblock %}

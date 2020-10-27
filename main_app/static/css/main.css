@@ -20,8 +20,12 @@ text-align: center;
 
 .card { margin-top: 5px; }
 .dropdown{ margin-top: 5px; }
-#projectSelector{ width: 250px; }
 
+.box{
+    background-color: var(--backgroundcolor);
+    border-radius: 0px;
+    box-shadow: none;
+}
 
 
 #complete {
