@@ -20,6 +20,9 @@ text-align: center;
 
 .card { margin-top: 5px; }
 .dropdown{ margin-top: 5px; }
+#projectSelector{ width: 250px; }
+
+
 
 #complete {
     background-color: var(--taskerBlue);

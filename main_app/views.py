@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Task
+from .forms import TaskForm
 
 # Create your views here.
 from django.http import HttpResponse
@@ -13,7 +14,8 @@ def about(request):
 
 def tasks(request):
   tasks = Task.objects.all()
-  context = { 'tasks': tasks }
+  task_form = TaskForm()
+  context = { 'tasks': tasks, 'task_form': task_form }
   return render(request, 'tasks/index.html', context )
 
 def task_show(request, task_id):
