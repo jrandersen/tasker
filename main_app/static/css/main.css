@@ -27,6 +27,5 @@ text-align: center;
 #complete {
     background-color: var(--taskerBlue);
     color: var(--backgroundcolor);
-    height: 80px;
     margin-right: 10px;
 }
