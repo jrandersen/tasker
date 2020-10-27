@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Task
 from .forms import TaskForm
 
@@ -13,6 +13,13 @@ def about(request):
     return render( request, 'about.html' )
 
 def tasks(request):
+  if request.method == 'POST':
+    task_form = TaskForm(request.POST)
+    if task_form.is_valid():
+      new_task = task_form.save(commit=False)
+      new_task.taskComplete = False # will fail w/o declaring it false
+      new_task.save()
+      return redirect('tasks')
   tasks = Task.objects.all()
   task_form = TaskForm()
   context = { 'tasks': tasks, 'task_form': task_form }

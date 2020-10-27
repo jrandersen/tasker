@@ -2,9 +2,9 @@
 {% block content %}
 
 <div class="box">
-    <form method='post'>
+    <form action="{% url 'tasks' %}" method='POST'>
         {% csrf_token %}
-        <input class="input" type="text" placeholder="... enter a task name">
+        <input class="input" type="text" name="taskName" placeholder="... enter a task name">
     </form>
     
 </div>
