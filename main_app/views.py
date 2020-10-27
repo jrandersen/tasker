@@ -1,16 +1,5 @@
 from django.shortcuts import render
-
-class Task:  # Note that parens are optional if not inheriting from another class
-  def __init__(self, name, project):
-    self.name = name
-    self.project = project
-
-basic_tasks = [
-  Task('Do this', 'client-one'),
-  Task('Do that', 'client-one'),
-  Task('Do something', 'client-one'),
-]
-
+from .models import Task
 
 # Create your views here.
 from django.http import HttpResponse
@@ -20,8 +9,14 @@ def home(request):
   return render(request, 'home.html')
 
 def about(request):
-    return render(request, 'about.html')
+    return render( request, 'about.html' )
 
 def tasks(request):
-  context = { 'basic_tasks': basic_tasks }
+  tasks = Task.objects.all()
+  context = { 'tasks': tasks }
   return render(request, 'tasks/index.html', context )
+
+def task_show(request, task_id):
+  task = Task.objects.get(id=task_id)
+  context = { 'task': task }
+  return render( request, 'tasks/show.html', context )

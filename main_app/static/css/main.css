@@ -17,3 +17,13 @@ text-align: center;
 .navbar {
     background-color: var(--taskerBlue);
 }
+
+.card { margin-top: 5px; }
+.dropdown{ margin-top: 5px; }
+
+#complete {
+    background-color: var(--taskerBlue);
+    color: var(--backgroundcolor);
+    height: 80px;
+    margin-right: 10px;
+}
