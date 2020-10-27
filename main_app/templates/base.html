@@ -1,0 +1,64 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Tasker</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+  <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
+  <script defer src="{% static "/scripts/app.js" %}"></script>
+</head>
+<body>
+  <!-- NAVBAR -->
+ <nav class="navbar" role="navigation" aria-label="main navigation">
+    <!-- NAVBAR BRAND & BURGER -->
+    <div class="navbar-brand">
+      <a class="navbar-item" href="{% url 'home' %}">
+        <img src="../static/assets/transparent_tasker.png" width="112" height="28">
+      </a>
+
+      
+      <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+
+    <!-- NAVBAR LEFT & RIGHT -->
+    <div id="navbarBasicExample" class="navbar-menu">
+      <div class="navbar-start">
+        <a class="navbar-item has-text-white" href="{% url 'tasks' %}">
+          <strong>Task</strong>
+        </a>
+        <a class="navbar-item has-text-white" href="{% url 'about' %}">
+          <strong>About</strong>
+        </a>
+      </div>
+
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="buttons">
+            <a class="button is-primary" >
+              <strong>Signup</strong>
+            </a>
+            <a class="button is-secondary">
+              <strong>Login</strong>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav> 
+
+  <!-- MAIN CONTENT --> 
+  <main class="container">
+    {% block content %}
+    {% endblock %}
+  </main>
+</body>
+</html>
