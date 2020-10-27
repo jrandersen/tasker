@@ -1,3 +1,22 @@
+:root {
+    --backgroundcolor:#f5f5f5ff;
+    --taskerBlue: #364f6bff;
+    --taskerGreen:#3fc1c9ff;
+    --taskerRed:#fc5185;
+}
 body {
-    background-color: blueviolet;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    background-color: var(--backgroundcolor);
+}
+
+
+footer {
+padding-top: 0;
+text-align: center;
+}
+
+.navbar {
+    background-color: var(--backgroundcolor);
 }
