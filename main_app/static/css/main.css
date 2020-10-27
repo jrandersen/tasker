@@ -5,12 +5,9 @@
     --taskerRed:#fc5185;
 }
 body {
-    display: flex;
     min-height: 100vh;
-    flex-direction: column;
     background-color: var(--backgroundcolor);
 }
-
 
 footer {
 padding-top: 0;
@@ -18,5 +15,5 @@ text-align: center;
 }
 
 .navbar {
-    background-color: var(--backgroundcolor);
+    background-color: var(--taskerBlue);
 }
