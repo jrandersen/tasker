@@ -3,6 +3,7 @@
     --taskerBlue: #364f6bff;
     --taskerGreen:#3fc1c9ff;
     --taskerRed:#fc5185;
+    --iconSize: 28px;
 }
 body {
     min-height: 100vh;
@@ -54,3 +55,14 @@ text-align: center;
     margin-top: 5px;
     margin-bottom: 5px;
 }
+
+.is-tasker-edit-icon{
+    font-size: var(--iconSize);
+    color: var(--taskerBlue);
+}
+
+.is-tasker-delete-icon{
+    font-size: var(--iconSize);
+    color: var(--taskerRed);
+}
+ 

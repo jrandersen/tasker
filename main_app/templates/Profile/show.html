@@ -20,10 +20,15 @@
         <div class="hero">
             <div class="hero-body">
                 <div class="container">
-                    <h1 class="title">{{ profile.name }}</h1>
+                    <h1 class="title">{{ profile.name }} &nbsp
+                        <a class="is-tasker-edit-icon"
+                            href="{% url 'profile_edit' profile.id %}" 
+                            method='POST'>
+                                <i class="fas fa-pen-square"></i>
+                        </a>
+                    </h1>
                     <p>Joined on: {{ profile.dateJoined }}</p>
                 </div>
-                <a class="button" id="is-green" href="#">Edit</a><br>
             </div>
         </div>
         <div class="box">

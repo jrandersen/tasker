@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!-- EDIT FORM -->
+<form action="{% url 'task_edit' task.id %}" method="POST">
+    {% csrf_token %}
+    {{ task_form.as_p}}
+    <input type="submit" class="button" id="is-green" value="Update">
+    <br>
+    <a class="button" id="is-red" href="{% url 'task_delete' task.id %}">Delete</a><br>
+
+</form>
+
+{% endblock %}

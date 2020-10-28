@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Profile, Project, Task
-from .forms import TaskForm, ProjectForm
+from .forms import TaskForm, ProjectForm, ProfileForm
 
 # Create your views here.
 from django.http import HttpResponse
@@ -40,16 +40,16 @@ def task_edit(request, task_id):
   task = Task.objects.get(id=task_id)
   if request.method == 'POST':
     if request.user.id == task.creator.user.id:
-      task_form = TaskForm(request.POST, instance=POST)
+      task_form = TaskForm(request.POST, instance=task)
       if task_form.is_valid():
         task_form.save()
         return redirect('task_show', task_id=task_id)
     else:
       return redirect('task_show', task_id=task_id)
   else:
-    task_form = TaskForm(instance=POST)
+    task_form = TaskForm(instance=task)
   context = { 'task': task, 'task_form': task_form }
-  return render(request, 'task/edit.html', context)
+  return render(request, 'tasks/edit.html', context)
 
 
 # --- DELETE TASK ROUTE ---
@@ -73,5 +73,18 @@ def profile_show(request, profile_id):
 
 
 # --- PROFILE EDIT ROUTE ---
-
+def profile_edit(request, profile_id):
+  profile = Profile.objects.get(id=profile_id)
+  if request.method == 'POST':
+    if request.user.id == profile.user.id: 
+      profile_form = ProfileForm(request.POST, instance=profile)
+      if profile_form.is_valid():
+        profile_form.save()
+        return redirect('profile_show', profile_id=profile_id)
+    else:
+      return redirect('profile_show', profile_id=profile_id)
+  else:
+    profile_form = ProfileForm(instance=profile)
+  context = { 'profile': profile, 'profile_form': profile_form}
+  return render(request, 'profile/edit.html', context)
 
