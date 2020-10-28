@@ -28,10 +28,3 @@ dropdown.addEventListener('click', function(event) {
   event.stopPropagation();
   dropdown.classList.toggle('is-active');
 });
-
-//project delete
-const projectDel = document.querySelector('.project_delete')
-projectDel.addEventListener('click', function(event) {
-  event.stopPropagation();
-  
-})

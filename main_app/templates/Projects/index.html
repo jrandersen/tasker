@@ -8,7 +8,6 @@
             {{ project_form.as_p }}
             <input type="submit" class="button" id="is-green" value="add project">
         </div>
-
         <!-- <div class="field has-addons">
             <p class="control">
                 <span class="select is-medium">
@@ -29,7 +28,7 @@
     </form>
 </div>
 {% for project in projects %}
-    <a href="#">
+    <a href="{% url 'project_show' project.id %}">
         <div class="card">
             <div class="level">
                 <div class="level-left">

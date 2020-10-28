@@ -19,6 +19,7 @@ urlpatterns = [
 
     # ==== PROFILE & PROJECT ==== #
     path('projects/', views.projects, name='projects'),
-    # path('projects/<int:project_id>/edit/', views.project_edit, name='project_edit'),
+    path('projects/<int:project_id>/', views.project_show, name='project_show'),
+    path('projects/<int:project_id>/edit/', views.project_edit, name='project_edit'),
     # path('projects/<int:project_id>/delete/', views.project_delete, name='project_delete'),
 ]

@@ -5,6 +5,7 @@ from .forms import TaskForm, ProjectForm, ProfileForm
 # Create your views here.
 from django.http import HttpResponse
 
+# ADMIN ====================================
 # --- LANDING PAGE ROUTE ---
 def home(request):
   return render(request, 'home.html')
@@ -13,6 +14,9 @@ def home(request):
 def about(request):
     return render( request, 'about.html' )
 
+
+
+# TASKS ====================================
 # --- SHOW ALL TASKS & NEW TASK ROUTE ---
 def tasks(request):
   if request.method == 'POST':
@@ -51,18 +55,19 @@ def task_edit(request, task_id):
   context = { 'task': task, 'task_form': task_form }
   return render(request, 'tasks/edit.html', context)
 
-
 # --- DELETE TASK ROUTE ---
 def task_delete(request, task_id):
   Task.objects.get(id=task_id).delete()
   return redirect('tasks')
 
+
+
+# PROFILE ====================================
 # --- PROFILE SHOW ROUTE ---
 def profile_show(request, profile_id):
   profile = Profile.objects.get(id=profile_id)
   context = { 'profile': profile, 'projects': projects }
   return render(request, 'profile/show.html', context)
-
 
 # --- PROFILE EDIT ROUTE ---
 def profile_edit(request, profile_id):
@@ -81,7 +86,9 @@ def profile_edit(request, profile_id):
   return render(request, 'profile/edit.html', context)
 
 
-# --- PROJECT SHOW ROUTE ---
+
+# PROJECTS ====================================
+# --- SHOW ALL PROJECTS & NEW PROJECT ROUTE ---
 def projects(request):
   if request.method == 'POST':
     project_form = ProjectForm(request.POST)
@@ -93,6 +100,12 @@ def projects(request):
   project_form = ProjectForm()  
   context = { 'projects': projects, 'project_form': project_form }
   return render(request, 'projects/index.html', context )
+
+# --- PROJECT SHOW ROUTE ---
+def project_show(request, project_id):
+  project = Project.objects.get(id=project_id)
+  context = { 'project': project }
+  return render( request, 'projects/show.html', context )
 
 
 # --- PROJECT SHOW ROUTE ---
