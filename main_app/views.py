@@ -109,9 +109,20 @@ def project_show(request, project_id):
 
 
 # --- PROJECT SHOW ROUTE ---
-def project_edit(request):
-  # get projects
-  return null
+def project_edit(request, project_id):
+  project = Project.objects.get(id=project_id)
+  if request.method == 'POST':
+    if request.user.id == project.creator.user.id: 
+      project_form = ProjectForm(request.POST, instance=project)
+      if project_form.is_valid():
+        project_form.save()
+        return redirect('project_show', project_id=project_id)
+    else:
+      return redirect('project_show', project_id=project_id)
+  else:
+    project_form = ProjectForm(instance=project)
+  context = { 'project': project, 'project_form': project_form}
+  return render(request, 'projects/edit.html', context)
 
 # --- PROJECT DELETE ROUTE ---
 def project_delete(request):

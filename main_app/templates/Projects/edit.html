@@ -1,6 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>projects edit page</h1>
+<!-- EDIT FORM -->
+<form action="{% url 'project_edit' project.id %}" method="POST">
+    {% csrf_token %}
+    {{ project_form.as_p}}
+    <input type="submit" class="button" id="is-green" value="Update">
+    <br>
+    <a class="button" id="is-red" href="{% url 'project_edit' project.id %}">Delete</a><br>
+
+</form>
 
 {% endblock %}
