@@ -33,3 +33,22 @@ text-align: center;
     color: var(--backgroundcolor);
     margin-right: 10px;
 }
+
+.tag {
+    margin: 3px;
+}
+
+#is-green {
+    background-color: var(--taskerGreen);
+}
+
+#is-blue {
+    background-color: var(--taskerBlue);
+}
+
+#is-red {
+    background-color: var(--taskerRed);
+}
+#is-background-color {
+    background-color: var(--backgroundcolor);
+}

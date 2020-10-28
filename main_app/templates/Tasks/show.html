@@ -14,9 +14,10 @@
                     <h1 class="title">{{ task.taskName }}</h1>
                     <h2 class="subtitle">Project: Placeholder</h2>
                     <p>Created on: {{ task.createdDate }}</p>
+                    <p>Created by: {{ task.creator.name }}</p>
                     <p>Completed: {{ task.taskCompletedDate }}</p>
                 </div>
-                <a class="button is-danger" href="{% url 'task_delete' task.id %}">Delete</a><br>
+                <a class="button" id="is-red" href="{% url 'task_delete' task.id %}">Delete</a><br>
             </div>
         </div>
 

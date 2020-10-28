@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="columns">
+    <div class="column is-one-fifth">
+        <div class="subtitle">Todays Date:</div>
+        <button class="button is-secondary">Weekly View</button><br>
+        <button class="button is-secondary">Total Time</button><br>
+        <br>
+        <div class='subtitle'>Projects:</div>
+        {% for project in projects %}
+            <span class="tag is-medium" id="is-red">
+                {{ project.projectName }}
+                <a class="delete"></a>
+            </span>
+            
+        {% endfor %}
+    </div>
+    <div class="column is-four-fifth">
+        <div class="hero">
+            <div class="hero-body">
+                <div class="container">
+                    <h1 class="title">{{ profile.name }}</h1>
+                    <p>Joined on: {{ profile.dateJoined }}</p>
+                </div>
+                <a class="button" id="is-green" href="#">Edit</a><br>
+            </div>
+        </div>
+        <div class="box">
+            <form action="{% url 'profile_show' profile.id %}" method='POST'>
+                {% csrf_token %}
+                <input class="input" type="text" name="projectName" placeholder="... enter a Project">
+            </form>  
+        </div>
+    </div>
+</div>
+
+{% endblock %}

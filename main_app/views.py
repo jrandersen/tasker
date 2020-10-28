@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from .models import Task
-from .forms import TaskForm
+from .models import Profile, Project, Task
+from .forms import TaskForm, ProjectForm
 
 # Create your views here.
 from django.http import HttpResponse
@@ -20,6 +20,7 @@ def tasks(request):
     if task_form.is_valid():
       new_task = task_form.save(commit=False)
       new_task.taskComplete = False # will fail w/o declaring it false
+      new_task.creator = request.user.profile
       new_task.save()
       return redirect('tasks')
   tasks = Task.objects.all()
@@ -37,4 +38,22 @@ def task_show(request, task_id):
 def task_delete(request, task_id):
   Task.objects.get(id=task_id).delete()
   return redirect('tasks')
+
+# --- PROFILE SHOW & NEW PROJECT ROUTE ---
+def profile_show(request, profile_id):
+  profile = Profile.objects.get(id=profile_id)
+  if request.method == 'POST':
+    project_form = ProjectForm(request.POST)
+    if project_form.is_valid():
+      new_project = project_form.save(commit=False)
+      new_project.creator = request.user.profile
+      new_project.save()
+      # return redirect('profile/show.html')
+  projects = profile.project_set.all()
+  context = { 'profile': profile, 'projects': projects }
+  return render(request, 'profile/show.html', context)
+
+
+# --- PROFILE EDIT ROUTE ---
+
 
