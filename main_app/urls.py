@@ -18,7 +18,7 @@ urlpatterns = [
     # path('profile/<int:profile_id>/delete/', views.profile_delete, name='profile_delete'),
 
     # ==== PROFILE & PROJECT ==== #
-    path('projects/', views.project_show, name='projects'),
+    path('projects/', views.projects, name='projects'),
     # path('projects/<int:project_id>/edit/', views.project_edit, name='project_edit'),
     # path('projects/<int:project_id>/delete/', views.project_delete, name='project_delete'),
 ]

@@ -57,17 +57,9 @@ def task_delete(request, task_id):
   Task.objects.get(id=task_id).delete()
   return redirect('tasks')
 
-# --- PROFILE SHOW & NEW PROJECT ROUTE ---
+# --- PROFILE SHOW ROUTE ---
 def profile_show(request, profile_id):
   profile = Profile.objects.get(id=profile_id)
-  if request.method == 'POST':
-    project_form = ProjectForm(request.POST)
-    if project_form.is_valid():
-      new_project = project_form.save(commit=False)
-      new_project.creator = request.user.profile
-      new_project.save()
-      # return redirect('profile/show.html')
-  projects = profile.project_set.all()
   context = { 'profile': profile, 'projects': projects }
   return render(request, 'profile/show.html', context)
 
@@ -90,9 +82,17 @@ def profile_edit(request, profile_id):
 
 
 # --- PROJECT SHOW ROUTE ---
-def project_show(request):
-  # get projects
-  return render(request, 'projects/index.html' )
+def projects(request):
+  if request.method == 'POST':
+    project_form = ProjectForm(request.POST)
+    if project_form.is_valid():
+      new_project = project_form.save(commit=False)
+      new_project.creator = request.user.profile
+      new_project.save()
+  projects = Project.objects.all()
+  project_form = ProjectForm()  
+  context = { 'projects': projects, 'project_form': project_form }
+  return render(request, 'projects/index.html', context )
 
 
 # --- PROJECT SHOW ROUTE ---

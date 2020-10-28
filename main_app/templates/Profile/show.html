@@ -6,15 +6,6 @@
         <div class="subtitle">Todays Date:</div>
         <button class="button is-secondary">Weekly View</button><br>
         <button class="button is-secondary">Total Time</button><br>
-        <br>
-        <div class='subtitle'>Projects:</div>
-        {% for project in projects %}
-            <span class="tag is-medium" id="is-red">
-                {{ project.projectName }}
-                <a class="delete" id="project_delete"></a>
-            </span>
-            
-        {% endfor %}
     </div>
     <div class="column is-four-fifth">
         <div class="hero">
@@ -30,12 +21,6 @@
                     <p>Joined on: {{ profile.dateJoined }}</p>
                 </div>
             </div>
-        </div>
-        <div class="box">
-            <form action="{% url 'profile_show' profile.id %}" method='POST'>
-                {% csrf_token %}
-                <input class="input" type="text" name="projectName" placeholder="... enter a Project">
-            </form>  
         </div>
     </div>
 </div>
