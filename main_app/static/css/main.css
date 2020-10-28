@@ -17,3 +17,40 @@ text-align: center;
 .navbar {
     background-color: var(--taskerBlue);
 }
+
+.card { margin-top: 5px; }
+.dropdown{ margin-top: 5px; }
+
+.box{
+    background-color: var(--backgroundcolor);
+}
+
+#complete {
+    background-color: var(--taskerBlue);
+    color: var(--backgroundcolor);
+    margin-right: 10px;
+}
+
+.tag {
+    margin: 3px;
+}
+
+#is-green {
+    background-color: var(--taskerGreen);
+}
+
+#is-blue {
+    background-color: var(--taskerBlue);
+}
+
+#is-red {
+    background-color: var(--taskerRed);
+}
+#is-background-color {
+    background-color: var(--backgroundcolor);
+}
+
+.field {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
