@@ -88,3 +88,20 @@ def profile_edit(request, profile_id):
   context = { 'profile': profile, 'profile_form': profile_form}
   return render(request, 'profile/edit.html', context)
 
+
+# --- PROJECT SHOW ROUTE ---
+def project_show(request):
+  # get projects
+  return render(request, 'projects/index.html' )
+
+
+# --- PROJECT SHOW ROUTE ---
+def project_edit(request):
+  # get projects
+  return null
+
+# --- PROJECT DELETE ROUTE ---
+def project_delete(request):
+  # get project dot delete
+  return null
+
