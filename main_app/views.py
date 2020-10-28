@@ -25,7 +25,8 @@ def tasks(request):
       return redirect('tasks')
   tasks = Task.objects.all()
   task_form = TaskForm()
-  context = { 'tasks': tasks, 'task_form': task_form }
+  projects = Project.objects.all()
+  context = { 'tasks': tasks, 'task_form': task_form, 'projects': projects }
   return render(request, 'tasks/index.html', context )
 
 # --- SHOW TASK ROUTE ---

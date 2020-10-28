@@ -31,6 +31,7 @@ class Task(models.Model):
     taskComplete = models.BooleanField(auto_created=False)
     taskCompletedDate = models.DateField(null=True, blank=True)
     creator = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    project = models.ForeignKey(Project, on_delete=models.CASCADE, default=1)
     
     def __str__(self):
         return self.taskName
