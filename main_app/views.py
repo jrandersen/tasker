@@ -35,6 +35,23 @@ def task_show(request, task_id):
   context = { 'task': task }
   return render( request, 'tasks/show.html', context )
 
+# --- EDIT TASK ROUTE ---
+def task_edit(request, task_id):
+  task = Task.objects.get(id=task_id)
+  if request.method == 'POST':
+    if request.user.id == task.creator.user.id:
+      task_form = TaskForm(request.POST, instance=POST)
+      if task_form.is_valid():
+        task_form.save()
+        return redirect('task_show', task_id=task_id)
+    else:
+      return redirect('task_show', task_id=task_id)
+  else:
+    task_form = TaskForm(instance=POST)
+  context = { 'task': task, 'task_form': task_form }
+  return render(request, 'task/edit.html', context)
+
+
 # --- DELETE TASK ROUTE ---
 def task_delete(request, task_id):
   Task.objects.get(id=task_id).delete()

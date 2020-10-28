@@ -9,6 +9,7 @@ urlpatterns = [
     # ==== TASK ==== #
     path('tasks/', views.tasks, name='tasks'),
     path('tasks/<int:task_id>/', views.task_show, name='task_show'),
+    path('tasks/<int:task_id>/edit/', views.task_edit, name='task_edit'),
     path('tasks/<int:task_id>/delete/', views.task_delete, name='task_delete'),
 
     # ==== PROFILE ==== #

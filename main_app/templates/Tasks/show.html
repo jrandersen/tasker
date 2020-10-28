@@ -11,9 +11,14 @@
         <div class="hero">
             <div class="hero-body">
                 <div class="container">
-                    <h1 class="title">{{ task.taskName }}</h1>
+                    <h1 class="title">{{ task.taskName }} &nbsp 
+                        <a style="font-size: 20px; color: Dodgerblue:" href="{% url 'task_edit' task.id %}" method='POST'>
+                            
+                            <i class="fas fa-pen-square"></i>
+                        </a>
+                    </h1>
                     <h2 class="subtitle">{{ task.project }}</h2>
-                    <p>Created on: {{ task.createdDate }}</p>
+                <p>Created on: {{ task.createdDate }}</p>
                     <p>Created by: {{ task.creator.name }}</p>
                     <p>Completed: {{ task.taskCompletedDate }}</p>
                 </div>
