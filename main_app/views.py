@@ -125,7 +125,7 @@ def project_edit(request, project_id):
   return render(request, 'projects/edit.html', context)
 
 # --- PROJECT DELETE ROUTE ---
-def project_delete(request):
-  # get project dot delete
-  return null
+def project_delete(request, project_id):
+  Project.objects.get(id=project_id).delete()
+  return redirect('projects')
 
