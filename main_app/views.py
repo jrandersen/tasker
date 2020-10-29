@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Profile, Project, Task
+from .models import Profile, Project, Task, Note, Time
 from .forms import TaskForm, ProjectForm, ProfileForm, SignUpForm
 from django.http import HttpResponse
 from django.contrib.auth import login, authenticate
@@ -40,19 +40,17 @@ def signup(request):
 # --- SHOW ALL TASKS & NEW TASK ROUTE ---
 def tasks(request):
   if request.method == 'POST':
-    # get taskname & project id from request.POST
     taskName = request.POST.get('taskName')
     project = Project.objects.get(id=request.POST.get('project'))
     creator = Profile.objects.get(id=request.user.id)
-    # manually create new task, passing in taskname, project and creator objects
     new_task = Task(taskName=taskName, creator=creator, project=project)
     new_task.taskComplete = False
     new_task.save()
     return redirect('tasks')
-  # all this happens if not a POST request
   task = Task.objects.all()
   tasks = Task.objects.filter(creator=request.user.profile)
   projects = Project.objects.filter(creator=request.user.profile)
+
   task_form = TaskForm()
   context = { 'tasks': tasks, 'task_form': task_form, 'projects': projects }
   return render(request, 'tasks/index.html', context )
@@ -60,7 +58,9 @@ def tasks(request):
 # --- SHOW TASK ROUTE ---
 def task_show(request, task_id):
   task = Task.objects.get(id=task_id)
-  context = { 'task': task }
+  notes = task.note_set.all()
+  notes_length = len(notes)
+  context = { 'task': task, 'notes': notes, "notes_length": notes_length }
   return render( request, 'tasks/show.html', context )
 
 # --- EDIT TASK ROUTE ---
