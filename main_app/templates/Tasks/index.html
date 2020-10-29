@@ -4,7 +4,7 @@
 <div class="box">
     <form action="{% url 'tasks' %}" method='POST'>
         {% csrf_token %}
-        <!-- <div class="field has-addons">
+        <div class="field has-addons">
             <p class="control">
                 <label for="project"></label>
                     <span class="select is-medium">
@@ -19,9 +19,9 @@
 
             <p class="control">
                 <input type="submit" class="button is-medium" id="is-green" value="add task"></p>
-        </div> -->
+        </div>
 
-        <div class="field has-addons">
+        <!-- <div class="field has-addons">
             <p class="control">
                 <span class="select is-medium">
                     <select>
@@ -38,7 +38,7 @@
             <p class="control">
                 <input type="submit" class="button is-medium" id="is-green" value="add task">
             </p>
-        </div>
+        </div> -->
     </form>
 </div> 
 {% for task in tasks %}
