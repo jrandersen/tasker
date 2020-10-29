@@ -57,6 +57,12 @@ def tasks(request):
 
 # --- SHOW TASK ROUTE ---
 def task_show(request, task_id):
+  if request.method == 'POST':
+    note = request.POST.get('note')
+    task = Task.objects.get(id=task_id)
+    creator = Profile.objects.get(id=request.user.id)
+    new_note = Note(note=note, task=task, creator=creator)
+    new_note.save()
   task = Task.objects.get(id=task_id)
   notes = task.note_set.all()
   notes_length = len(notes)
@@ -89,16 +95,24 @@ def task_delete(request, task_id):
 # NOTES ====================================
 # --- ADD NOTES ROUTE TO TASK ---
 def note_new(request):
-  # do some stuff
-  return ('Nothing here yet')
+  # this is in the Task_show page
+  return render ('Nothing here yet')
 
-def note_edit(request):
-  # do some stuff
-  return ('Nothing here yet')
+def note_edit(request, note_id):
+  note = Note.objects.get(id=note_id)
+  context = { 'note' : note}
+  return render (request, 'notes/edit.html', context)
 
-def note_delete(request):
-  # do some stuff
-  return ('Nothing here yet')    
+def note_delete(request, note_id):
+  note = Note.objects.get(id=note_id)
+  task = Task.objects.get(id=note.task.id)
+  print(task)
+  note.delete()
+  notes = task.note_set.all()
+  notes_length = len(notes)
+  context = { 'task': task, 'notes': notes, "notes_length": notes_length }
+  # return redirect ( 'tasks' )
+  return render(request, 'tasks/show.html', context )    
 
 
 
