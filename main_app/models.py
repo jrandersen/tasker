@@ -85,7 +85,7 @@ class Time(models.Model):
     class Meta:
         constraints = [
             models.CheckConstraint(
-                check=Q(start_lte=F('endTime')),
+                check=Q(startTime__lte=F('endTime')),
                 name='startTime_before_endTime'
             )
         ]
