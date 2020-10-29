@@ -1,12 +1,42 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<!-- Add the login form -->
+{% comment %} MODEL PROFILE ==================================== {% endcomment %}
 <form method="post" action="{% url 'login' %}">
   {% csrf_token %}
-  {{ form.as_p }}
-  <input type="submit" class="button" id="is-green" value="login">
-  <input type="hidden" name="next" value="{{ next }}">
-</form>
+  <div class="columns is-mobile is-centered">
+    <div class="column is-half">
+      <div class="field">
+        <p class="control has-icons-left has-icons-right">
+          <input class="input" type="text" name="username" placeholder="Username">
+          <span class="icon is-small is-left">
+            <i class="fas fa-user"></i>
+          </span>
+          <span class="icon is-small is-right">
+            <i class="fas fa-check"></i>
+          </span>
+        </p>
+      </div>
+      <div class="field">
+        <p class="control has-icons-left">
+          <input class="input" type="password" name="password" placeholder="Password">
+          <span class="icon is-small is-left">
+            <i class="fas fa-lock"></i>
+          </span>
+        </p>
+      </div>
+      <div class="field">
+        <p class="control">
+          <button class="button is-success" id="is-green">
+            Login
+          </button>
+        </p>
+        <input type="hidden" name="next" value="{{ next }}">
+      </div>
 
+
+  </div>
+</div>
+
+</form>
 {% endblock %}

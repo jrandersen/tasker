@@ -1,27 +1,32 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<!-- V1 does not filter but DOES add task -->
 <div class="box">
     <form action="{% url 'tasks' %}" method='POST'>
-        {% csrf_token %}
+        {% csrf_token %}    
         <div class="field has-addons">
             <p class="control">
                 <label for="project"></label>
                     <span class="select is-medium">
                         {{ task_form.project }}
-                    </span>
-                </p>
+                    </span></p>
 
             <p class="control is-expanded">
                 <label for="taskName"></label>
-                    <input class="input is-medium" type="text" name="taskName" placeholder="... enter a task name">
-                </p>
+                    <input class="input is-medium" type="text" name="taskName" placeholder="... enter a task name"></p>
 
             <p class="control">
                 <input type="submit" class="button is-medium" id="is-green" value="add task"></p>
         </div>
-
-        <!-- <div class="field has-addons">
+    </form>
+</div> 
+<br>
+<!-- V2 does filter, but does NOT add task -->
+<div class="box">
+    <form action="{% url 'tasks' %}" method='POST'>
+    {% csrf_token %}    
+        <div class="field has-addons">
             <p class="control">
                 <span class="select is-medium">
                     <select>
@@ -30,17 +35,18 @@
                         <option name="{{ project }}" >{{ project }}</option>
                     {% endfor %}
                     </select>
-                </span>
-            </p>
+                </span></p>
+
             <p class="control is-expanded">
-                <input class="input is-medium" type="text" name="taskName" placeholder="... enter a task name">
-            </p>
+                <input class="input is-medium" type="text" name="taskName" placeholder="... enter a task name"></p>
+
             <p class="control">
-                <input type="submit" class="button is-medium" id="is-green" value="add task">
-            </p>
-        </div> -->
+                <input type="submit" class="button is-medium" id="is-green" value="add task"></p>
+        </div>
     </form>
-</div> 
+</div>
+
+
 {% for task in tasks %}
     <a href="{% url 'task_show' task.id %}">
         <div class="card">
