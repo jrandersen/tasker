@@ -50,7 +50,7 @@ class Task(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
     
     def __str__(self):
-        return self.taskName + self.taskComplete + self.taskCompletedDate
+        return self.taskName
     
     class Meta:
         ordering = ['-createdDate']
@@ -65,13 +65,13 @@ class Note(models.Model):
     task = models.ForeignKey(Task, on_delete=models.CASCADE)
     
     def __str__(self):
-        return self.note + self.noteCreatedDate + self.creator + self.task
+        return self.note
 
 
 
 # MODEL TIME ====================================
 class Time(models.Model):
-    date = models.DateField(auto_now=True)
+    date = models.DateField()
     startTime = models.TimeField()
     endTime = models.TimeField()
     tags = TaggableManager()
@@ -92,7 +92,7 @@ class Time(models.Model):
 
     def totaTime():
         # adds up all time per project 
-        return 0
+        return null
 
     def __str__(self):
-        return self.date + self.startTime + self.endTime + self.tags + self.task
+        return str(self.date) + ", " + "start:" + str(self.startTime) + ", " + "end:" + str(self.endTime)
