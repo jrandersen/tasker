@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="box">
+    <form action="{% url 'projects' %}" method='POST'>
+        {% csrf_token %}
+        <div class="is-inline">
+            {{ project_form.as_p }}
+            <input type="submit" class="button" id="is-green" value="add project">
+        </div>
+        <!-- <div class="field has-addons">
+            <p class="control">
+                <span class="select is-medium">
+                <select>
+                {% for project in projects %}
+                    <option name="project" >{{ project.projectName }}</option>
+                {% endfor %}
+                </select>
+                </span>
+            </p>
+            <p class="control is-expanded">
+                <input class="input is-medium" type="text" name="taskName" placeholder="... enter a task name">
+            </p>
+            <p class="control">
+                <input type="submit" class="button is-medium" id="is-green" value="add task">
+            </p>
+        </div> -->
+    </form>
+</div>
+{% for project in projects %}
+    <a href="{% url 'project_show' project.id %}">
+        <div class="card">
+            <div class="level">
+                <div class="level-left">
+                    <div class="card-content ">
+                        <div class="card-title">{{ project.projectName }}</div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+{% endfor %}
+{% endblock %}

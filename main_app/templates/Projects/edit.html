@@ -2,12 +2,12 @@
 {% block content %}
 
 <!-- EDIT FORM -->
-<form action="{% url 'profile_edit' profile.id %}" method="POST">
+<form action="{% url 'project_edit' project.id %}" method="POST">
     {% csrf_token %}
-    {{ profile_form.as_p}}
+    {{ project_form.as_p}}
     <input type="submit" class="button" id="is-green" value="Update">
     <br>
-    <a class="button" id="is-red" href="{% url 'profile_edit' profile.id %}">Delete</a><br>
+    <a class="button" id="is-red" href="{% url 'project_delete' project.id %}">Delete</a><br>
 
 </form>
 

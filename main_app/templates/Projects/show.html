@@ -3,7 +3,7 @@
 
 <div class="columns">
     <div class="column is-one-fifth">
-        <div class="subtitle">Todays Date:</div>
+        Todays date <br>
         <button class="button is-secondary">Weekly View</button><br>
         <button class="button is-secondary">Total Time</button><br>
     </div>
@@ -11,19 +11,19 @@
         <div class="hero">
             <div class="hero-body">
                 <div class="container">
-                    <h1 class="title">{{ profile.name }} &nbsp
+                    <h1 class="title">{{ project.projectName }} &nbsp 
                         <a class="is-tasker-edit-icon"
-                            href="{% url 'profile_edit' profile.id %}" 
+                            href="{% url 'project_edit' project.id %}" 
                             method='POST'>
                                 <i class="fas fa-pen-square"></i>
                         </a>
                     </h1>
-                    <h2 class="subtitle">{{ profile.email }}</h2>
-                    <h2 class="subtitle">{{ user.username }}</h2>
-                    <p>Joined on: {{ profile.dateJoined }}</p>
+                    <h2 class="subtitle">{{ project.creator.name }}</h2>
+                    <p>Created on: {{ project.startDate }}</p>
                 </div>
             </div>
         </div>
+
     </div>
 </div>
 

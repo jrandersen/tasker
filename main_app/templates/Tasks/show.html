@@ -11,13 +11,18 @@
         <div class="hero">
             <div class="hero-body">
                 <div class="container">
-                    <h1 class="title">{{ task.taskName }}</h1>
+                    <h1 class="title">{{ task.taskName }} &nbsp 
+                        <a class="is-tasker-edit-icon"
+                            href="{% url 'task_edit' task.id %}" 
+                            method='POST'>
+                                <i class="fas fa-pen-square"></i>
+                        </a>
+                    </h1>
                     <h2 class="subtitle">{{ task.project }}</h2>
-                    <p>Created on: {{ task.createdDate }}</p>
+                <p>Created on: {{ task.createdDate }}</p>
                     <p>Created by: {{ task.creator.name }}</p>
                     <p>Completed: {{ task.taskCompletedDate }}</p>
                 </div>
-                <a class="button" id="is-red" href="{% url 'task_delete' task.id %}">Delete</a><br>
             </div>
         </div>
 
