@@ -2,6 +2,9 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.core.exceptions import ValidationError
+from django.db.models import Q, F
+
 
 
 # MODEL PROFILE ====================================
@@ -51,3 +54,29 @@ class Task(models.Model):
     
     class Meta:
         ordering = ['-createdDate']
+
+class Note(models.Model):
+    note = models.TextField()
+    noteCreatedDate = models.DateField(auto_now=True)
+    creator = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    task = models.ForeignKey(Task, on_delete=models.CASCADE)
+
+class Time(models.Model):
+    date = models.DateField(auto_now=True)
+    startTime = models.TimeField()
+    endTime = models.TimeField()
+    
+    task = models.ForeignKey(Task, on_delete=models.CASCADE)
+
+    def clean(self):
+        if self.startTime > self.endTime:
+            raise ValidationError('Start time should be before end time')
+        return super().clean()
+
+    class Meta:
+        constraints = [
+            models.CheckConstraint(
+                check=Q(start_lte=F('endTime'))
+                name='startTime_before_endTime'
+            )
+        ]
