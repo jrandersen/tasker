@@ -5,6 +5,7 @@ from django.dispatch import receiver
 from django.core.exceptions import ValidationError
 from django.db.models import Q, F
 
+from taggit.managers import TaggableManager
 
 
 # MODEL PROFILE ====================================
@@ -23,6 +24,8 @@ def update_profile_signal(sender, instance, created, **kwargs):
         Profile.objects.create(user=instance)
     instance.profile.save()
 
+
+
 # MODEL PROJECT ====================================
 class Project(models.Model):
     projectName = models.CharField(max_length=50)
@@ -31,13 +34,10 @@ class Project(models.Model):
 
     def __str__(self):
         return self.projectName
-
-    def totaTime():
-        # adds up all time per project 
-        return null
-    
+  
     class Meta:
         ordering = ['-startDate']
+
 
 
 # MODEL TASK ====================================
@@ -50,22 +50,31 @@ class Task(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
     
     def __str__(self):
-        return self.taskName
+        return self.taskName + self.taskComplete + self.taskCompletedDate
     
     class Meta:
         ordering = ['-createdDate']
 
+
+
+# MODEL NOTES ====================================
 class Note(models.Model):
     note = models.TextField()
     noteCreatedDate = models.DateField(auto_now=True)
     creator = models.ForeignKey(Profile, on_delete=models.CASCADE)
     task = models.ForeignKey(Task, on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return self.note + self.noteCreatedDate + self.creator + self.task
 
+
+
+# MODEL TIME ====================================
 class Time(models.Model):
     date = models.DateField(auto_now=True)
     startTime = models.TimeField()
     endTime = models.TimeField()
-    
+    tags = TaggableManager()
     task = models.ForeignKey(Task, on_delete=models.CASCADE)
 
     def clean(self):
@@ -80,3 +89,10 @@ class Time(models.Model):
                 name='startTime_before_endTime'
             )
         ]
+
+    def totaTime():
+        # adds up all time per project 
+        return 0
+
+    def __str__(self):
+        return self.date + self.startTime + self.endTime + self.tags + self.task
