@@ -7,6 +7,7 @@ class Profile(models.Model):
     name = models.CharField(max_length=50)
     dateJoined = models.DateField(auto_now=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    email = models.EmailField(max_length=150)
 
 
 # MODEL PROJECT ====================================
@@ -33,7 +34,7 @@ class Task(models.Model):
     taskComplete = models.BooleanField(auto_created=False)
     taskCompletedDate = models.DateField(null=True, blank=True)
     creator = models.ForeignKey(Profile, on_delete=models.CASCADE)
-    project = models.ForeignKey(Project, on_delete=models.CASCADE, default=1)
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
     
     def __str__(self):
         return self.taskName

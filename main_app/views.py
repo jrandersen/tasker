@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from .models import Profile, Project, Task
 from .forms import TaskForm, ProjectForm, ProfileForm
 from django.http import HttpResponse
+from django.contrib.auth import login
+from django.contrib.auth.forms import UserCreationForm
 
 
 # ADMIN ====================================
@@ -13,6 +15,22 @@ def home(request):
 def about(request):
     return render( request, 'about.html' )
 
+# --- SIGNUP NEW USER & CREATE NEW PROFILE ---
+def signup(request):
+  error_message = ''
+  if request.method == 'POST':
+    form = UserCreationForm(request.POST)
+    if form.is_valid():
+      user = form.save()
+      profile = Profile(name= user.username)
+      profile.save()
+      login(request, user)
+      return redirect('tasks')
+    else:
+      error_message = 'Invalid sign up - try again'
+  form = UserCreationForm()
+  context = {'form': form, 'error_message': error_message}
+  return render(request, 'registration/signup.html', context)
 
 
 # TASKS ====================================
@@ -26,7 +44,8 @@ def tasks(request):
       new_task.creator = request.user.profile
       new_task.save()
       return redirect('tasks')
-  tasks = Task.objects.all()
+  task = Task.objects.all()
+  # task = Task.objects.filter(creator=request.user.profile)
   task_form = TaskForm()
   projects = Project.objects.all()
   context = { 'tasks': tasks, 'task_form': task_form, 'projects': projects }
@@ -112,7 +131,7 @@ def projects(request):
       new_project = project_form.save(commit=False)
       new_project.creator = request.user.profile
       new_project.save()
-  projects = Project.objects.all()
+  projects = Project.objects.filter(creator=request.user.profile)
   project_form = ProjectForm()  
   context = { 'projects': projects, 'project_form': project_form }
   return render(request, 'projects/index.html', context )
