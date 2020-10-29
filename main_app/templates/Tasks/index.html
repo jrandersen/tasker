@@ -29,10 +29,10 @@
         <div class="field has-addons">
             <p class="control">
                 <span class="select is-medium">
-                    <select>
+                    <label for="project"></label>  
+                    <select name="project">
                     {% for project in projects %}
-                        <label for="{{ project }}"></label>  
-                        <option name="{{ project }}" >{{ project }}</option>
+                        <option value={{ project.id }} >{{ project }}</option>
                     {% endfor %}
                     </select>
                 </span></p>

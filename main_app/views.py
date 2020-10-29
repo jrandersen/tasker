@@ -40,16 +40,26 @@ def signup(request):
 # --- SHOW ALL TASKS & NEW TASK ROUTE ---
 def tasks(request):
   if request.method == 'POST':
-    task_form = TaskForm(request.POST)
-    if task_form.is_valid():
-      new_task = task_form.save(commit=False)
-      new_task.taskComplete = False # will fail w/o declaring it false
-      new_task.creator = request.user.profile
-      new_task.save()
-      return redirect('tasks')
-  # task = Task.objects.all()
+    taskName = request.POST.get('taskName')
+    project = Project.objects.get(id=request.POST.get('project'))
+    creator = Profile.objects.get(id=request.user.id)
+    # print(taskName)
+    # print(project)
+    print(request.body)
+    new_task = Task(taskName=taskName, creator=creator, project=project)
+    new_task.taskComplete = False
+    # task_form = TaskForm(request.POST)
+    # if task_form.is_valid():
+    #   new_task = task_form.save(commit=False)
+    #   new_task.taskName = request.POST[ "taskName" ]
+    #   new_task.taskComplete = False # will fail w/o declaring it false
+    #   new_task.creator = request.user.profile
+    new_task.save()
+    return redirect('tasks')
+  task = Task.objects.all()
   tasks = Task.objects.filter(creator=request.user.profile)
   projects = Project.objects.filter(creator=request.user.profile)
+
   task_form = TaskForm()
   context = { 'tasks': tasks, 'task_form': task_form, 'projects': projects }
   return render(request, 'tasks/index.html', context )
