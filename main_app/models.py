@@ -2,13 +2,14 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-# Create your models here.
+# MODEL PROFILE ====================================
 class Profile(models.Model):
     name = models.CharField(max_length=50)
     dateJoined = models.DateField(auto_now=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
 
+# MODEL PROJECT ====================================
 class Project(models.Model):
     projectName = models.CharField(max_length=50)
     startDate = models.DateTimeField(auto_now=True)
@@ -25,6 +26,7 @@ class Project(models.Model):
         ordering = ['-startDate']
 
 
+# MODEL TASK ====================================
 class Task(models.Model):
     taskName = models.CharField(max_length=50)
     createdDate = models.DateField(auto_now=True)

@@ -1,9 +1,8 @@
 from django.shortcuts import render, redirect
 from .models import Profile, Project, Task
 from .forms import TaskForm, ProjectForm, ProfileForm
-
-# Create your views here.
 from django.http import HttpResponse
+
 
 # ADMIN ====================================
 # --- LANDING PAGE ROUTE ---
@@ -59,6 +58,23 @@ def task_edit(request, task_id):
 def task_delete(request, task_id):
   Task.objects.get(id=task_id).delete()
   return redirect('tasks')
+
+
+
+# NOTES ====================================
+# --- ADD NOTES ROUTE TO TASK ---
+def note_new(request):
+  # do some stuff
+  return ('Nothing here yet')
+
+def note_edit(request):
+  # do some stuff
+  return ('Nothing here yet')
+
+def note_delete(request):
+  # do some stuff
+  return ('Nothing here yet')    
+
 
 
 
@@ -128,4 +144,3 @@ def project_edit(request, project_id):
 def project_delete(request, project_id):
   Project.objects.get(id=project_id).delete()
   return redirect('projects')
-
