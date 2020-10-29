@@ -1,9 +1,8 @@
 from django.shortcuts import render, redirect
 from .models import Profile, Project, Task
-from .forms import TaskForm, ProjectForm, ProfileForm
+from .forms import TaskForm, ProjectForm, ProfileForm, SignUpForm
 from django.http import HttpResponse
-from django.contrib.auth import login
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login, authenticate
 
 
 # ADMIN ====================================
@@ -15,20 +14,23 @@ def home(request):
 def about(request):
     return render( request, 'about.html' )
 
-# --- SIGNUP NEW USER & CREATE NEW PROFILE ---
+# --- SIGNUP NEW USER & CREATE NEW PROFILE WITH RECIEVER IN MODEL
 def signup(request):
   error_message = ''
-  if request.method == 'POST':
-    form = UserCreationForm(request.POST)
-    if form.is_valid():
-      user = form.save()
-      profile = Profile(name= user.username)
-      profile.save()
-      login(request, user)
-      return redirect('tasks')
-    else:
-      error_message = 'Invalid sign up - try again'
-  form = UserCreationForm()
+  form = SignUpForm(request.POST)
+  if form.is_valid():
+    user = form.save()
+    user.refresh_from_db()
+    user.profile.email = form.cleaned_data.get('email')
+    user.save()
+    username = form.cleaned_data('username')
+    password = form.cleaned_data('password1')
+    user = authenticate(username=username, password=password)
+    login(request, user)
+    return redirect('/')
+  else:
+    error_message = 'Invalid sign up - try again'
+    form = SignUpForm()
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)
 

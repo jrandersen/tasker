@@ -27,11 +27,12 @@ class ProfileForm(ModelForm):
         model = Profile
         fields = [ 'name' ]
 
+
+
 # USERCREATION ===============
 class SignUpForm(UserCreationForm):
     username = forms.CharField(max_length=25, help_text='Username')
     email = forms.EmailField(max_length=150, help_text='Email')
-    name = forms.CharField(max_length=50, help_text="Full Name")
 
     class Meta:
         model = User
