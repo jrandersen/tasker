@@ -1,29 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<!-- V1 does not filter but DOES add task -->
-<div class="box">
-    <form action="{% url 'tasks' %}" method='POST'>
-        {% csrf_token %}    
-        <div class="field has-addons">
-            <p class="control">
-                <label for="project"></label>
-                    <span class="select is-medium">
-                        {{ task_form.project }}
-                    </span></p>
-
-            <p class="control is-expanded">
-                <label for="taskName"></label>
-                    <input class="input is-medium" type="text" name="taskName" placeholder="... enter a task name"></p>
-
-            <p class="control">
-                <input type="submit" class="button is-medium" id="is-green" value="add task"></p>
-        </div>
-    </form>
-</div> 
-<br>
-<!-- V2 does filter, but does NOT add task -->
-<div class="box">
+<!-- TASK FORM, FILTERS FOR USER AND TAKES IN INPUT -->
+<div class="box is-mobile">
     <form action="{% url 'tasks' %}" method='POST'>
     {% csrf_token %}    
         <div class="field has-addons">
@@ -45,7 +24,6 @@
         </div>
     </form>
 </div>
-
 
 {% for task in tasks %}
     <a href="{% url 'task_show' task.id %}">
