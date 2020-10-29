@@ -48,7 +48,7 @@
               <a href="{% url 'logout' %}" class="button" id="is-background-color">
                 <strong>Logout</strong>
               </a>
-              <a class="avatar" href="#">
+              <a class="avatar" href="{% url 'profile_show' user.profile.id %}">
                 <img  src="https://bulma.io/images/placeholders/128x128.png">
               </a>
             {% else %}

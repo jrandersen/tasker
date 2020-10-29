@@ -16,20 +16,23 @@ def about(request):
 
 # --- SIGNUP NEW USER & CREATE NEW PROFILE WITH RECIEVER IN MODEL
 def signup(request):
+  error_message = ''
   form = SignUpForm(request.POST)
   if form.is_valid():
     user = form.save()
     user.refresh_from_db()
     user.profile.email = form.cleaned_data.get('email')
+    user.profile.name = form.cleaned_data.get('name')
     user.save()
-    username = form.cleaned_data('username')
-    password = form.cleaned_data('password1')
-    user = authenticate(username=username, password=password)
-    login(request, user)
-    return redirect('/')
+    # username = form.cleaned_data('user.username')
+    # password = form.cleaned_data('password1')
+    # user = authenticate(username=username, password=password)
+    # login(request, user)
+    return redirect('login')
   else:
+    # error_message = 'Invalid sign up - try again'
     form = SignUpForm()
-  context = {'form': form }
+  context = {'form': form, 'error_message': error_message }
   return render( request, 'registration/signup.html', context )
 
 
@@ -46,8 +49,9 @@ def tasks(request):
       return redirect('tasks')
   # task = Task.objects.all()
   tasks = Task.objects.filter(creator=request.user.profile)
+  projects = Project.objects.filter(creator=request.user.profile)
   task_form = TaskForm()
-  context = { 'tasks': tasks, 'task_form': task_form }
+  context = { 'tasks': tasks, 'task_form': task_form, 'projects': projects }
   return render(request, 'tasks/index.html', context )
 
 # --- SHOW TASK ROUTE ---

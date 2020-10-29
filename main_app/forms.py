@@ -25,15 +25,16 @@ class ProjectForm(ModelForm):
 class ProfileForm(ModelForm):
     class Meta:
         model = Profile
-        fields = [ 'name' ]
+        fields = [ 'name', 'email' ]
 
 
 
 # USERCREATION ===============
 class SignUpForm(UserCreationForm):
-    username = forms.CharField(max_length=25, help_text='Username')
-    email = forms.EmailField(max_length=150, help_text='Email')
+    username = forms.CharField(max_length=25)
+    name = forms.CharField(max_length=50)
+    email = forms.EmailField(max_length=150)
 
     class Meta:
         model = User
-        fields = ('username', 'email', 'password1', 'password2')
+        fields = ('username', 'email', 'name', 'password1', 'password2')

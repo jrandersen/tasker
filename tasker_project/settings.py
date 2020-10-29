@@ -130,3 +130,6 @@ LOGIN_REDIRECT_URL = '/tasks/'
 
 # LOGOUT REDIRECTS TO ===============
 LOGOUT_REDIRECT_URL = '/'
+
+# SIGNUP REDIRECTS TO ===============
+SIGNUP_REDIRECT_URL = '/'
