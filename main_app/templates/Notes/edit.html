@@ -5,9 +5,7 @@
 <form action="{% url 'note_edit' note.id %}" method="POST">
     {% csrf_token %}
     {{ note_form.as_p}}
-    <input type="submit" class="button" id="is-green" value="Update">
-    <br>
-    <a class="button" id="is-red" href="{% url 'note_delete' note.id %}">Delete</a><br>
+    <input type="submit" class="button" name="note" id="is-green" value="Update">
 
 </form>
 

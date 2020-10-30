@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Profile, Project, Task, Note, Time
-from .forms import TaskForm, ProjectForm, ProfileForm, SignUpForm
+from .forms import TaskForm, ProjectForm, ProfileForm, SignUpForm, NoteForm
 from django.http import HttpResponse
 from django.contrib.auth import login, authenticate
 
@@ -100,19 +100,23 @@ def note_new(request):
 
 def note_edit(request, note_id):
   note = Note.objects.get(id=note_id)
+  task_id = note.task.id
+  if request.method == 'POST':
+    if request.user.id == note.creator.user.id:
+      note_form = NoteForm(request.POST, instance=note)
+      if note_form.is_valid():
+        note_form.save()
+        return redirect('task_show', task_id=task_id)
+    else:
+      return redirect('task_show', task_id=task_id)
   context = {'note' : note}
   return render (request, 'notes/edit.html', context)
 
 def note_delete(request, note_id):
   note = Note.objects.get(id=note_id)
-  task = note.task
-  task_id = task.id
+  task_id = note.task.id
   note.delete()
-  notes = task.note_set.all()
-  notes_length = len(notes)
-  context = { 'task_id': task_id }
-  # return render(request, 'tasks/show.html', context )
-  return redirect('tasks')    
+  return redirect('task_show', task_id=task_id)    
 
 
 
