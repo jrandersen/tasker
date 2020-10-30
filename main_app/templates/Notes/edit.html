@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!-- EDIT FORM -->
+<form action="{% url 'note_edit' note.id %}" method="POST">
+    {% csrf_token %}
+    {{ note_form.as_p}}
+    <input type="submit" class="button" id="is-green" value="Update">
+
+</form>
+
+{% endblock %}

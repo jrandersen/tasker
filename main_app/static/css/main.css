@@ -3,7 +3,8 @@
     --taskerBlue: #364f6bff;
     --taskerGreen:#3fc1c9ff;
     --taskerRed:#fc5185;
-    --iconSize: 28px;
+    --iconSizeSmall: 16px;
+    --iconSizeMedium: 24px;
 }
 body {
     min-height: 100vh;
@@ -56,13 +57,25 @@ text-align: center;
     margin-bottom: 5px;
 }
 
-.is-tasker-edit-icon{
-    font-size: var(--iconSize);
+.is-tasker-small-edit-icon{
+    font-size: var(--iconSizeSmall);
     color: var(--taskerBlue);
 }
 
-.is-tasker-delete-icon{
-    font-size: var(--iconSize);
+.is-tasker-medium-edit-icon{
+    font-size: var(--iconSizeMedium);
+    color: var(--taskerBlue);
+}
+
+.is-tasker-small-delete-icon{
+    font-size: var(--iconSizeSmall);
     color: var(--taskerRed);
 }
+
+article section {
+    height: 100px;
+    background: red;
+    display: flex;
+    overflow-y: auto;
+    flex-direction: column;
  

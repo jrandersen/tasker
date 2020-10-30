@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 from django import forms
-from .models import Task, Project, Profile
+from .models import Task, Project, Profile, Note, Time
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 
@@ -27,6 +27,12 @@ class ProfileForm(ModelForm):
         model = Profile
         fields = [ 'name', 'email' ]
 
+
+# NOTES ===============
+class NoteForm(ModelForm):
+    class Meta:
+        model = Note
+        fields = [ 'note' ]
 
 
 # USERCREATION ===============

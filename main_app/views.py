@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from .models import Profile, Project, Task
-from .forms import TaskForm, ProjectForm, ProfileForm, SignUpForm
+from .models import Profile, Project, Task, Note, Time
+from .forms import TaskForm, ProjectForm, ProfileForm, SignUpForm, NoteForm
 from django.http import HttpResponse
 from django.contrib.auth import login, authenticate
 
@@ -40,24 +40,33 @@ def signup(request):
 # --- SHOW ALL TASKS & NEW TASK ROUTE ---
 def tasks(request):
   if request.method == 'POST':
-    task_form = TaskForm(request.POST)
-    if task_form.is_valid():
-      new_task = task_form.save(commit=False)
-      new_task.taskComplete = False # will fail w/o declaring it false
-      new_task.creator = request.user.profile
-      new_task.save()
-      return redirect('tasks')
-  # task = Task.objects.all()
+    taskName = request.POST.get('taskName')
+    project = Project.objects.get(id=request.POST.get('project'))
+    creator = Profile.objects.get(id=request.user.id)
+    new_task = Task(taskName=taskName, creator=creator, project=project)
+    new_task.taskComplete = False
+    new_task.save()
+    return redirect('tasks')
+  task = Task.objects.all()
   tasks = Task.objects.filter(creator=request.user.profile)
   projects = Project.objects.filter(creator=request.user.profile)
+
   task_form = TaskForm()
   context = { 'tasks': tasks, 'task_form': task_form, 'projects': projects }
   return render(request, 'tasks/index.html', context )
 
 # --- SHOW TASK ROUTE ---
 def task_show(request, task_id):
+  if request.method == 'POST':
+    note = request.POST.get('note')
+    task = Task.objects.get(id=task_id)
+    creator = Profile.objects.get(id=request.user.id)
+    new_note = Note(note=note, task=task, creator=creator)
+    new_note.save()
   task = Task.objects.get(id=task_id)
-  context = { 'task': task }
+  notes = task.note_set.all()
+  notes_length = len(notes)
+  context = { 'task': task, 'notes': notes, "notes_length": notes_length }
   return render( request, 'tasks/show.html', context )
 
 # --- EDIT TASK ROUTE ---
@@ -86,16 +95,30 @@ def task_delete(request, task_id):
 # NOTES ====================================
 # --- ADD NOTES ROUTE TO TASK ---
 def note_new(request):
-  # do some stuff
-  return ('Nothing here yet')
+  # this is in the Task_show page
+  return render ('Nothing here yet')
 
-def note_edit(request):
-  # do some stuff
-  return ('Nothing here yet')
+def note_edit(request, note_id):
+  note = Note.objects.get(id=note_id)
+  task_id = note.task.id
+  if request.method == 'POST':
+    if request.user.id == note.creator.user.id:
+      note_form = NoteForm(request.POST, instance=note)
+      if note_form.is_valid():
+        note_form.save()
+        return redirect('task_show', task_id=task_id)
+    else:
+      return redirect('task_show', task_id=task_id)
+  else:
+    note_form = NoteForm(instance=note)
+  context = {'note' : note, 'note_form': note_form }
+  return render (request, 'notes/edit.html', context)
 
-def note_delete(request):
-  # do some stuff
-  return ('Nothing here yet')    
+def note_delete(request, note_id):
+  note = Note.objects.get(id=note_id)
+  task_id = note.task.id
+  note.delete()
+  return redirect('task_show', task_id=task_id)    
 
 
 
@@ -129,11 +152,10 @@ def profile_edit(request, profile_id):
 # --- SHOW ALL PROJECTS & NEW PROJECT ROUTE ---
 def projects(request):
   if request.method == 'POST':
-    project_form = ProjectForm(request.POST)
-    if project_form.is_valid():
-      new_project = project_form.save(commit=False)
-      new_project.creator = request.user.profile
-      new_project.save()
+    projectName = request.POST.get('project')
+    creator = Profile.objects.get(id=request.user.id)
+    new_project = Project(projectName=projectName, creator=creator)
+    new_project.save()
   projects = Project.objects.filter(creator=request.user.profile)
   project_form = ProjectForm()  
   context = { 'projects': projects, 'project_form': project_form }
