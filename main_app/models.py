@@ -95,4 +95,4 @@ class Time(models.Model):
         return null
 
     def __str__(self):
-        return str(self.date) + ", " + "start:" + str(self.startTime) + ", " + "end:" + str(self.endTime)
+        return str(self.date) + ", " + "start:" + str(self.startTime) + ", " + "end:" + str(self.endTime) + ", " + "tag: " + str(self.tags.tag)

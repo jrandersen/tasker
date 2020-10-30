@@ -28,5 +28,8 @@ urlpatterns = [
     # NOTES ===============
     path('note/<int:note_id>/edit/', views.note_edit, name='note_edit'),
     path('note/<int:note_id>/delete/', views.note_delete, name='note_delete'),
+
+    # TIME ===============
+    path('time/<int:task_id>/', views.add_time, name='add_time'),
     
 ]

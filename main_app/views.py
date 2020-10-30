@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from .models import Profile, Project, Task, Note, Time
-from .forms import TaskForm, ProjectForm, ProfileForm, SignUpForm, NoteForm
+from .forms import TaskForm, ProjectForm, ProfileForm, SignUpForm, NoteForm, TimeForm
 from django.http import HttpResponse
 from django.contrib.auth import login, authenticate
+from taggit.models import Tag
 
 
 # ADMIN ====================================
@@ -66,7 +67,8 @@ def task_show(request, task_id):
   task = Task.objects.get(id=task_id)
   notes = task.note_set.all()
   notes_length = len(notes)
-  context = { 'task': task, 'notes': notes, "notes_length": notes_length }
+  tags = Tag.objects.all
+  context = { 'task': task, 'notes': notes, "notes_length": notes_length, 'tags': tags }
   return render( request, 'tasks/show.html', context )
 
 # --- EDIT TASK ROUTE ---
@@ -188,3 +190,17 @@ def project_edit(request, project_id):
 def project_delete(request, project_id):
   Project.objects.get(id=project_id).delete()
   return redirect('projects')
+
+
+# TIME ====================================
+# --- ADD TIME TO TASK ---
+def add_time(request, task_id):
+  task = Task.objects.get(id=task_id)
+  time_form = TimeForm(request.POST)
+  if time_form.is_valid():
+    new_time = time_form.save(commit=False)
+    new_time.task = task
+    new_time.save()
+    time_form.save_m2m() # <--- Django-Taggit docs say this
+  # return redirect('task_show', task_id=task_id)
+  return redirect('tasks')  
