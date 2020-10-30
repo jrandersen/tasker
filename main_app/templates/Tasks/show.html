@@ -34,27 +34,31 @@
 </div>
 
 <!-- BULMA MEDIA OBJECT NOTES DISPLAY -->
-{% for note in notes %}
-<article class="media">
-    <div class="media-content">
-        <div class="content">
-        <p>
-            <strong>{{ note.creator.name }}</strong><small> - {{ note.noteCreatedDate }}</small>
-            <br>
-            <small>{{ note.note }}</small></p>
-        
-        </div>
-        <nav class="level is-mobile">
-            <div class="level-left">
-                <a class="level-item" href="{% url 'note_edit' note.id %}" method="POST">
-                    <span class="is-tasker-small-edit-icon"><i class="fas fa-pen-square"></i></span>
-                </a>
-                <a class="level-item" href="{% url 'note_delete' note.id %}" method="DELETE">
-                    <span class="is-tasker-small-delete-icon"><i class="fas fa-trash"></i></span>      
-                </a>
+<article class="columns">
+    <section class="column">
+        {% for note in notes %}
+        <article class="media">
+            <div class="media-content">
+                <div class="content">
+                <p>
+                    <strong>{{ note.creator.name }}</strong><small> - {{ note.noteCreatedDate }}</small>
+                    <br>
+                    <small>{{ note.note }}</small></p>
+                
+                </div>
+                <nav class="level is-mobile">
+                    <div class="level-left">
+                        <a class="level-item" href="{% url 'note_edit' note.id %}" method="POST">
+                            <span class="is-tasker-small-edit-icon"><i class="fas fa-pen-square"></i></span>
+                        </a>
+                        <a class="level-item" href="{% url 'note_delete' note.id %}" method="DELETE">
+                            <span class="is-tasker-small-delete-icon"><i class="fas fa-trash"></i></span>      
+                        </a>
+                    </div>
+                </nav>
             </div>
-        </nav>
-    </div>
-</article>         
+        </article> 
+    </section>
+</article>       
 {% endfor %}
 {% endblock %}
