@@ -1,30 +1,22 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div class="columns">
-    <div class="column is-one-fifth">
-        <div class="subtitle">Todays Date:</div>
-        <button class="button is-secondary">Weekly View</button><br>
-        <button class="button is-secondary">Total Time</button><br>
-    </div>
-    <div class="column is-four-fifth">
-        <div class="hero">
-            <div class="hero-body">
-                <div class="container">
-                    <h1 class="title">{{ profile.name }} &nbsp
-                        <a class="is-tasker-edit-icon"
-                            href="{% url 'profile_edit' profile.id %}" 
-                            method='POST'>
-                                <i class="fas fa-pen-square"></i>
-                        </a>
-                    </h1>
-                    <h2 class="subtitle">{{ profile.email }}</h2>
-                    <h2 class="subtitle">{{ user.username }}</h2>
-                    <p>Joined on: {{ profile.dateJoined }}</p>
-                </div>
-            </div>
+<div class="hero">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title">{{ profile.name }} &nbsp
+                <a class="is-tasker-medium-edit-icon"
+                    href="{% url 'profile_edit' profile.id %}" 
+                    method='POST'>
+                        <i class="fas fa-pen-square"></i>
+                </a>
+            </h1>
+            <h2 class="subtitle">{{ profile.email }}</h2>
+            <h2 class="subtitle">{{ user.username }}</h2>
+            <p>Joined on: {{ profile.dateJoined }}</p>
         </div>
     </div>
 </div>
+
 
 {% endblock %}
