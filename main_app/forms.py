@@ -28,7 +28,7 @@ class ProfileForm(ModelForm):
         fields = [ 'name', 'email' ]
 
 
-# PROFILE ===============
+# NOTES ===============
 class NoteForm(ModelForm):
     class Meta:
         model = Note

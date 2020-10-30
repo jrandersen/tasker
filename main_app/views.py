@@ -109,7 +109,9 @@ def note_edit(request, note_id):
         return redirect('task_show', task_id=task_id)
     else:
       return redirect('task_show', task_id=task_id)
-  context = {'note' : note}
+  else:
+    note_form = NoteForm(instance=note)
+  context = {'note' : note, 'note_form': note_form }
   return render (request, 'notes/edit.html', context)
 
 def note_delete(request, note_id):
