@@ -39,14 +39,18 @@ text-align: center;
 
 #is-green {
     background-color: var(--taskerGreen);
+    color: var(--backgroundcolor);
 }
 
 #is-blue {
     background-color: var(--taskerBlue);
+    color: var(--backgroundcolor);
 }
 
 #is-red {
     background-color: var(--taskerRed);
+    color: var(--backgroundcolor);
+    
 }
 #is-background-color {
     background-color: var(--backgroundcolor);
@@ -71,11 +75,3 @@ text-align: center;
     font-size: var(--iconSizeSmall);
     color: var(--taskerRed);
 }
-
-article section {
-    height: 100px;
-    background: red;
-    display: flex;
-    overflow-y: auto;
-    flex-direction: column;
- 

@@ -1,4 +1,4 @@
-// current basic burger
+// NAVBAR BURGER =========================
 document.addEventListener('DOMContentLoaded', () => {
 
     // Get all "navbar-burger" elements
@@ -22,9 +22,24 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 
-// dropdown 
-const dropdown = document.querySelector('.dropdown');
-dropdown.addEventListener('click', function(event) {
-  event.stopPropagation();
-  dropdown.classList.toggle('is-active');
+
+
+// SHOW & CLOSE MODAL - DELETE  =========================
+$("#showModalDelete").click(function() {
+  $(".modal").addClass("is-active");
 });
+
+$(".closeModal").click(function() {
+  $(".modal").removeClass("is-active");
+});
+
+
+// SHOW & CLOSE MODAL - TIME  =========================
+$("#showModalTime").click(function() {
+  $(".modal").addClass("is-active");
+});
+
+$(".closeModal").click(function() {
+  $(".modal").removeClass("is-active");
+});
+

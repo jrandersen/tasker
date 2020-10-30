@@ -7,8 +7,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Tasker</title>
+  
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
   <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+
+  <script defer src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
   <script defer src="{% static "/scripts/app.js" %}"></script>
 </head>
@@ -70,5 +73,6 @@
     {% block content %}
     {% endblock %}
   </main>
+  {% include 'modal.html' %}
 </body>
 </html>

@@ -1,23 +1,32 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<!-- TASK HERO -->
-<div class="hero">
-    <div class="hero-body">
-        <div class="container">
-            <h1 class="title">{{ task.taskName }} &nbsp 
-                <a class="is-tasker-medium-edit-icon"
-                    href="{% url 'task_edit' task.id %}" 
-                    method='POST'>
-                        <i class="fas fa-pen-square"></i>
-                </a>
-            </h1>
-            <h2 class="subtitle">{{ task.project }}</h2>
-            <p>Created on: {{ task.createdDate }}</p>
-            <p>Completed: {{ task.taskCompletedDate }}</p>
+<!-- TASK TILES-->
+<div class="tile is-ancestor">
+  <div class="tile is-4 is-vertical is-parent">
+    <div class="tile is-child box">
+        <p class="title">{{ task.taskName }} &nbsp 
+            <a class="is-tasker-medium-edit-icon"
+                href="{% url 'task_edit' task.id %}" 
+                method='POST'>
+                    <i class="fas fa-pen-square"></i>
+            </a></p>
+        <p>Created on: {{ task.createdDate }}</p>
+        <p>Completed: {{ task.taskCompletedDate }}</p>
+    </div>
+  </div>
+  <div class="tile  is-parent">
+    <div class="tile is-child box">
+        <h3 class="title is-3"></h3>
+        <div class="buttons has-addons is-right">
+            <button class="button" id="is-blue">complete</button>
+            <button class="button" id="is-red" >uncomplete</button>
+            <button class="button" id="showModalTime" >add time</button>
         </div>
     </div>
+  </div>
 </div>
+
 
 <!-- NOTES INPUT -->
 <div class="box is-mobile">
@@ -28,37 +37,33 @@
                 <input class="input is-small" type="text" name="note" placeholder="... enter a note"></p>
 
             <p class="control">
-                <input type="submit" class="button is-small" id="is-green" value="note"></p>
+                <input type="submit" class="button is-small" id="is-green" value="add note"></p>
         </div>
     </form>
 </div>
 
 <!-- BULMA MEDIA OBJECT NOTES DISPLAY -->
-<article class="columns">
-    <section class="column">
-        {% for note in notes %}
-        <article class="media">
-            <div class="media-content">
-                <div class="content">
-                <p>
-                    <strong>{{ note.creator.name }}</strong><small> - {{ note.noteCreatedDate }}</small>
-                    <br>
-                    <small>{{ note.note }}</small></p>
-                
-                </div>
-                <nav class="level is-mobile">
-                    <div class="level-left">
-                        <a class="level-item" href="{% url 'note_edit' note.id %}" method="POST">
-                            <span class="is-tasker-small-edit-icon"><i class="fas fa-pen-square"></i></span>
-                        </a>
-                        <a class="level-item" href="{% url 'note_delete' note.id %}" method="DELETE">
-                            <span class="is-tasker-small-delete-icon"><i class="fas fa-trash"></i></span>      
-                        </a>
-                    </div>
-                </nav>
+{% for note in notes %}
+<article class="media">
+    <div class="media-content">
+        <div class="content">
+        <p>
+            <strong>{{ note.creator.name }}</strong><small> - {{ note.noteCreatedDate }}</small>
+            <br>
+            <small>{{ note.note }}</small></p>
+        
+        </div>
+        <nav class="level is-mobile">
+            <div class="level-left">
+                <a class="level-item" href="{% url 'note_edit' note.id %}" method="POST">
+                    <span class="is-tasker-small-edit-icon"><i class="fas fa-pen-square"></i></span>
+                </a>
+                <a class="level-item" href="{% url 'note_delete' note.id %}" method="DELETE">
+                    <span class="is-tasker-small-delete-icon"><i class="fas fa-trash"></i></span>      
+                </a>
             </div>
-        </article> 
-    </section>
-</article>       
+        </nav>
+    </div>
+</article>      
 {% endfor %}
 {% endblock %}
