@@ -51,7 +51,6 @@ def tasks(request):
   task = Task.objects.all()
   tasks = Task.objects.filter(creator=request.user.profile)
   projects = Project.objects.filter(creator=request.user.profile)
-
   task_form = TaskForm()
   context = { 'tasks': tasks, 'task_form': task_form, 'projects': projects }
   return render(request, 'tasks/index.html', context )
@@ -68,10 +67,16 @@ def task_show(request, task_id):
   notes = task.note_set.all()
   notes_length = len(notes)
   times = Time.objects.filter(task=task_id)
-  # starts = getTimes.startTime
-  # ends - getTimes.endTime
-  # times = Time.totaTime(ends, start)
-  context = { 'task': task, 'notes': notes, "notes_length": notes_length, 'times': times }
+  # print (len(times))
+  # print(times)
+  tags = []
+  for time in times:
+    time_id = time.id
+    tags.append(Tag.objects.filter(id=time_id))
+    # print(time_id)
+  # tags = Tag.objects.filter(id=tag_id)
+  print(tags)
+  context = { 'task': task, 'notes': notes, "notes_length": notes_length, 'times': times, 'tags': tags }
   return render( request, 'tasks/show.html', context )
 
 # --- EDIT TASK ROUTE ---
@@ -206,4 +211,7 @@ def add_time(request, task_id):
     new_time.save()
     time_form.save_m2m() # <--- Django-Taggit docs say this
   # return redirect('task_show', task_id=task_id)
-  return redirect('tasks')  
+  project_form = ProjectForm()
+  modal_form = TimeForm()
+  context = { 'task_id':task_id, 'modal_form': model_form, 'project_form': project_form }
+  return render('task_show', context)  

@@ -12,7 +12,10 @@
         {% comment %} {% url 'add_time' task.id %} {% endcomment %}
       <form action="" method="POST">
         {% csrf_token %}
-        <p class="field">
+        {{ project_form.as_p }}
+
+
+        {% comment %} <p class="field">
         <label for="date" class="for"></label>
         <input type="date" class="type"></p>
 
@@ -26,7 +29,7 @@
 
         <p class="field">
         <label for="tags" class="for"></label>
-        <input type="tags" class="type"></p>
+        <input type="tags" class="type"></p> {% endcomment %}
         
         <div class="buttons has-addons">
             <button class="button closeModal" id="is-background">close</button>

@@ -21,6 +21,10 @@
         {% for time in times %}
            {{ time }}<br>
         {% endfor %}
+        <p class="subtitle is-6">Tags:</p>
+        {% for tag in tags %}
+           {{ tag }}<br>
+        {% endfor %}
         <div class="buttons has-addons is-right">
             <button class="button" id="is-blue">complete</button>
             <button class="button" id="is-red" >uncomplete</button>
