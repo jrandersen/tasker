@@ -67,8 +67,11 @@ def task_show(request, task_id):
   task = Task.objects.get(id=task_id)
   notes = task.note_set.all()
   notes_length = len(notes)
-  tags = Tag.objects.all
-  context = { 'task': task, 'notes': notes, "notes_length": notes_length, 'tags': tags }
+  times = Time.objects.filter(task=task_id)
+  # starts = getTimes.startTime
+  # ends - getTimes.endTime
+  # times = Time.totaTime(ends, start)
+  context = { 'task': task, 'notes': notes, "notes_length": notes_length, 'times': times }
   return render( request, 'tasks/show.html', context )
 
 # --- EDIT TASK ROUTE ---

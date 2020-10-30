@@ -1,78 +1,17 @@
 {% extends 'base.html' %}
 {% block content %}
 
-{% if error_message %}<p class="red-text">{{ error_message }}</p>{% endif %}
-<h1>not working come back!</h1>
-<!-- <form method="post" action="{% url 'signup' %}">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <input type="submit" class="button" id="is-green" value="signup">
-</form> -->
-  
-<form method="post" action="{% url 'signup' %}">
-  {% csrf_token %}
-  <div class="columns is-mobile is-centered">
-    <div class="column is-half">
-      <!-- USERNAME -->
-      <div class="field">
-        <p class="control has-icons-left has-icons-right">
-          <input class="input" type="text" name="username" placeholder="Username">
-            <span class="icon is-small is-left">
-              <i class="fas fa-user"></i>
-            </span>
-            <span class="icon is-small is-right">
-              <i class="fas fa-check"></i>
-            </span></p>
-      </div>
 
-      <!-- EMAIL -->
-      <div class="field">
-        <p class="control has-icons-left has-icons-right">
-          <input class="input" type="text" name="email" placeholder="Email">
-            <span class="icon is-small is-left">
-              <i class="fas fa-envelope"></i>
-            </span>
-            <span class="icon is-small is-right">
-              <i class="fas fa-check"></i>
-            </span></p>
-      </div>
 
-      <!-- NAME -->
-      <div class="field">
-        <p class="control has-icons-left">
-          <input class="input" type="text" name="name" placeholder="Full Name">
-            <span class="icon is-small is-left">
-              <i class="fas fa-user-ninja"></i>
-            </span></p>
-        </div>
-
-      <!-- PASSWORD -->
-      <div class="field">
-        <p class="control has-icons-left">
-          <input class="input" type="password" name="password" placeholder="Password">
-            <span class="icon is-small is-left">
-              <i class="fas fa-lock"></i>
-            </span></p>
-        </div>
-
-      <!-- PASSWORD CONFIRM -->
-      <div class="field">
-        <p class="control has-icons-left">
-          <input class="input" type="password" name="password" placeholder="Password Confirmation">
-            <span class="icon is-small is-left">
-              <i class="fas fa-lock"></i>
-            </span></p>
-        </div>
-
-      <div class="field">
-        <p class="control">
-          <button class="button is-success" id="is-green">
-            Signup
-          </button>
-        </p>
-        <input type="hidden" name="next" value="{{ next }}">
-      </div>
+<section class="section">
+  <div class="container">
+    <h1 class="title">Sign up</h1>
+    {% if error_message %}<p class="red-text">{{ error_message }}</p>{% endif %}
+    <form method="post" action="{% url 'signup' %}">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <input type="submit" class="button" id="is-green" value="signup">
+    </form>
+    {% endblock %}
   </div>
-</form>
-
-{% endblock %}
+</section>

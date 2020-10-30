@@ -4,6 +4,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.core.exceptions import ValidationError
 from django.db.models import Q, F
+from datetime import datetime, date
 
 from taggit.managers import TaggableManager
 
@@ -65,7 +66,7 @@ class Note(models.Model):
     task = models.ForeignKey(Task, on_delete=models.CASCADE)
     
     def __str__(self):
-        return self.note
+        return str("hello, fix, later")
 
 
 
@@ -76,6 +77,7 @@ class Time(models.Model):
     endTime = models.TimeField()
     tags = TaggableManager()
     task = models.ForeignKey(Task, on_delete=models.CASCADE)
+    duration = models.DurationField()
 
     def clean(self):
         if self.startTime > self.endTime:
@@ -90,9 +92,10 @@ class Time(models.Model):
             )
         ]
 
-    def totaTime():
-        # adds up all time per project 
-        return null
+    def totaTime(endTime, startTime):
+        calcTime = datetime.combine(date.min, endTime) - datetime.combine(date.min, startTime)
+        duration = calcTime
+        return str(calcTime)
 
     def __str__(self):
-        return str(self.date) + ", " + "start:" + str(self.startTime) + ", " + "end:" + str(self.endTime) + ", " + "tag: " + str(self.tags.tag)
+        return str(self.date) + ", " + "start:" + str(self.startTime) + ", " + "end:" + str(self.endTime)
