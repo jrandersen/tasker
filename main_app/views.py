@@ -100,19 +100,19 @@ def note_new(request):
 
 def note_edit(request, note_id):
   note = Note.objects.get(id=note_id)
-  context = { 'note' : note}
+  context = {'note' : note}
   return render (request, 'notes/edit.html', context)
 
 def note_delete(request, note_id):
   note = Note.objects.get(id=note_id)
-  task = Task.objects.get(id=note.task.id)
-  print(task)
+  task = note.task
+  task_id = task.id
   note.delete()
   notes = task.note_set.all()
   notes_length = len(notes)
-  context = { 'task': task, 'notes': notes, "notes_length": notes_length }
-  # return redirect ( 'tasks' )
-  return render(request, 'tasks/show.html', context )    
+  context = { 'task_id': task_id }
+  # return render(request, 'tasks/show.html', context )
+  return redirect('tasks')    
 
 
 

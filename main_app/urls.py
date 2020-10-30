@@ -12,7 +12,7 @@ urlpatterns = [
     path('tasks/<int:task_id>/', views.task_show, name='task_show'),
     path('tasks/<int:task_id>/edit/', views.task_edit, name='task_edit'),
     path('tasks/<int:task_id>/delete/', views.task_delete, name='task_delete'),
-    path('tasks/<int:note_id>/note_delete/', views.note_delete, name='note_delete'),
+    # path('tasks/<int:note_id>/delete_note/', views.task_show, name='task_show'),
 
     # PROFILE & PROJECT =============== 
     path('profile/<int:profile_id>/', views.profile_show, name='profile_show'),
@@ -27,6 +27,6 @@ urlpatterns = [
 
     # NOTES ===============
     path('notes/<int:note_id>/edit/', views.note_edit, name='note_edit'),
-    # path('notes/<int:note_id>/delete/', views.note_delete, name='note_delete'),
+    path('notes/<int:note_id>/delete/', views.note_delete, name='note_delete'),
     
 ]

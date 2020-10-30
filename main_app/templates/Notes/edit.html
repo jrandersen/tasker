@@ -2,6 +2,13 @@
 {% block content %}
 
 <!-- EDIT FORM -->
-<h1>Note edit form</h1>
+<form action="{% url 'note_edit' note.id %}" method="POST">
+    {% csrf_token %}
+    {{ note_form.as_p}}
+    <input type="submit" class="button" id="is-green" value="Update">
+    <br>
+    <a class="button" id="is-red" href="{% url 'note_delete' note.id %}">Delete</a><br>
+
+</form>
 
 {% endblock %}
