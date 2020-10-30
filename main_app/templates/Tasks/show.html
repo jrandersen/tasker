@@ -53,7 +53,7 @@
         <p>
             <strong>{{ note.creator.name }}</strong><small> - {{ note.noteCreatedDate }}</small>
             <br>
-            <small>{{ note.note }}</small></p>
+            <small>{{ note.note|urlize }}</small></p>
         
         </div>
         <nav class="level is-mobile">
