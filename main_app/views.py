@@ -67,14 +67,10 @@ def task_show(request, task_id):
   notes = task.note_set.all()
   notes_length = len(notes)
   times = Time.objects.filter(task=task_id)
-  # print (len(times))
-  # print(times)
   tags = []
   for time in times:
     time_id = time.id
     tags.append(Tag.objects.filter(id=time_id))
-    # print(time_id)
-  # tags = Tag.objects.filter(id=tag_id)
   print(tags)
   context = { 'task': task, 'notes': notes, "notes_length": notes_length, 'times': times, 'tags': tags }
   return render( request, 'tasks/show.html', context )
@@ -174,7 +170,8 @@ def projects(request):
 # --- PROJECT SHOW ROUTE ---
 def project_show(request, project_id):
   project = Project.objects.get(id=project_id)
-  context = { 'project': project }
+  tasks = Task.objects.filter(project=project_id)
+  context = { 'project': project, 'tasks': tasks }
   return render( request, 'projects/show.html', context )
 
 
@@ -204,14 +201,13 @@ def project_delete(request, project_id):
 # --- ADD TIME TO TASK ---
 def add_time(request, task_id):
   task = Task.objects.get(id=task_id)
-  time_form = TimeForm(request.POST)
-  if time_form.is_valid():
-    new_time = time_form.save(commit=False)
-    new_time.task = task
-    new_time.save()
-    time_form.save_m2m() # <--- Django-Taggit docs say this
-  # return redirect('task_show', task_id=task_id)
-  project_form = ProjectForm()
-  modal_form = TimeForm()
-  context = { 'task_id':task_id, 'modal_form': model_form, 'project_form': project_form }
-  return render('task_show', context)  
+  # print(request.POST)
+  # time_form = TimeForm(request.POST)
+  # if time_form.is_valid():
+  #   new_time = time_form.save(commit=False)
+  #   new_time.task = task
+  #   new_time.save()
+  #   time_form.save_m2m() # <--- Django-Taggit docs say this
+  # context = { 'task_id': task_id }
+  return redirect('task_show', task_id=task_id)
+  # return redirect(reverse(task:add_time, kwargs={'task_id': task_id}))

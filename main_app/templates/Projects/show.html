@@ -1,20 +1,49 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<!-- PROJECT HERO -->
-<div class="hero">
-    <div class="hero-body">
-        <div class="container">
-            <h1 class="title">{{ project.projectName }} &nbsp 
-                <a class="is-tasker-edit-icon"
-                    href="{% url 'project_edit' project.id %}" 
-                    method='POST'>
-                        <i class="fas fa-pen-square"></i>
-                </a>
-            </h1>
-            <h2 class="subtitle">{{ project.creator.name }}</h2>
-            <p>Created on: {{ project.startDate }}</p>
+<!-- PROJECT TILES-->
+<div class="tile is-ancestor">
+  <div class="tile is-4 is-vertical is-parent">
+    <div class="tile is-child box">
+        <p class="title">{{ project.projectName }} &nbsp 
+            <a class="is-tasker-medium-edit-icon"
+                method='POST'
+                href={% url 'project_edit' project.id %} >
+                    <i class="fas fa-pen-square"></i>
+            </a></p>
+        <p>Created on: {{ project.creator.name }}</p>
+        <p>Completed: {{ project.startDate }}</p>
+    </div>
+  </div>
+  <div class="tile  is-parent">
+    <div class="tile is-child box">
+        <p class="subtitle is-6">DATA</p>
+        <div class="buttons has-addons is-right">
         </div>
     </div>
+  </div>
 </div>
+
+<!-- TASK CARDS -->
+<div class="title is-4">Tasks</div>
+{% for task in tasks %}
+    {% if forloop.counter0|divisibleby:"4" %} <div class="columns is-desktop"> {% endif %}
+        <div class="column is-3">
+            <div class="card">
+                <div class="card-content">
+                    <a href="{% url 'task_show' task.id %}">
+                        <p class="title is-6">{{ task.taskName }} <br> {{ task.creator }}</p>
+                        <p class="subtitle is-6">{{ task.createdDate }}</p>
+                    </a>
+                </div> 
+                <footer class="card-footer">
+                    <a href="#" class="card-footer-item" id="is-blue">complete</a>
+                    <a class="card-footer-item is-green" id="showModalTime">add time</a>
+                </footer>   
+            </div>
+        </div>
+    {%  if forloop.counter|divisibleby:"4" or forloop.last %}</div><!-- row closing --><hr>{%  endif %}  
+{% endfor %}
 {% endblock %}
+
+</div><!-- card content -->

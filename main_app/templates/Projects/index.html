@@ -16,16 +16,18 @@
 </div>
 
 {% for project in projects %}
-    <a href="{% url 'project_show' project.id %}">
-        <div class="card">
-            <div class="level">
-                <div class="level-left">
-                    <div class="card-content ">
-                        <div class="card-title is-size-5">{{ project.projectName }}</div>
-                    </div>
+<a href="{% url 'project_show' project.id %}">
+    <div class="card">
+        <div class="level">
+            <div class="level-left">
+                <div class="card-content ">
+                    <div class="card-title is-size-5">{{ project.projectName }}</div>
                 </div>
             </div>
-        </a>
-    </div>
+        </div>
+    </a>
+</div>
+{% empty %}
+<p>You have no Projects yet, add them above </p>  
 {% endfor %}
 {% endblock %}

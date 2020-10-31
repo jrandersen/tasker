@@ -42,6 +42,11 @@ text-align: center;
     color: var(--backgroundcolor);
 }
 
+.is-green {
+    background-color: var(--taskerGreen);
+    color: var(--backgroundcolor);
+}
+
 #is-blue {
     background-color: var(--taskerBlue);
     color: var(--backgroundcolor);
@@ -75,3 +80,4 @@ text-align: center;
     font-size: var(--iconSizeSmall);
     color: var(--taskerRed);
 }
+

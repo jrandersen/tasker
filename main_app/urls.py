@@ -6,14 +6,18 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('about/', views.about, name='about'),
     path('accounts/signup', views.signup, name='signup'),
+    
+    # TIME ===============
+    path('tasks/<int:task_id>/time/', views.add_time, name='add_time'),
 
     # TASK ===============
     path('tasks/', views.tasks, name='tasks'),
     path('tasks/<int:task_id>/', views.task_show, name='task_show'),
     path('tasks/<int:task_id>/edit/', views.task_edit, name='task_edit'),
     path('tasks/<int:task_id>/delete/', views.task_delete, name='task_delete'),
-    # path('tasks/<int:note_id>/delete_note/', views.task_show, name='task_show'),
-
+    
+    
+    
     # PROFILE & PROJECT =============== 
     path('profile/<int:profile_id>/', views.profile_show, name='profile_show'),
     path('profile/<int:profile_id>/edit/', views.profile_edit, name='profile_edit'),
@@ -28,8 +32,6 @@ urlpatterns = [
     # NOTES ===============
     path('note/<int:note_id>/edit/', views.note_edit, name='note_edit'),
     path('note/<int:note_id>/delete/', views.note_delete, name='note_delete'),
+    # path('tasks/<int:note_id>/delete_note/', views.task_show, name='task_show'),
 
-    # TIME ===============
-    path('time/<int:task_id>/', views.add_time, name='add_time'),
-    
 ]

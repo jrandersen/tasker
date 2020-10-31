@@ -4,32 +4,29 @@
 <div class="modal">
   <div class="modal-background"></div>
   <div class="modal-card">
-    <header class="modal-card-head">
-      <p class="modal-card-title">add time to: {{ task.taskName }}</p>
+    <header class="modal-card-head" id="is-green">
+      <p class="modal-card-title" >add time to: {{ task.taskName }}</p>
       <button class="delete closeModal" aria-label="close"></button>
     </header>
-    <section class="modal-card-body">
-        {% comment %} {% url 'add_time' task.id %} {% endcomment %}
-      <form action="" method="POST">
+    <section class="modal-card-body" id="is-background">
+    {% comment %} {% url 'add_time' task.id %} {% endcomment %}
+      <form  method="POST" action="">
         {% csrf_token %}
-        {{ project_form.as_p }}
-
-
-        {% comment %} <p class="field">
-        <label for="date" class="for"></label>
-        <input type="date" class="type"></p>
+         <p class="field">
+        <label for="date"></label>
+        <input type="date" class="input"></p>
 
         <p class="field">
-        <label for="startTime" class="for"></label>
-        <input type="time" class="type"></p>
+        <label for="startTime"></label>
+        <input type="time" class="input"></p>
 
         <p class="field">
-        <label for="endTime" class="for"></label>
-        <input type="time" class="type"></p>
+        <label for="endTime"></label>
+        <input type="time" class="input"></p>
 
         <p class="field">
-        <label for="tags" class="for"></label>
-        <input type="tags" class="type"></p> {% endcomment %}
+        <label for="tags"></label>
+        <input type="tags" class="input"placeholder=".... enter a tag or organize time"></p> 
         
         <div class="buttons has-addons">
             <button class="button closeModal" id="is-background">close</button>
