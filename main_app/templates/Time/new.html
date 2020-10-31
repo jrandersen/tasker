@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!-- EDIT FORM -->
+
+<form action={% url 'time_add' %} method="POST">
+    {% csrf_token %}
+    <div class="columns is-mobile is-centered">
+        <div class="column is-half">
+            <div class="field">
+                <p class="control has-icons-left has-icons-right">
+                <p class="field">
+                    <label for="id_date"></label>
+                    <input type="date" name="date" required id="id_date" class="input"></p>
+                
+                <p class="field">
+                    <label for="id_startTime"></label>
+                    <input type="time" name="startTime" required id="id_startTime" class="input"></p>
+                
+                <p class="field">
+                    <label for="id_endTime"></label>
+                    <input type="time" name="endTime" required id="id_endTime" class="input"></p>
+                
+                <p class="field">
+                    <label for="id_tags"></label>
+                    <input type="text" name="tags" required id="id_tags" class="input"></p>
+                
+                <p class="field">
+                    <p class="field">
+                    <label for="id_duration"></label>
+                    <input type="text" name="duration" required id="id_duration" class="input"></p>
+                
+                <p class="field">
+                <span class="select is-medium">
+                    <label for="id_task"></label>  
+                    <select name="task">
+                    {% for task in time_form.task %}
+                        <option value={{ task.id }} >{{ task }}</option>
+                    {% endfor %}
+                    </select>
+                </span></p>
+        
+                
+                
+                
+                <button class="button" id="is-green" type="submit">add time</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+
+{% endblock %}

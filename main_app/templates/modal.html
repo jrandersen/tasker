@@ -9,8 +9,7 @@
       <button class="delete closeModal" aria-label="close"></button>
     </header>
     <section class="modal-card-body" id="is-background">
-    {% comment %} {% url 'add_time' task.id %} {% endcomment %}
-      <form  method="POST" action="{% url 'time_add' task.id %}">
+      <form  method="POST" action="">
         {% csrf_token %}
         <p class="field">
         <label for="date"></label>

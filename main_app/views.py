@@ -199,15 +199,25 @@ def project_delete(request, project_id):
 
 # TIME ====================================
 # --- ADD TIME TO TASK ---
-def time_add(request, task_id):
-  task = Task.objects.get(id=task_id)
-  time_form = TimeForm(request.POST)
-  if time_form.is_valid():
-    new_time = time_form.save(commit=False)
-    new_time.task = task
-    new_time.save()
-    time_form.save_m2m() # <--- Django-Taggit docs say this
-    return redirect('task_show', task_id=task_id)
-  context = { 'task_id': task_id }
-  return redirect('task_show', task_id=task_id)
-  # return redirect(reverse(task:add_time, kwargs={'task_id': task_id}))
+def time_add(request):
+  if request.method == 'POST':
+    time_form = TimeForm(request.POST)
+    print(time_form)
+    print(request.POST.get('task'))
+    if time_form.is_valid():
+      time_form.save()
+      # time_form.save_m2m()# <--- Django-Taggit docs say this
+    return redirect('tasks')
+  # date = request.POST.get('date')
+  # startTime = request.POST.get('startTime')
+  # endTime =request.POST.get('endTime')
+  # tags = request.POST.get('tags')
+  # task = Task.objects.get(id=task_id)
+  # duration = request.POST.get('00:30:00')
+  # new_time = Time(date=date, startTime=startTime, endTime=endTime, tags=tags, task=task, duration=duration)
+  # new_time.save()
+  # time_form.save_m2m() # <--- Django-Taggit docs say this
+  time_form = TimeForm()
+  print(time_form)
+  context = { 'time_form':time_form }
+  return render (request, 'time/new.html', context)

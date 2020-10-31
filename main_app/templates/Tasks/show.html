@@ -30,7 +30,9 @@
         <div class="buttons has-addons is-right">
             <button class="button" id="is-blue">complete</button>
             <button class="button" id="is-red" >uncomplete</button>
-            <button class="button is-green" id="showModalTime" >add time</button>
+            <a method="POST" href={% url 'time_add' %}>
+                <button class="button" id="is-green" >add task</button>
+            </a>
         </div>
     </div>
   </div>

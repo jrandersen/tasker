@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!-- EDIT FORM -->
+<form action="" method="POST">
+    {% csrf_token %}
+    {{ time_form.as_p}}
+    <input type="submit" class="button" id="is-green" value="Update">
+    <br>
+    <br>
+    <a class="button" id="is-red" href="">Delete</a><br>
+
+</form>
+
+{% endblock %}

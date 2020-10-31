@@ -48,8 +48,30 @@ class SignUpForm(UserCreationForm):
         fields = ('username', 'email', 'name', 'password1', 'password2')
 
 
-# USERCREATION ===============
+
+
+# TIME FORM ===============
+# --- redo inputs
+# class DateInput(forms.DateInput):
+#     input_type = "date"
+
+#     def __init__(self, **kwargs):
+#         kwargs["format"] = "%Y-%m-%d"
+#         super().__init__(*kwargs)
+
+# class TimeInput(forms.TimeInput):
+#     input_type = "time"
+    
+# --- actual form and apply widgets
 class TimeForm(ModelForm):
     class Meta:
         model = Time
-        fields = ['date', 'startTime', 'endTime', 'tags']
+        fields = "__all__"
+    
+    # def __init__(self, *args, **kwargs):
+    #     super().__init__(*args, **kwargs)
+    #     self.fields["date"].widget = DateInput()
+    #     self.fields["startTime"].widget = TimeInput()
+    #     self.fields["endTime"].widget = TimeInput()
+
+
