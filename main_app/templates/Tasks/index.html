@@ -3,7 +3,7 @@
 
 <!-- TASK FORM, FILTERS FOR USER AND TAKES IN INPUT -->
 <div class="box is-mobile">
-    <form action="{% url 'tasks' %}" method='POST'>
+    <form method='POST' action={% url 'tasks' %}>
     {% csrf_token %}    
         <div class="field has-addons">
             <p class="control">

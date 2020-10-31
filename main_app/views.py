@@ -57,23 +57,16 @@ def tasks(request):
 
 # --- SHOW TASK ROUTE ---
 def task_show(request, task_id):
-  if request.method == 'POST':
-    note = request.POST.get('note')
-    task = Task.objects.get(id=task_id)
-    creator = Profile.objects.get(id=request.user.id)
-    new_note = Note(note=note, task=task, creator=creator)
-    new_note.save()
   task = Task.objects.get(id=task_id)
   notes = task.note_set.all()
-  notes_length = len(notes)
   times = Time.objects.filter(task=task_id)
   tags = []
   for time in times:
     time_id = time.id
     tags.append(Tag.objects.filter(id=time_id))
-  print(tags)
-  context = { 'task': task, 'notes': notes, "notes_length": notes_length, 'times': times, 'tags': tags }
-  return render( request, 'tasks/show.html', context )
+  # print(tags)
+  context = { 'task': task, 'notes': notes, 'times': times, 'tags': tags }
+  return render(request, 'tasks/show.html', context)
 
 # --- EDIT TASK ROUTE ---
 def task_edit(request, task_id):
@@ -100,7 +93,14 @@ def task_delete(request, task_id):
 
 # NOTES ====================================
 # --- ADD NOTES ROUTE TO TASK ---
-def note_new(request):
+def note_add(request, task_id):
+  if request.method == 'POST':
+    note = request.POST.get('note')
+    task = Task.objects.get(id=task_id)
+    creator = Profile.objects.get(id=request.user.id)
+    new_note = Note(note=note, task=task, creator=creator)
+    new_note.save()
+    return redirect('task_show', task_id=task_id)
   # this is in the Task_show page
   return render ('Nothing here yet')
 
@@ -199,15 +199,15 @@ def project_delete(request, project_id):
 
 # TIME ====================================
 # --- ADD TIME TO TASK ---
-def add_time(request, task_id):
+def time_add(request, task_id):
   task = Task.objects.get(id=task_id)
-  # print(request.POST)
-  # time_form = TimeForm(request.POST)
-  # if time_form.is_valid():
-  #   new_time = time_form.save(commit=False)
-  #   new_time.task = task
-  #   new_time.save()
-  #   time_form.save_m2m() # <--- Django-Taggit docs say this
-  # context = { 'task_id': task_id }
+  time_form = TimeForm(request.POST)
+  if time_form.is_valid():
+    new_time = time_form.save(commit=False)
+    new_time.task = task
+    new_time.save()
+    time_form.save_m2m() # <--- Django-Taggit docs say this
+    return redirect('task_show', task_id=task_id)
+  context = { 'task_id': task_id }
   return redirect('task_show', task_id=task_id)
   # return redirect(reverse(task:add_time, kwargs={'task_id': task_id}))
