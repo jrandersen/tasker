@@ -27,23 +27,24 @@
 <!-- TASK CARDS -->
 <div class="title is-4">Tasks</div>
 {% for task in tasks %}
-    {% if forloop.counter0|divisibleby:"4" %} <div class="columns is-desktop"> {% endif %}
-        <div class="column is-3">
-            <div class="card">
+    {% if forloop.counter0|divisibleby:"4" %} <div class="columns is-desktop"><!-- bulma row open --> {% endif %}
+        <div class="column is-3"> <!-- this has to work with above divisor -->
+            <div class="card" id='is-project-card'>
                 <div class="card-content">
                     <a href="{% url 'task_show' task.id %}">
-                        <p class="title is-6">{{ task.taskName }} <br> {{ task.creator }}</p>
+                        <p class="title is-5">{{ task.taskName }}</p>
+                        <p class="subtitle is-6">{{ task.creator }}</p>
                         <p class="subtitle is-6">{{ task.createdDate }}</p>
                     </a>
                 </div> 
-                <footer class="card-footer">
+                <footer class="card-footer" id='is-project-card-footer'>
                     <a href="#" class="card-footer-item" id="is-blue">complete</a>
                     <a class="card-footer-item is-green" id="showModalTime">add time</a>
                 </footer>   
             </div>
         </div>
-    {%  if forloop.counter|divisibleby:"4" or forloop.last %}</div><!-- row closing --><hr>{%  endif %}  
+    {%  if forloop.counter|divisibleby:"4" or forloop.last %}</div><!-- row closing --><hr>{%  endif %}
+{% empty %}<!-- fi empty show this-->
+<p>You have no Tasks yet, add them on the Tasks page </p>       
 {% endfor %}
 {% endblock %}
-
-</div><!-- card content -->
