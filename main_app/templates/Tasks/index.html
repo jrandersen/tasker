@@ -26,14 +26,14 @@
 <!-- TASK GROUPINGS BELOW -->
 <div class="tile is-ancestor is-mobile">
     <!-- LEFT TILE -->
-    <div class="tile is-4 is-parent">
-        <div class="tile is-child box">
+    <div class="tile is-3 is-parent">
+        <div class="tile is-child box is-shadowless">
             <p class="heading">Tasks completed yesterday: {% now "SHORT_DATE_FORMAT" %}</p>
         </div>
     </div>
     <!-- RIGHT TILE -->
     <div class="tile is-parent">
-        <div class="tile is-child box">
+        <div class="tile is-child box is-shadowless">
         <p class="heading">Tasks for today: &nbsp {% now "SHORT_DATE_FORMAT" %}</p>
         {% for task in tasks %}
             <a href="{% url 'task_show' task.id %}">

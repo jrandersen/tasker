@@ -18,7 +18,7 @@
 <!-- MAIN LOWER TILE -->
 <div class="tile is-ancestor is-mobile">
     <div class="tile is-parent">
-        <div class="tile is-child box">
+        <div class="tile is-child box is-shadowless">
             <p class="heading">Projects as of: &nbsp {% now "SHORT_DATE_FORMAT" %}</p>
             {% for project in projects %}
             <a href="{% url 'project_show' project.id %}">
