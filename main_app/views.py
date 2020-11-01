@@ -4,6 +4,7 @@ from .forms import TaskForm, ProjectForm, ProfileForm, SignUpForm, NoteForm, Tim
 from django.http import HttpResponse
 from django.contrib.auth import login, authenticate
 from taggit.models import Tag
+import datetime
 
 
 # ADMIN ====================================
@@ -59,13 +60,16 @@ def tasks(request):
 def task_show(request, task_id):
   task = Task.objects.get(id=task_id)
   notes = task.note_set.all()
-  times = Time.objects.filter(task=task_id)
+  timeObjects = Time.objects.filter(task=task_id)
   tags = []
-  for time in times:
-    time_id = time.id
-    tags.append(Tag.objects.filter(id=time_id))
-  # print(tags)
-  context = { 'task': task, 'notes': notes, 'times': times, 'tags': tags }
+  durations = []
+  for time in timeObjects:
+    tags.append(time.getTags())
+    durations.append(time.getDuration())
+  times = zip(tags, durations)
+  totalTime = sum(durations, datetime.timedelta())
+  print(totalTime)
+  context = { 'task': task, 'notes': notes, 'times': times, 'totalTime': totalTime }
   return render(request, 'tasks/show.html', context)
 
 # --- EDIT TASK ROUTE ---
@@ -174,7 +178,6 @@ def project_show(request, project_id):
   context = { 'project': project, 'tasks': tasks }
   return render( request, 'projects/show.html', context )
 
-
 # --- PROJECT SHOW ROUTE ---
 def project_edit(request, project_id):
   project = Project.objects.get(id=project_id)
@@ -203,20 +206,11 @@ def time_add(request):
   if request.method == 'POST':
     time_form = TimeForm(request.POST)
     print(time_form)
-    print(request.POST.get('task'))
+    # print(request.POST.get('task'))
     if time_form.is_valid():
       time_form.save()
-      # time_form.save_m2m()# <--- Django-Taggit docs say this
+      # time_form.save_m2m()# <--- Django-Taggit docs say this if you save(commit=False)
     return redirect('tasks')
-  # date = request.POST.get('date')
-  # startTime = request.POST.get('startTime')
-  # endTime =request.POST.get('endTime')
-  # tags = request.POST.get('tags')
-  # task = Task.objects.get(id=task_id)
-  # duration = request.POST.get('00:30:00')
-  # new_time = Time(date=date, startTime=startTime, endTime=endTime, tags=tags, task=task, duration=duration)
-  # new_time.save()
-  # time_form.save_m2m() # <--- Django-Taggit docs say this
   time_form = TimeForm()
   print(time_form)
   context = { 'time_form':time_form }

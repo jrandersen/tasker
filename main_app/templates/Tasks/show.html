@@ -1,41 +1,55 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<!-- TASK TILES-->
+<!-- TASK TILES -->
 <div class="tile is-ancestor">
-  <div class="tile is-4 is-vertical is-parent">
-    <div class="tile is-child box">
-        <p class="title">{{ task.taskName }} &nbsp 
-            <a class="is-tasker-medium-edit-icon"
-                method='POST'
-                href={% url 'task_edit' task.id %} 
-                >
-                    <i class="fas fa-pen-square"></i>
-            </a></p>
-        <p>Created on: {{ task.createdDate }}</p>
-        <p>Completed: {{ task.taskCompletedDate }}</p>
-    </div>
-  </div>
-  <div class="tile  is-parent">
-    <div class="tile is-child box">
-        <p class="title is-6">
-                {% for time in times %}
-           {{ time }}<br>
-        {% endfor %} </p>
-
-        <p class="title is-6">Tags:</p>
-        {% for tag in tags %}
-           {{ tag }}<br>
-        {% endfor %}
-        <div class="buttons has-addons is-right">
-            <button class="button" id="is-blue">complete</button>
-            <button class="button" id="is-red" >uncomplete</button>
-            <a method="POST" href={% url 'time_add' %}>
-                <button class="button" id="is-green" >add task</button>
-            </a>
+    <!-- LEFT TILE -->
+    <div class="tile is-4 is-parent">
+        <div class="tile is-child box">
+            <p class="title">{{ task.taskName }} &nbsp 
+                <a class="is-tasker-medium-edit-icon"
+                    method='POST'
+                    href={% url 'task_edit' task.id %} >
+                        <i class="fas fa-pen-square"></i>
+                </a></p>
+            <p>Created on: {{ task.createdDate }}</p>
+            <p>Completed: {{ task.taskCompletedDate }}</p>
         </div>
     </div>
-  </div>
+    <!-- MIDDLE TILE -->
+    <div class="tile is-6 is-parent">
+        <div class="tile is-child box">
+            <div class="level">
+            <div class="level-item has-text-centered">
+                <div>
+                <p class="heading">Hours</p>
+                <p class="title">{{ totalTime }}</p>
+                </div>
+            </div>
+            <!-- <div class="level-item has-text-centered">
+                <div>
+                <p class="heading">Tags</p>
+                <p class="title">
+                {% for item1, item2 in times %}
+                    {{ item1 }}
+                {% endfor %} </p>
+                </div>
+            </div> -->
+            </div>
+        </div>
+    </div>
+    <!-- RIGHT TILE -->
+    <div class="tile is-parent">
+        <div class="tile is-child box">
+            <div class="buttons has-addons is-left">
+                <button class="button is-fullwidth" id="is-blue">complete</button>
+                <button class="button is-fullwidth" id="is-red" >uncomplete</button>
+                <button class="button is-fullwidth" id="is-green">
+                    <a class="is-fullwidth" method="POST" href={% url 'time_add' %}>add task</a>
+                </button>
+            </div>
+        </div>
+    </div> 
 </div>
 
 

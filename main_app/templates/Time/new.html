@@ -1,8 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<!-- EDIT FORM -->
-
+<!-- TIME FORM -->
 <form action={% url 'time_add' %} method="POST">
     {% csrf_token %}
     <div class="columns is-mobile is-centered">
@@ -23,15 +22,10 @@
                 
                 <p class="field">
                     <label for="id_tags"></label>
-                    <input type="text" name="tags" required id="id_tags" class="input"></p>
+                    <input type="text" name="tags" required id="id_tags" class="input" placeholder="...enter a tag to organize your time"></p>
                 
                 <p class="field">
-                    <p class="field">
-                    <label for="id_duration"></label>
-                    <input type="text" name="duration" required id="id_duration" class="input"></p>
-                
-                <p class="field">
-                <span class="select is-medium">
+                <span class="select">
                     <label for="id_task"></label>  
                     <select name="task">
                     {% for task in time_form.task %}
@@ -39,16 +33,9 @@
                     {% endfor %}
                     </select>
                 </span></p>
-        
-                
-                
-                
                 <button class="button" id="is-green" type="submit">add time</button>
             </div>
         </div>
     </div>
 </form>
-
-
-
 {% endblock %}

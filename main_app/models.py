@@ -77,7 +77,6 @@ class Time(models.Model):
     endTime = models.TimeField()
     tags = TaggableManager()
     task = models.ForeignKey(Task, on_delete=models.CASCADE)
-    duration = models.DurationField()
 
     def clean(self):
         if self.startTime > self.endTime:
@@ -92,10 +91,19 @@ class Time(models.Model):
             )
         ]
 
-    def totaTime(endTime, startTime):
-        calcTime = datetime.combine(date.min, endTime) - datetime.combine(date.min, startTime)
-        duration = calcTime
-        return str(calcTime)
+    def getDuration(self):
+        duration = datetime.combine(date.min, self.endTime) - datetime.combine(date.min, self.startTime)
+        return duration
+    
+    def getTotalTime(self, arr):
+        totalTime = sum(arr)
+        return totalTime
+
+    def getTags(self):
+        tags = []
+        for tag in self.tags.all():
+            tags.append(str(tag))
+        return ', '.join(tags)
 
     def __str__(self):
         return str(self.date) + ", " + "start:" + str(self.startTime) + ", " + "end:" + str(self.endTime)

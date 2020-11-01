@@ -49,7 +49,6 @@ class SignUpForm(UserCreationForm):
 
 
 
-
 # TIME FORM ===============
 # --- redo inputs
 # class DateInput(forms.DateInput):

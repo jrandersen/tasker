@@ -9,29 +9,42 @@
       <button class="delete closeModal" aria-label="close"></button>
     </header>
     <section class="modal-card-body" id="is-background">
-      <form  method="POST" action="">
+      <form action={% url 'time_add' %} method="POST">
         {% csrf_token %}
-        <p class="field">
-        <label for="date"></label>
-        <input type="date" class="input"></p>
-
-        <p class="field">
-        <label for="startTime"></label>
-        <input type="time" class="input"></p>
-
-        <p class="field">
-        <label for="endTime"></label>
-        <input type="time" class="input"></p>
-
-        <p class="field">
-        <label for="tags"></label>
-        <input type="tags" class="input"placeholder=".... enter a tag or organize time"></p> 
-        
-        <div class="buttons has-addons">
-            <button class="button closeModal" id="is-background">close</button>
-            <button class="button" id="is-green" type="submit">add time</button>
+        <div class="columns is-mobile is-centered">
+          <div class="column is-half">
+            <div class="field">
+                <p class="control has-icons-left has-icons-right">
+                <p class="field">
+                    <label for="id_date"></label>
+                    <input type="date" name="date" required id="id_date" class="input"></p>
+                
+                <p class="field">
+                    <label for="id_startTime"></label>
+                    <input type="time" name="startTime" required id="id_startTime" class="input"></p>
+                
+                <p class="field">
+                    <label for="id_endTime"></label>
+                    <input type="time" name="endTime" required id="id_endTime" class="input"></p>
+                
+                <p class="field">
+                    <label for="id_tags"></label>
+                    <input type="text" name="tags" required id="id_tags" class="input" placeholder="...enter a tag to organize your time"></p>
+                
+                <p class="field">
+                <span class="select">
+                    <label for="id_task"></label>  
+                    <select name="task">
+                    {% for task in time_form.task %}
+                        <option value={{ task.id }} >{{ task }}</option>
+                    {% endfor %}
+                    </select>
+                </span></p>
+                <button class="button" id="is-green" type="submit">add time</button>
+            </div>
+          </div>
         </div>
-      </form>
+      </form> 
     </section>
   </div>
 </div>
