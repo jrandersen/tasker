@@ -6,6 +6,8 @@
     <form method='POST' action={% url 'tasks' %}>
     {% csrf_token %}    
         <div class="field has-addons">
+            <p class="control is-expanded">
+                <input class="input is-medium" type="text" name="taskName" placeholder="... enter a task name"></p>
             <p class="control">
                 <span class="select is-medium">
                     <label for="project"></label>  
@@ -15,33 +17,48 @@
                     {% endfor %}
                     </select>
                 </span></p>
-
-            <p class="control is-expanded">
-                <input class="input is-medium" type="text" name="taskName" placeholder="... enter a task name"></p>
-
             <p class="control">
                 <input type="submit" class="button is-medium" id="is-green" value="add task"></p>
         </div>
     </form>
 </div>
 
-{% for task in tasks %}
-    <a href="{% url 'task_show' task.id %}">
-        <div class="card">
-            <div class="level">
-                <div class="level-left">
-                    <div class="card-content ">
-                        <div class="card-title is-size-5">{{ task.taskName }} | {{ task.project.projectName }}</i></div>
-                    </div>
-                </div>
-                <div class="level-right">
-                    <a class="button" id="complete"><strong>complete</strong></a>
-                </div>  
-            </div>
-        </a>
+<!-- TASK GROUPINGS BELOW -->
+<div class="tile is-ancestor is-mobile">
+    <!-- LEFT TILE -->
+    <div class="tile is-4 is-parent">
+        <div class="tile is-child box">
+            <p class="heading">Tasks completed yesterday: {% now "SHORT_DATE_FORMAT" %}</p>
+        </div>
     </div>
-{% empty %}
-<p>You have no Tasks yet, add them on the Tasks page </p>  
-{% endfor %}
+    <!-- RIGHT TILE -->
+    <div class="tile is-parent">
+        <div class="tile is-child box">
+        <p class="heading">Tasks for today: &nbsp {% now "SHORT_DATE_FORMAT" %}</p>
+        {% for task in tasks %}
+            <a href="{% url 'task_show' task.id %}">
+                <div class="card">
+                    <div class="level">
+                        <div class="level-left">
+                            <div class="card-content ">
+                                <div class="card-title is-size-5">{{ task.taskName }} | {{ task.project.projectName }}</i></div>
+                            </div>
+                        </div>
+                        <div class="level-right">
+                            <a class="button" id="complete"><strong>complete</strong></a>
+                        </div>  
+                    </div>
+                </a>
+            </div>
+        {% empty %}
+        <p>You have no Tasks yet, add them on the Tasks page </p>  
+        {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+
+
 
 {% endblock %}
