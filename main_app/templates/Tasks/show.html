@@ -69,6 +69,7 @@
     <div class="tile is-10 is-parent">
         <div class="tile is-child box">
             <!-- BULMA MEDIA OBJECT NOTES DISPLAY -->
+            <p class="heading">Notes</p>
             {% for note in notes %}
             <article class="media">
                 <div class="media-content">
@@ -90,7 +91,9 @@
                         </div>
                     </nav>
                 </div>
-            </article>      
+            </article>
+            {% empty %}
+            <p>Add Notes to Tasks for reference </p>        
             {% endfor %} 
         </div>
     </div>
@@ -98,12 +101,14 @@
     <!-- RIGHT TILE -->
     <div class="tile is-parent">
         <div class="tile is-child box">
-            <p class="heading">Tags</p>
+            <p class="heading">Times</p>
             <p class="subtitle is-5">
-            {% for item1, item2 in times %}
-                <span class="tag is-normal" id="is-blue">{{ item1 }} {{ item2 }}
-                    <a  href="" class="delete is-small"></a>
+            {% for time in times %}
+                <span class="tag is-normal" id="is-blue">{{ time }}
+                    <a class="delete is-small" method="POST" href={% url 'time_edit' time.id %}></a>
                 </span><br>
+            {% empty %}
+            <p>Add time to tasks. </p>        
             {% endfor %} </p>
             </div>
         </div>

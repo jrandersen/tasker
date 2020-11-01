@@ -2,7 +2,7 @@
 {% block content %}
 
 <!-- EDIT FORM -->
-<form action="" method="POST">
+<form action={% url 'time_edit' time.id %} method="POST">
     {% csrf_token %}
     {{ time_form.as_p}}
     <input type="submit" class="button" id="is-green" value="Update">

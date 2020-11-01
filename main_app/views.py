@@ -60,18 +60,21 @@ def tasks(request):
 def task_show(request, task_id):
   task = Task.objects.get(id=task_id)
   notes = task.note_set.all()
-  timeObjects = Time.objects.filter(task=task_id)
+  times = Time.objects.filter(task=task_id)
   tags = []
   durations = []
-  time_id = []
-  for time in timeObjects:
+  # time_id = []
+  for time in times:
     tags.append(time.getTags())
     durations.append(time.getDuration())
-    time_id.append(time.id)
-  times = zip(tags, time_id)
+    # time_id.append(time.id)
+    # print(time.task.creator.user.id)
+    # print(time.task.id)
+    print(time.id)
+  # times = zip(tags, time_id)
+  
   totalTime = sum(durations, datetime.timedelta())
-  print(times)
-  context = { 'task': task, 'notes': notes, 'times': times, 'totalTime': totalTime }
+  context = { 'task': task, 'notes': notes, 'times': times, 'totalTime': totalTime,}
   return render(request, 'tasks/show.html', context)
 
 # --- EDIT TASK ROUTE ---
@@ -216,7 +219,22 @@ def time_add(request):
   context = { 'tasks':tasks }
   return render (request, 'time/new.html', context)
 
+def time_edit(request, time_id):
+  time = Time.objects.get(id=time_id)
+  task_id = time.task.id
+  if request.method == 'POST':
+    if request.user.id == time.task.creator.user.id:
+      time_form = TimeForm(request.POST, instance=time)
+      if time_form.is_valid():
+        time_form.save()
+        return redirect('task_show', task_id=task_id)
+    else:
+      return redirect('task_show', task_id=task_id)
+  else:
+    time_form = TimeForm(instance=time)
+  context = {'time' : time, 'time_form': time_form }
+  return render (request, 'time/edit.html', context)
 
-  def time_edit(request, item1_id):
-    pass
-  return ("hello")
+
+
+ 

@@ -102,4 +102,4 @@ class Time(models.Model):
         return ', '.join(tags)
 
     def __str__(self):
-        return str(self.date) + ", " + "start:" + str(self.startTime) + ", " + "end:" + str(self.endTime)
+        return str(self.date)
