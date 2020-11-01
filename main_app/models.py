@@ -95,10 +95,6 @@ class Time(models.Model):
         duration = datetime.combine(date.min, self.endTime) - datetime.combine(date.min, self.startTime)
         return duration
     
-    def getTotalTime(self, arr):
-        totalTime = sum(arr)
-        return totalTime
-
     def getTags(self):
         tags = []
         for tag in self.tags.all():

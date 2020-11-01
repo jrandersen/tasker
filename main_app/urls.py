@@ -7,8 +7,6 @@ urlpatterns = [
     path('about/', views.about, name='about'),
     path('accounts/signup', views.signup, name='signup'),
     
-
-
     # TASK ===============
     path('tasks/', views.tasks, name='tasks'),
     path('tasks/<int:task_id>/', views.task_show, name='task_show'),
@@ -17,6 +15,7 @@ urlpatterns = [
     
     # TIME ===============
     path('time/add/', views.time_add, name='time_add'),
+    # path('time/<int:item1_id/edit/', views.time_edit, name='time_edit'),
     
     # PROFILE & PROJECT =============== 
     path('profile/<int:profile_id>/', views.profile_show, name='profile_show'),

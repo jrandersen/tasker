@@ -28,7 +28,7 @@
                 <span class="select">
                     <label for="id_task"></label>  
                     <select name="task">
-                    {% for task in time_form.task %}
+                    {% for task in tasks %}
                         <option value={{ task.id }} >{{ task }}</option>
                     {% endfor %}
                     </select>
