@@ -5,11 +5,11 @@
 <form action={% url 'time_edit' time.id %} method="POST">
     {% csrf_token %}
     {{ time_form.as_p}}
-    <input type="submit" class="button" id="is-green" value="Update">
     <br>
-    <br>
-    <a class="button" id="is-red" href={% url 'time_delete' time.id %}>Delete</a><br>
-
+    <div class="buttons has-addons is-left">
+        <input type="submit" class="button" id="is-green" value="Update">
+        <a class="button" id="is-red" href={% url 'time_delete' time.id %}>Delete</a><br>
+    </div>
 </form>
 
 {% endblock %}

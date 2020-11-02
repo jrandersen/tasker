@@ -159,6 +159,7 @@ def note_edit(request, note_id):
   else:
     note_form = NoteForm(instance=note)
   context = {'note' : note, 'note_form': note_form }
+  print(note_form)
   return render (request, 'notes/edit.html', context)
 
 def note_delete(request, note_id):
