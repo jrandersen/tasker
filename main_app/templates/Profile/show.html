@@ -1,6 +1,33 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<!-- PROFILE TILES-->
+<div class="tile is-ancestor">
+  <div class="tile is-2 is-vertical is-parent">
+    <div class="tile is-child box">
+        <p class="title">{{ profile.name }} &nbsp 
+            <a class="is-tasker-medium-edit-icon"
+                method='POST'
+                href={% url 'project_edit' project.id %} >
+                    <i class="fas fa-edit"></i>
+            </a></p>
+        <p>Created on: {{ project.creator.name }}</p>
+        <p>Completed: {{ project.startDate }}</p>
+    </div>
+  </div>
+
+  <div class="tile  is-parent">
+    <div class="tile is-child box">
+        <p class="subtitle is-6">DATA</p>
+        <div class="buttons has-addons is-right">
+        </div>
+    </div>
+  </div>
+
+
+</div>
+
+
 <div class="hero">
     <div class="hero-body">
         <div class="container">
