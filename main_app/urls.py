@@ -12,10 +12,13 @@ urlpatterns = [
     path('tasks/<int:task_id>/', views.task_show, name='task_show'),
     path('tasks/<int:task_id>/edit/', views.task_edit, name='task_edit'),
     path('tasks/<int:task_id>/delete/', views.task_delete, name='task_delete'),
-    
+    path('tasks/<int:task_id>/complete/', views.task_complete, name='task_complete'),
+    path('tasks/<int:task_id>/uncomplete/', views.task_uncomplete, name='task_uncomplete'),
+
     # TIME ===============
     path('time/add/', views.time_add, name='time_add'),
     path('time/<int:time_id>/edit/', views.time_edit, name='time_edit'),
+    path('time/<int:time_id>/delete/', views.time_delete, name='time_delete'),
     
     # PROFILE & PROJECT =============== 
     path('profile/<int:profile_id>/', views.profile_show, name='profile_show'),

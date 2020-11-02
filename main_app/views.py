@@ -66,14 +66,9 @@ def task_show(request, task_id):
   task = Task.objects.get(id=task_id)
   notes = task.note_set.all()
   times = Time.objects.filter(task=task_id)
-  tags = []
   durations = []
   for time in times:
-    tags.append(time.getTags())
     durations.append(time.getDuration())
-    # time_id.append(time.id)
-    # print(time.task.creator.user.id)
-    # print(time.task.id)
   totalTime = sum(durations, datetime.timedelta())
   context = {'task': task, 'notes': notes, 'times': times, 'totalTime': totalTime}
   return render(request, 'tasks/show.html', context)
@@ -94,9 +89,45 @@ def task_edit(request, task_id):
   context = { 'task': task, 'task_form': task_form }
   return render(request, 'tasks/edit.html', context)
 
+# --- COMPLETE TASK ROUTE ---
+def task_complete(request, task_id):
+  task = Task.objects.get(id=task_id)
+  notes = task.note_set.all()
+  times = Time.objects.filter(task=task_id)
+  durations = []
+  for time in times:
+    durations.append(time.getDuration())
+  totalTime = sum(durations, datetime.timedelta())
+  if len(times) == 0:
+    return render(request, 'modal_complete_error.html')
+  else:
+    task.taskComplete = True
+    task.taskCompletedDate = datetime.date.today()
+    task.save()
+  context = {'task': task, 'notes': notes, 'times': times, 'totalTime': totalTime}
+  return render(request, 'tasks/show.html', context)
+
+# --- UN-COMPLETE A TASK ROUTE ---
+def task_uncomplete(request, task_id):
+  task = Task.objects.get(id=task_id)
+  notes = task.note_set.all()
+  times = Time.objects.filter(task=task_id)
+  durations = []
+  for time in times:
+    durations.append(time.getDuration())
+  totalTime = sum(durations, datetime.timedelta())
+  if task.taskComplete == True:
+    task.taskComplete = False
+    task.taskCompletedDate = None
+    task.save()
+  context = {'task': task, 'notes': notes, 'times': times, 'totalTime': totalTime}
+  return render(request, 'tasks/show.html', context)
+
 # --- DELETE TASK ROUTE ---
 def task_delete(request, task_id):
-  Task.objects.get(id=task_id).delete()
+  task = Task.objects.get(id=task_id)
+  if task.creator.id == request.user.id:
+    task.delete()
   return redirect('tasks')
 
 
@@ -202,7 +233,9 @@ def project_edit(request, project_id):
 
 # --- PROJECT DELETE ROUTE ---
 def project_delete(request, project_id):
-  Project.objects.get(id=project_id).delete()
+  project = Project.objects.get(id=project_id)
+  if project.creator.id == request.user.id:
+    project.delete()
   return redirect('projects')
 
 
@@ -220,6 +253,7 @@ def time_add(request):
   context = { 'tasks':tasks }
   return render (request, 'time/new.html', context)
 
+# --- TIME EDIT ---
 def time_edit(request, time_id):
   time = Time.objects.get(id=time_id)
   task_id = time.task.id
@@ -235,6 +269,15 @@ def time_edit(request, time_id):
     time_form = TimeForm(instance=time)
   context = {'time' : time, 'time_form': time_form }
   return render (request, 'time/edit.html', context)
+
+# --- TIME DELETE ---
+def time_delete(request, time_id):
+   time = Time.objects.get(id=time_id)
+   if time.task.creator.id == request.user.id:
+    time.delete()
+    task_id = time.task.id
+    return redirect('task_show', task_id=task_id)
+
 
 
 

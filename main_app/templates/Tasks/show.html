@@ -38,10 +38,14 @@
     <div class="tile is-parent">
         <div class="tile is-child box">
             <div class="buttons has-addons is-left">
-                <button class="button is-fullwidth" id="is-blue">complete</button>
-                <button class="button is-fullwidth" id="is-red" >uncomplete</button>
+                <button class="button is-fullwidth" id="is-blue">
+                    <a method="POST" href={% url 'task_complete' task.id %}>complete</a>
+                </button>
+                <button class="button is-fullwidth" id="is-red" >
+                    <a method="POST" href={% url 'task_uncomplete' task.id %}>uncomplete</a>
+                </button>
                 <button class="button is-fullwidth" id="is-green">
-                    <a class="is-fullwidth" method="POST" href={% url 'time_add' %}>add time</a>
+                    <a method="POST" href={% url 'time_add' %}>add time</a>
                 </button>
             </div>
         </div>

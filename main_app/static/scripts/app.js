@@ -23,7 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-
 // SHOW & CLOSE MODAL - DELETE  =========================
 $("#showModalDelete").click(function() {
   $(".modal").addClass("is-active");
