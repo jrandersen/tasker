@@ -3,47 +3,32 @@
 
 <!-- PROFILE TILES-->
 <div class="tile is-ancestor">
-  <div class="tile is-2 is-vertical is-parent">
+  <div class="tile is-4 is-vertical is-parent">
     <div class="tile is-child box">
+        <figure class="image is-128x128">
+            <img class="profile-image" src={{ profile.image }}>
+        </figure>
+    </div>
+   
+    <div class="tile is-child box">
+
         <p class="title">{{ profile.name }} &nbsp 
             <a class="is-tasker-medium-edit-icon"
                 method='POST'
-                href={% url 'project_edit' project.id %} >
+                href={% url 'profile_edit' profile.id %} >
                     <i class="fas fa-edit"></i>
             </a></p>
-        <p>Created on: {{ project.creator.name }}</p>
-        <p>Completed: {{ project.startDate }}</p>
+            <p class="subtitle is-6"> name: {{ profile.name }}</p>
+            <p class="subtitle is-6 ">email: {{ profile.email }}</p>
+            <p class="subtitle is-6 ">joined: {{ profile.dateJoined }}</p>
+        </p>
     </div>
   </div>
 
   <div class="tile  is-parent">
     <div class="tile is-child box">
         <p class="subtitle is-6">DATA</p>
-        <div class="buttons has-addons is-right">
-        </div>
     </div>
   </div>
-
-
 </div>
-
-
-<div class="hero">
-    <div class="hero-body">
-        <div class="container">
-            <h1 class="title">{{ profile.name }} &nbsp
-                <a class="is-tasker-medium-edit-icon"
-                    href="{% url 'profile_edit' profile.id %}" 
-                    method='POST'>
-                        <i class="fas fa-edit"></i></a>
-                        
-            </h1>
-            <h2 class="subtitle">{{ profile.email }}</h2>
-            <h2 class="subtitle">{{ user.username }}</h2>
-            <p>Joined on: {{ profile.dateJoined }}</p>
-        </div>
-    </div>
-</div>
-
-
 {% endblock %}

@@ -1,46 +1,20 @@
 
 
 <!-- BULMA MODAL FOR TIME INPUTS -->
-<div class="modal">
+<div class="modal" id="timeModal">
   <div class="modal-background"></div>
   <div class="modal-card">
     <header class="modal-card-head" id="is-green">
-      <p class="modal-card-title" >add time to: {{ task.taskName }}</p>
       <button class="delete closeModal" aria-label="close"></button>
     </header>
     <section class="modal-card-body" id="is-background">
-      <form action={% url 'time_add' %} method="POST">
+      <form action="" method="POST">
         {% csrf_token %}
         <div class="columns is-mobile is-centered">
           <div class="column is-half">
             <div class="field">
-                <p class="control has-icons-left has-icons-right">
-                <p class="field">
-                    <label for="id_date"></label>
-                    <input type="date" name="date" required id="id_date" class="input"></p>
-                
-                <p class="field">
-                    <label for="id_startTime"></label>
-                    <input type="time" name="startTime" required id="id_startTime" class="input"></p>
-                
-                <p class="field">
-                    <label for="id_endTime"></label>
-                    <input type="time" name="endTime" required id="id_endTime" class="input"></p>
-                
-                <p class="field">
-                    <label for="id_tags"></label>
-                    <input type="text" name="tags" required id="id_tags" class="input" placeholder="...enter a tag to organize your time"></p>
-                
-                <p class="field">
-                <span class="select">
-                    <label for="id_task"></label>  
-                    <select name="task">
-                    {% for task in time_form.task %}
-                        <option value={{ task.id }} >{{ task }}</option>
-                    {% endfor %}
-                    </select>
-                </span></p>
-                <button class="button" id="is-green" type="submit">add time</button>
+                <p>This is a time Modal</p>
+                <button class="button" id="is-green" type="submit">Delete</button>
             </div>
           </div>
         </div>
@@ -48,3 +22,29 @@
     </section>
   </div>
 </div>
+
+<!-- BULMA MODAL FOR TIME INPUTS -->
+<div class="modal" id="deleteModal">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head" id="is-red">
+      <button class="delete closeModal" aria-label="close"></button>
+    </header>
+    <section class="modal-card-body" id="is-background">
+      <form action="" method="POST">
+        {% csrf_token %}
+        <div class="columns is-mobile is-centered">
+          <div class="column is-half">
+            <div class="field">
+                <p>Are you sure you would like to dleet your Profile?</p>
+                <button class="button" id="is-red" type="submit">Delete</button>
+            </div>
+          </div>
+        </div>
+      </form> 
+    </section>
+  </div>
+</div>
+
+
+

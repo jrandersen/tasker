@@ -24,30 +24,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 // SHOW & CLOSE MODAL - DELETE  =========================
-$("#showModalDelete").click(function() {
-  $(".modal").addClass("is-active");
+$("#showDeleteModal").click(function() {
+  $("#deleteModal").addClass("is-active");
 });
 
 $(".closeModal").click(function() {
-  $(".modal").removeClass("is-active");
+  $("#deleteModal").removeClass("is-active");
 });
-
 
 // SHOW & CLOSE MODAL - TIME  =========================
-$("#showModalTime").click(function() {
-  $(".modal").addClass("is-active");
+$("#showTimeModal").click(function() {
+  $("#timeModal").addClass("is-active");
 });
 
 $(".closeModal").click(function() {
-  $(".modal").removeClass("is-active");
+  $("#timeModal").removeClass("is-active");
 });
 
-// SHOW & CLOSE MODAL - PROFILE DELETE  =========================
-$("#showProfileDeleteModal").click(function() {
-  $(".modal").addClass("is-active");
-});
 
-$(".closeModal").click(function() {
-  $(".modal").removeClass("is-active");
-});
+
+
 

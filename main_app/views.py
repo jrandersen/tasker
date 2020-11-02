@@ -192,6 +192,7 @@ def profile_edit(request, profile_id):
   else:
     profile_form = ProfileForm(instance=profile)
   context = { 'profile': profile, 'profile_form': profile_form}
+  print(profile_form)
   return render(request, 'profile/edit.html', context)
 
 

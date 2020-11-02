@@ -1,31 +1,31 @@
 {% extends 'base.html' %}
 {% block content %}
-
-<!-- EDIT FORM -->
+<!-- PROFILE EDIT FORM -->
 <form action={% url 'profile_edit' profile.id %} method="POST">
-    {% csrf_token %}
-    {{ profile_form.as_p}}
-    <input type="submit" class="button" id="is-green" value="Update">
-    <br>
-    <br>
-    <a class="button is-red" id="showProfileDeleteModal">Delete</a><br>
-
+  {% csrf_token %}
+    <div class="columns is-mobile is-centered">
+      <div class="column is-half">
+        <div class="field">
+          <p class="control has-icons-left has-icons-right">
+          <p class="field">
+          {% for field in profile_form %}
+            {{ field.errors }}
+              {{ field.label_tag }}
+              {{ field.widget.input_type }}
+              <input class="input" {{ field }}
+              
+              {% if field.help_text %}
+              <p class="help">{{ field.help_text|safe }}</p>
+            {% endif %}
+          {% endfor %}
+        </div>
+        <div class="buttons has-addons is-left">
+            <input type="submit" class="button" id="is-green" value="Update">
+            <a class="button is-red" id="showDeleteModal">Delete</a><br> 
+        </div>
+      </p>
+    </div>   
 </form>
-
-<!-- MODAL FOR DELETE WORKFLOW -->
-<div class="modal" id="delete_modal">
-  <div class="modal-background"></div>
-  <div class="modal-card">
-    <header class="modal-card-head" id="is-green">
-      <button class="delete closeModal" aria-label="close"></button>
-    </header>
-    <section class="modal-card-body" id="is-background">
-        <p>Are you sure you would like to delete your profile</p>
-    </section>
-    <footer class="modal-card-foot">
-      <a class="button" id="is-red" href={% url 'profile_edit' profile.id %}>Yes. Delete!</a><br>
-      <button class="button closeModal">Cancel</button>
-    </footer>
-  </div>
-</div>
 {% endblock %}
+
+
