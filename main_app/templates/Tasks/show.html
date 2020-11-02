@@ -10,7 +10,7 @@
                 <a class="is-tasker-medium-edit-icon"
                     method='POST'
                     href={% url 'task_edit' task.id %}>
-                        <i class="fas fa-pen-square"></i>
+                        <i class="fas fa-edit"></i>
                 </a></p>
             <p>Created on: {{ task.createdDate }}</p>
             <p>Completed: {{ task.taskCompletedDate }}</p>
@@ -83,10 +83,12 @@
                     <nav class="level is-mobile">
                         <div class="level-left">
                             <a class="level-item" method="POST" href={% url 'note_edit' note.id %}>
-                                <span class="is-tasker-small-edit-icon"><i class="fas fa-pen-square"></i></span>
+                                <span class="is-tasker-small-edit-icon">
+                                <i class="fas fa-edit"></i></span>
                             </a>
                             <a class="level-item" method="DELETE" href={% url 'note_delete' note.id %}>
-                                <span class="is-tasker-small-delete-icon"><i class="fas fa-trash"></i></span>      
+                                <span class="is-tasker-small-delete-icon">
+                                <i class="fas fa-trash"></i></span>      
                             </a>
                         </div>
                     </nav>
@@ -104,9 +106,13 @@
             <p class="heading">Times</p>
             <p class="subtitle is-5">
             {% for time in times %}
-                <span class="tag is-normal" id="is-blue">{{ time }}
-                    <a class="delete is-small" method="POST" href={% url 'time_edit' time.id %}></a>
-                </span><br>
+                <a class=" is-small" method="POST" href={% url 'time_edit' time.id %}>
+                <span class="tag is-normal" id="is-blue">{{ time }} &nbsp &nbsp
+                    
+                    <i class= "fas fa-edit" ></i>
+                    
+                </span></a>
+                <br>
             {% empty %}
             <p>Add time to tasks. </p>        
             {% endfor %} </p>

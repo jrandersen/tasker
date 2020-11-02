@@ -52,9 +52,9 @@ class Task(models.Model):
     
     def __str__(self):
         return self.taskName
-    
+
     class Meta:
-        ordering = ['-createdDate']
+        ordering = ['project', 'createdDate']
 
 
 

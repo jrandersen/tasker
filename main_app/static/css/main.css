@@ -54,9 +54,17 @@ text-align: center;
 
 #is-red {
     background-color: var(--taskerRed);
-    color: var(--backgroundcolor);
-    
+    color: var(--backgroundcolor);  
 }
+
+#is-red-outline {
+    background-color: white;
+    border: 2px solid var(--taskerRed);
+    border-radius: 5px;
+    line-height: 10px;
+    color: var(--taskerRed);  
+}
+
 #is-background-color {
     background-color: var(--backgroundcolor);
 }
@@ -87,4 +95,13 @@ text-align: center;
 
 #is-project-card-footer{
   
+}
+
+.card-content{
+    margin: 3px;
+    padding: 10px;
+}
+
+#is-button-box {
+    height: 10px;
 }

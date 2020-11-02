@@ -13,7 +13,7 @@
                     <label for="project"></label>  
                     <select name="project">
                     {% for project in projects %}
-                        <option value={{ project.id }} >{{ project }}</option>
+                        <option value={{ project.id }}>{{ project }}</option>
                     {% endfor %}
                     </select>
                 </span></p>
@@ -25,24 +25,39 @@
 
 <!-- TASK GROUPINGS BELOW -->
 <div class="tile is-ancestor is-mobile">
-    <!-- LEFT TILE -->
-    <div class="tile is-3 is-parent">
-        <div class="tile is-child box is-shadowless">
-            <p class="heading">Tasks completed yesterday: {% now "SHORT_DATE_FORMAT" %}</p>
+        <!-- LEFT TILE -->
+    <div class="tile is-3 is-vertical is-parent">
+        <div class="tile is-child box" id="is-button-box">
+        <p class="heading">Filter by Project:</p>
+            <button class="button is-fullwidth" id="is-blue">filter</button>
+        </div>
+        <div class="tile is-child box">
+            <p class="heading">Tasks yesterday:</p>
+            {% for task in priorTasks %}
+                <div class="card" id="is-red-outline">
+                    <div class="card-content">
+                        <p class="card-title is-size-6">{{ task.taskName }}</p>
+                        <p>{{ task.projectName }}</p>
+                    </div>   
+                </div>
+            {% endfor %}
         </div>
     </div>
+    <!-- LEFT TILE -->
+
     <!-- RIGHT TILE -->
     <div class="tile is-parent">
-        <div class="tile is-child box is-shadowless">
+        <div class="tile is-child box">
         <p class="heading">Tasks for today: &nbsp {% now "SHORT_DATE_FORMAT" %}</p>
         {% for task in tasks %}
             <a href="{% url 'task_show' task.id %}">
                 <div class="card">
                     <div class="level">
                         <div class="level-left">
-                            <div class="card-content ">
-                                <div class="card-title is-size-5">{{ task.taskName }} | {{ task.project.projectName }}</i></div>
-                            </div>
+                            <div class="card-content">
+                                <p class="card-title is-size-5">{{ task.taskName }} </i></p>
+                                <p class="heading">{{ task.project.projectName }}, {{ task.createdDate }}</p>
+                            </div>   
                         </div>
                         <div class="level-right">
                             <a class="button" id="complete"><strong>complete</strong></a>

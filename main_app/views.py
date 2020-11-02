@@ -5,6 +5,7 @@ from django.http import HttpResponse
 from django.contrib.auth import login, authenticate
 from taggit.models import Tag
 import datetime
+from datetime import date, timedelta
 
 
 # ADMIN ====================================
@@ -49,11 +50,15 @@ def tasks(request):
     new_task.taskComplete = False
     new_task.save()
     return redirect('tasks')
-  task = Task.objects.all()
   tasks = Task.objects.filter(creator=request.user.profile)
   projects = Project.objects.filter(creator=request.user.profile)
+  creator = Profile.objects.get(id=request.user.id)
+  priorTasks = []
+  for task in tasks:
+    if task.createdDate < date.today() - timedelta(days=1):
+      priorTasks.append(task)
   task_form = TaskForm()
-  context = { 'tasks': tasks, 'task_form': task_form, 'projects': projects }
+  context = { 'tasks': tasks, 'task_form': task_form, 'projects': projects, 'priorTasks': priorTasks }
   return render(request, 'tasks/index.html', context )
 
 # --- SHOW TASK ROUTE ---
@@ -63,18 +68,14 @@ def task_show(request, task_id):
   times = Time.objects.filter(task=task_id)
   tags = []
   durations = []
-  # time_id = []
   for time in times:
     tags.append(time.getTags())
     durations.append(time.getDuration())
     # time_id.append(time.id)
     # print(time.task.creator.user.id)
     # print(time.task.id)
-    print(time.id)
-  # times = zip(tags, time_id)
-  
   totalTime = sum(durations, datetime.timedelta())
-  context = { 'task': task, 'notes': notes, 'times': times, 'totalTime': totalTime,}
+  context = {'task': task, 'notes': notes, 'times': times, 'totalTime': totalTime}
   return render(request, 'tasks/show.html', context)
 
 # --- EDIT TASK ROUTE ---
