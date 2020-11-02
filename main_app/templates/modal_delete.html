@@ -1,5 +1,5 @@
-<!-- MODAL FOR COMPLETE WORKFLOW -->
-<div class="modal">
+<!-- MODAL FOR DELETE WORKFLOW -->
+<div class="modal" id="delete_modal">
   <div class="modal-background"></div>
   <div class="modal-card">
     <header class="modal-card-head" id="is-green">
@@ -9,7 +9,7 @@
         <p>Are you sure you would like to delete</p>
     </section>
     <footer class="modal-card-foot">
-      <button class="button is-red">Delete</button>
+      <a href="{% url '_delete' .id %}"><button class="button">delete</button></a>
       <button class="button">Cancel</button>
     </footer>
   </div>

@@ -52,7 +52,17 @@ text-align: center;
     color: var(--backgroundcolor);
 }
 
+.is-blue {
+    background-color: var(--taskerBlue);
+    color: var(--backgroundcolor);
+}
+
 #is-red {
+    background-color: var(--taskerRed);
+    color: var(--backgroundcolor);  
+}
+
+.is-red {
     background-color: var(--taskerRed);
     color: var(--backgroundcolor);  
 }

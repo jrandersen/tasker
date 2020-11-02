@@ -42,3 +42,12 @@ $(".closeModal").click(function() {
   $(".modal").removeClass("is-active");
 });
 
+// SHOW & CLOSE MODAL - PROFILE DELETE  =========================
+$("#showProfileDeleteModal").click(function() {
+  $(".modal").addClass("is-active");
+});
+
+$(".closeModal").click(function() {
+  $(".modal").removeClass("is-active");
+});
+

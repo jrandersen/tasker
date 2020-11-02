@@ -8,8 +8,24 @@
     <input type="submit" class="button" id="is-green" value="Update">
     <br>
     <br>
-    <a class="button" id="is-red" href={% url 'profile_edit' profile.id %}>Delete</a><br>
+    <a class="button is-red" id="showProfileDeleteModal">Delete</a><br>
 
 </form>
 
+<!-- MODAL FOR DELETE WORKFLOW -->
+<div class="modal" id="delete_modal">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head" id="is-green">
+      <button class="delete closeModal" aria-label="close"></button>
+    </header>
+    <section class="modal-card-body" id="is-background">
+        <p>Are you sure you would like to delete your profile</p>
+    </section>
+    <footer class="modal-card-foot">
+      <a class="button" id="is-red" href={% url 'profile_edit' profile.id %}>Yes. Delete!</a><br>
+      <button class="button closeModal">Cancel</button>
+    </footer>
+  </div>
+</div>
 {% endblock %}
