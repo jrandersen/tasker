@@ -2,7 +2,7 @@
 {% block content %}
 
 {% comment %} MODEL PROFILE ==================================== {% endcomment %}
-<form method="post" action="{% url 'login' %}">
+<form method="post" action={% url 'login' %}>
   {% csrf_token %}
   <div class="columns is-mobile is-centered">
     <div class="column is-half">

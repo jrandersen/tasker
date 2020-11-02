@@ -25,7 +25,8 @@ class ProjectForm(ModelForm):
 class ProfileForm(ModelForm):
     class Meta:
         model = Profile
-        fields = [ 'name', 'email' ]
+        fields = ['name','email','image']
+
 
 
 # NOTES ===============
@@ -33,6 +34,7 @@ class NoteForm(ModelForm):
     class Meta:
         model = Note
         fields = [ 'note' ]
+
 
 
 # USERCREATION ===============
@@ -44,3 +46,13 @@ class SignUpForm(UserCreationForm):
     class Meta:
         model = User
         fields = ('username', 'email', 'name', 'password1', 'password2')
+
+
+
+# TIME FORM ===============
+
+class TimeForm(ModelForm):
+    class Meta:
+        model = Time
+        fields = "__all__"
+

@@ -4,6 +4,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.core.exceptions import ValidationError
 from django.db.models import Q, F
+from datetime import datetime, date
 
 from taggit.managers import TaggableManager
 
@@ -14,6 +15,7 @@ class Profile(models.Model):
     dateJoined = models.DateField(auto_now=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     email = models.EmailField(max_length=150)
+    image = models.URLField(max_length=250, default="https://semantic-ui.com/images/avatar/large/steve.jpg")
 
     def __str__(self):
         return self.user.username
@@ -31,7 +33,7 @@ class Project(models.Model):
     projectName = models.CharField(max_length=50)
     startDate = models.DateTimeField(auto_now=True)
     creator = models.ForeignKey(Profile, on_delete=models.CASCADE)
-
+    
     def __str__(self):
         return self.projectName
   
@@ -51,9 +53,9 @@ class Task(models.Model):
     
     def __str__(self):
         return self.taskName
-    
+
     class Meta:
-        ordering = ['-createdDate']
+        ordering = ['project', 'createdDate']
 
 
 
@@ -65,7 +67,7 @@ class Note(models.Model):
     task = models.ForeignKey(Task, on_delete=models.CASCADE)
     
     def __str__(self):
-        return self.note
+        return str("hello, fix, later")
 
 
 
@@ -90,9 +92,15 @@ class Time(models.Model):
             )
         ]
 
-    def totaTime():
-        # adds up all time per project 
-        return null
+    def getDuration(self):
+        duration = datetime.combine(date.min, self.endTime) - datetime.combine(date.min, self.startTime)
+        return duration
+    
+    def getTags(self):
+        tags = []
+        for tag in self.tags.all():
+            tags.append(str(tag))
+        return ', '.join(tags)
 
     def __str__(self):
-        return str(self.date) + ", " + "start:" + str(self.startTime) + ", " + "end:" + str(self.endTime)
+        return str(self.date)

@@ -1,64 +1,130 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<!-- TASK HERO -->
-<div class="hero">
-    <div class="hero-body">
-        <div class="container">
-            <h1 class="title">{{ task.taskName }} &nbsp 
+<!-- TASK TILES -->
+<div class="tile is-ancestor">
+    <!-- LEFT TILE -->
+    <div class="tile is-4 is-parent">
+        <div class="tile is-child box">
+            <p class="title">{{ task.taskName }} &nbsp 
                 <a class="is-tasker-medium-edit-icon"
-                    href="{% url 'task_edit' task.id %}" 
-                    method='POST'>
-                        <i class="fas fa-pen-square"></i>
-                </a>
-            </h1>
-            <h2 class="subtitle">{{ task.project }}</h2>
+                    method='POST'
+                    href={% url 'task_edit' task.id %}>
+                        <i class="fas fa-edit"></i>
+                </a></p>
             <p>Created on: {{ task.createdDate }}</p>
             <p>Completed: {{ task.taskCompletedDate }}</p>
         </div>
     </div>
+    <!-- MIDDLE TILE -->
+    <div class="tile is-6 is-parent">
+        <div class="tile is-child box">
+            <div class="level">
+            <div class="level-item has-text-centered">
+                <div>
+                <p class="heading">Hours</p>
+                <p class="title">{{ totalTime }}</p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered">
+                <div>
+                    <!-- stuff here -->
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+    <!-- RIGHT TILE -->
+    <div class="tile is-parent">
+        <div class="tile is-child box">
+            <div class="buttons has-addons is-left">
+                <button class="button is-fullwidth" id="is-blue">
+                    <a method="POST" href={% url 'task_complete' task.id %}>complete</a>
+                </button>
+                <button class="button is-fullwidth" id="is-red" >
+                    <a method="POST" href={% url 'task_uncomplete' task.id %}>uncomplete</a>
+                </button>
+                <button class="button is-fullwidth" id="is-green">
+                    <a method="POST" href={% url 'time_add' %}>add time</a>
+                </button>
+            </div>
+        </div>
+    </div> 
 </div>
+
 
 <!-- NOTES INPUT -->
 <div class="box is-mobile">
-    <form action="#" method='POST'>
+    <form action={% url 'note_add' task.id %} method='POST'>
     {% csrf_token %}    
         <div class="field has-addons">
             <p class="control is-expanded">
                 <input class="input is-small" type="text" name="note" placeholder="... enter a note"></p>
 
             <p class="control">
-                <input type="submit" class="button is-small" id="is-green" value="note"></p>
+                <input type="submit" class="button is-small" id="is-green" value="add note"></p>
         </div>
     </form>
 </div>
 
-<!-- BULMA MEDIA OBJECT NOTES DISPLAY -->
-<article class="columns">
-    <section class="column">
-        {% for note in notes %}
-        <article class="media">
-            <div class="media-content">
-                <div class="content">
-                <p>
-                    <strong>{{ note.creator.name }}</strong><small> - {{ note.noteCreatedDate }}</small>
-                    <br>
-                    <small>{{ note.note }}</small></p>
-                
-                </div>
-                <nav class="level is-mobile">
-                    <div class="level-left">
-                        <a class="level-item" href="{% url 'note_edit' note.id %}" method="POST">
-                            <span class="is-tasker-small-edit-icon"><i class="fas fa-pen-square"></i></span>
-                        </a>
-                        <a class="level-item" href="{% url 'note_delete' note.id %}" method="DELETE">
-                            <span class="is-tasker-small-delete-icon"><i class="fas fa-trash"></i></span>      
-                        </a>
+
+<div class="tile is-ancestor">
+    <!-- LEFT TILE -->
+    <div class="tile is-10 is-parent">
+        <div class="tile is-child box">
+            <!-- BULMA MEDIA OBJECT NOTES DISPLAY -->
+            <p class="heading">Notes</p>
+            {% for note in notes %}
+            <article class="media">
+                <div class="media-content">
+                    <div class="content">
+                    <p>
+                        <strong>{{ note.creator.name }}</strong><small> - {{ note.noteCreatedDate }}</small>
+                        <br>
+                        <small>{{ note.note|urlize }}</small></p>
+                    
                     </div>
-                </nav>
+                    <nav class="level is-mobile">
+                        <div class="level-left">
+                            <a class="level-item" method="POST" href={% url 'note_edit' note.id %}>
+                                <span class="is-tasker-small-edit-icon">
+                                <i class="fas fa-edit"></i></span>
+                            </a>
+                            <a class="level-item" method="DELETE" href={% url 'note_delete' note.id %}>
+                                <span class="is-tasker-small-delete-icon">
+                                <i class="fas fa-trash"></i></span>      
+                            </a>
+                        </div>
+                    </nav>
+                </div>
+            </article>
+            {% empty %}
+            <p>Add Notes to Tasks for reference </p>        
+            {% endfor %} 
+        </div>
+    </div>
+
+    <!-- RIGHT TILE -->
+    <div class="tile is-parent">
+        <div class="tile is-child box">
+            <p class="heading">Times</p>
+            <p class="subtitle is-5">
+            {% for time in times %}
+                <a class=" is-small" method="POST" href={% url 'time_edit' time.id %}>
+                <span class="tag is-normal" id="is-blue">{{ time }} &nbsp &nbsp
+                    
+                    <i class= "fas fa-edit" ></i>
+                    
+                </span></a>
+                <br>
+            {% empty %}
+            <p>Add time to tasks. </p>        
+            {% endfor %} </p>
             </div>
-        </article> 
-    </section>
-</article>       
-{% endfor %}
+        </div>
+    </div> 
+</div>
 {% endblock %}
+
+
+

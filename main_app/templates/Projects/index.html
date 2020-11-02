@@ -15,17 +15,27 @@
     </form>
 </div>
 
-{% for project in projects %}
-    <a href="{% url 'project_show' project.id %}">
-        <div class="card">
-            <div class="level">
-                <div class="level-left">
-                    <div class="card-content ">
-                        <div class="card-title is-size-5">{{ project.projectName }}</div>
+<!-- MAIN LOWER TILE -->
+<div class="tile is-ancestor is-mobile">
+    <div class="tile is-parent">
+        <div class="tile is-child box is-shadowless">
+            <p class="heading">Projects as of: &nbsp {% now "SHORT_DATE_FORMAT" %}</p>
+            {% for project in projects %}
+            <a href="{% url 'project_show' project.id %}">
+                <div class="card">
+                    <div class="level">
+                        <div class="level-left">
+                            <div class="card-content ">
+                                <div class="card-title is-size-5">{{ project.projectName }}</div>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
-        </a>
+            {% empty %}
+            <p>You have no Projects yet, add them above </p>  
+            {% endfor %}
+        </div>
     </div>
-{% endfor %}
+</div>
 {% endblock %}

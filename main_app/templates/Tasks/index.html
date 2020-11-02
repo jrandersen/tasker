@@ -3,42 +3,77 @@
 
 <!-- TASK FORM, FILTERS FOR USER AND TAKES IN INPUT -->
 <div class="box is-mobile">
-    <form action="{% url 'tasks' %}" method='POST'>
+    <form method='POST' action={% url 'tasks' %}>
     {% csrf_token %}    
         <div class="field has-addons">
+            <p class="control is-expanded">
+                <input class="input is-medium" type="text" name="taskName" placeholder="... enter a task name"></p>
             <p class="control">
                 <span class="select is-medium">
                     <label for="project"></label>  
                     <select name="project">
                     {% for project in projects %}
-                        <option value={{ project.id }} >{{ project }}</option>
+                        <option value={{ project.id }}>{{ project }}</option>
                     {% endfor %}
                     </select>
                 </span></p>
-
-            <p class="control is-expanded">
-                <input class="input is-medium" type="text" name="taskName" placeholder="... enter a task name"></p>
-
             <p class="control">
                 <input type="submit" class="button is-medium" id="is-green" value="add task"></p>
         </div>
     </form>
 </div>
 
-{% for task in tasks %}
-    <a href="{% url 'task_show' task.id %}">
-        <div class="card">
-            <div class="level">
-                <div class="level-left">
-                    <div class="card-content ">
-                        <div class="card-title is-size-5">{{ task.taskName }} | {{ task.project.projectName }}</i></div>
-                    </div>
+<!-- TASK GROUPINGS BELOW -->
+<div class="tile is-ancestor is-mobile">
+        <!-- LEFT TILE -->
+    <div class="tile is-3 is-vertical is-parent">
+        <div class="tile is-child box" id="is-button-box">
+        <p class="heading">Filter by Project:</p>
+            <button class="button is-fullwidth" id="is-blue">filter</button>
+        </div>
+        <div class="tile is-child box">
+            <p class="heading">Tasks yesterday:</p>
+            {% for task in priorTasks %}
+                <div class="card" id="is-red-outline">
+                    <div class="card-content">
+                        <p class="card-title is-size-6">{{ task.taskName }}</p>
+                        <p>{{ task.projectName }}</p>
+                    </div>   
                 </div>
-                <div class="level-right">
-                    <a class="button" id="complete"><strong>complete</strong></a>
-                </div>  
-            </div>
-        </a>
+            {% endfor %}
+        </div>
     </div>
-{% endfor %}
+    <!-- LEFT TILE -->
+
+    <!-- RIGHT TILE -->
+    <div class="tile is-parent">
+        <div class="tile is-child box">
+        <p class="heading">Tasks for today: &nbsp {% now "SHORT_DATE_FORMAT" %}</p>
+        {% for task in tasks %}
+            <a href="{% url 'task_show' task.id %}">
+                <div class="card">
+                    <div class="level">
+                        <div class="level-left">
+                            <div class="card-content">
+                                <p class="card-title is-size-5">{{ task.taskName }} </i></p>
+                                <p class="heading">{{ task.project.projectName }}, {{ task.createdDate }}</p>
+                            </div>   
+                        </div>
+                        <div class="level-right">
+                            <a class="button" id="complete"><strong>complete</strong></a>
+                        </div>  
+                    </div>
+                </a>
+            </div>
+        {% empty %}
+        <p>You have no Tasks yet, add them on the Tasks page </p>  
+        {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+
+
+
 {% endblock %}

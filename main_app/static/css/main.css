@@ -39,15 +39,32 @@ text-align: center;
 
 #is-green {
     background-color: var(--taskerGreen);
+    color: var(--backgroundcolor);
+}
+
+.is-green {
+    background-color: var(--taskerGreen);
+    color: var(--backgroundcolor);
 }
 
 #is-blue {
     background-color: var(--taskerBlue);
+    color: var(--backgroundcolor);
 }
 
 #is-red {
     background-color: var(--taskerRed);
+    color: var(--backgroundcolor);  
 }
+
+#is-red-outline {
+    background-color: white;
+    border: 2px solid var(--taskerRed);
+    border-radius: 5px;
+    line-height: 10px;
+    color: var(--taskerRed);  
+}
+
 #is-background-color {
     background-color: var(--backgroundcolor);
 }
@@ -72,10 +89,26 @@ text-align: center;
     color: var(--taskerRed);
 }
 
-article section {
-    height: 100px;
-    background: red;
-    display: flex;
-    overflow-y: auto;
-    flex-direction: column;
- 
+#is-project-card{
+   
+}
+
+#is-project-card-footer{
+  
+}
+
+.card-content{
+    margin: 3px;
+    padding: 10px;
+}
+
+#is-button-box {
+    height: 10px;
+}
+
+
+.avatar-image{
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+}
