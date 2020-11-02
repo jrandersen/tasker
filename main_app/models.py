@@ -15,6 +15,7 @@ class Profile(models.Model):
     dateJoined = models.DateField(auto_now=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     email = models.EmailField(max_length=150)
+    image = models.URLField(max_length=250, default="https://semantic-ui.com/images/avatar/large/steve.jpg")
 
     def __str__(self):
         return self.user.username
@@ -32,7 +33,7 @@ class Project(models.Model):
     projectName = models.CharField(max_length=50)
     startDate = models.DateTimeField(auto_now=True)
     creator = models.ForeignKey(Profile, on_delete=models.CASCADE)
-
+    
     def __str__(self):
         return self.projectName
   
