@@ -27,7 +27,6 @@ $(".closeModal").click(function() {
   $("#deleteProfile").removeClass("is-active");
 });
 
-
 // SHOW & CLOSE MODAL - DELETE TIME  =========================
 $("#showTimeDeleteModal").click(function() {
   $("#deleteTime").addClass("is-active");
@@ -44,6 +43,15 @@ $("#showProjectDeleteModal").click(function() {
 
 $(".closeModal").click(function() {
   $("#deleteProject").removeClass("is-active");
+});
+
+// SHOW & CLOSE MODAL - DELETE TASK  =========================
+$("#showTaskDeleteModal").click(function() {
+  $("#deleteTask").addClass("is-active");
+});
+
+$(".closeModal").click(function() {
+  $("#deleteTask").removeClass("is-active");
 });
 
 
