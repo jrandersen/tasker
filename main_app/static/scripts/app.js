@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-// SHOW & CLOSE MODAL - DELETE  =========================
+// SHOW & CLOSE MODAL - DELETE PROFILE  =========================
 $("#showProfileDeleteModal").click(function() {
   $("#deleteProfile").addClass("is-active");
 });
@@ -27,20 +27,34 @@ $(".closeModal").click(function() {
   $("#deleteProfile").removeClass("is-active");
 });
 
-// SHOW & CLOSE MODAL - TIME  =========================
-$("#showTimeModal").click(function() {
-  $("#timeModal").addClass("is-active");
-});
 
-$(".closeModal").click(function() {
-  $("#timeModal").removeClass("is-active");
-});
-
-// SHOW & CLOSE MODAL - TIME  =========================
+// SHOW & CLOSE MODAL - DELETE TIME  =========================
 $("#showTimeDeleteModal").click(function() {
   $("#deleteTime").addClass("is-active");
 });
 
 $(".closeModal").click(function() {
   $("#deleteTime").removeClass("is-active");
+});
+
+// SHOW & CLOSE MODAL - DELETE PROJECT  =========================
+$("#showProjectDeleteModal").click(function() {
+  $("#deleteProject").addClass("is-active");
+});
+
+$(".closeModal").click(function() {
+  $("#deleteProject").removeClass("is-active");
+});
+
+
+
+
+
+// SHOW & CLOSE MODAL - ADD NEW TIME  =========================
+$("#showTimeModal").click(function() {
+  $("#timeModal").addClass("is-active");
+});
+
+$(".closeModal").click(function() {
+  $("#timeModal").removeClass("is-active");
 });

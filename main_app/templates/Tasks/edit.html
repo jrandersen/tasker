@@ -30,9 +30,36 @@
         </div>
         <div class="buttons has-addons is-left">
             <input type="submit" class="button" id="is-green" value="Update">
-            <a class="button is-red" id="showDeleteModal">Delete</a><br> 
+            <a class="button is-red" id="showTaskDeleteModal">Delete</a><br> 
         </div>
       </p>
     </div>   
 </form>
+
+<!-- MODAL FOR DELETE PROFILE -->
+<div class="modal" id="deleteTask">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head" id="is-red">
+      <button class="delete closeModal" aria-label="close"></button>
+    </header>
+    <section class="modal-card-body" id="is-background">
+      <form action="" method="POST">
+        {% csrf_token %}
+        <div class="columns is-mobile is-centered">
+          <div class="column is-half">
+            <div class="field">
+                <p class="subtitle">Are you sure you would like to delete your Profile?</p>
+            </div>
+          </div>
+        </div>
+      </form> 
+    </section>
+      <footer class="modal-card-foot">
+      <div class="buttons has-addons is-right">
+        <a class="button is-red" href="">Yes, Delete</a>
+      </div>
+    </footer>
+  </div>
+</div>
 {% endblock %}
