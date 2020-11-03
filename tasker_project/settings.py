@@ -35,7 +35,7 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['get-tasker.herokuapp.com']
 
 
 # Application definition
@@ -66,7 +66,9 @@ ROOT_URLCONF = 'tasker_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -134,7 +136,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # SUCCESSFUL LOGIN REDIRECTS TO ===============
-LOGIN_REDIRECT_URL = '/tasks/'
+LOGIN_REDIRECT_URL = '/projects/'
 
 # LOGOUT REDIRECTS TO ===============
 LOGOUT_REDIRECT_URL = '/'
