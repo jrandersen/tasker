@@ -67,10 +67,14 @@ def task_show(request, task_id):
   notes = task.note_set.all()
   times = Time.objects.filter(task=task_id)
   durations = []
+  tags = []
   for time in times:
     durations.append(time.getDuration())
+    tags.append(time.getTags())
+  print(tags)
+  timeDates = list(zip(times, tags))
   totalTime = sum(durations, datetime.timedelta())
-  context = {'task': task, 'notes': notes, 'times': times, 'totalTime': totalTime}
+  context = {'task': task, 'notes': notes, 'times': times, 'totalTime': totalTime, "timeDates": timeDates}
   return render(request, 'tasks/show.html', context)
 
 # --- EDIT TASK ROUTE ---
@@ -281,8 +285,3 @@ def time_delete(request, time_id):
     time.delete()
     task_id = time.task.id
     return redirect('task_show', task_id=task_id)
-
-
-
-
- 
