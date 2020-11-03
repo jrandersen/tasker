@@ -128,3 +128,7 @@ text-align: center;
     border: 3px solid var(--taskerBlue);
 
 }
+
+.task-update-select{
+    width: 600px;
+}

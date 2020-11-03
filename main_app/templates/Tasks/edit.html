@@ -9,15 +9,24 @@
         <div class="field">
           <p class="control has-icons-left has-icons-right">
           <p class="field">
-          {% for field in task_form %}
-            {{ field.errors }}
-              {{ field.label_tag }}
-              <input class="input" {{ field }}>
-              <option value={{ project.id }}>{{ project }}</option>
-              {% if field.help_text %}
-              <p class="help">{{ field.help_text|safe }}</p>
+            {% if field.errors %}
+                <p class="errors">{{ field.errors }}</p>
             {% endif %}
-          {% endfor %}
+            {{ field.label_tag }}
+            <input class="input" {{ task_form.taskName }}
+                <p class="control">
+                <span class="select">
+                    <label for="project"></label>  
+                    <select name="project" id="task-update-select">
+                    {% for project in projects %}
+                        <option  value={{ project.id }}> {{ project }}</option>
+                    {% endfor %}
+                    </select>
+                </span></p>
+
+            {% if field.help_text %}
+                <p class="help">{{ field.help_text|safe }}</p>
+            {% endif %}
         </div>
         <div class="buttons has-addons is-left">
             <input type="submit" class="button" id="is-green" value="Update">

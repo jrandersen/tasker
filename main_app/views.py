@@ -86,7 +86,8 @@ def task_edit(request, task_id):
       return redirect('task_show', task_id=task_id)
   else:
     task_form = TaskForm(instance=task)
-  context = { 'task': task, 'task_form': task_form }
+  projects = Project.objects.filter(creator=request.user.profile)
+  context = { 'task': task, 'task_form': task_form, 'projects': projects }
   return render(request, 'tasks/edit.html', context)
 
 # --- COMPLETE TASK ROUTE ---
@@ -269,7 +270,8 @@ def time_edit(request, time_id):
       return redirect('task_show', task_id=task_id)
   else:
     time_form = TimeForm(instance=time)
-  context = {'time' : time, 'time_form': time_form }
+  projects = Project.objects.filter(creator=request.user.profile)
+  context = {'time' : time, 'time_form': time_form, 'projects': projects }
   return render (request, 'time/edit.html', context)
 
 # --- TIME DELETE ---
