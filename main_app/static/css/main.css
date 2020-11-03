@@ -75,6 +75,15 @@ text-align: center;
     color: var(--taskerRed);  
 }
 
+#is-complete{
+    background-color: white;
+    border: 2px solid var(--taskerBlue);
+    border-radius: 5px;
+    line-height: 10px;
+    color: var(--taskerBlue);
+    text-decoration: line-through; 
+}
+
 #is-background-color {
     background-color: var(--backgroundcolor);
 }

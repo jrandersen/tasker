@@ -50,11 +50,12 @@ def tasks(request):
     new_task.taskComplete = False
     new_task.save()
     return redirect('tasks')
-  tasks = Task.objects.filter(creator=request.user.profile)
+  tasks = Task.objects.filter(creator=request.user.profile, taskComplete=False)
   projects = Project.objects.filter(creator=request.user.profile)
   creator = Profile.objects.get(id=request.user.id)
   priorTasks = []
-  for task in tasks:
+  tasklist = Task.objects.filter(creator=request.user.profile)
+  for task in tasklist:
     if task.createdDate < date.today() - timedelta(days=1):
       priorTasks.append(task)
   task_form = TaskForm()
