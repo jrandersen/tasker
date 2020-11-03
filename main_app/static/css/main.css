@@ -99,14 +99,6 @@ text-align: center;
     color: var(--taskerRed);
 }
 
-#is-project-card{
-   
-}
-
-#is-project-card-footer{
-  
-}
-
 .card-content{
     margin: 3px;
     padding: 10px;
@@ -115,7 +107,6 @@ text-align: center;
 #is-button-box {
     height: 10px;
 }
-
 
 .avatar-image{
     width: 32px;
@@ -126,9 +117,5 @@ text-align: center;
 .profile-image {
     border-radius: 10px;
     border: 3px solid var(--taskerBlue);
-
 }
 
-.task-update-select{
-    width: 600px;
-}

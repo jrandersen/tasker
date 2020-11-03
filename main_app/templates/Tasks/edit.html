@@ -15,11 +15,11 @@
             {{ field.label_tag }}
             <input class="input" {{ task_form.taskName }}
                 <p class="control">
-                <span class="select">
+                <span class="select" >
                     <label for="project"></label>  
-                    <select name="project" id="task-update-select">
+                    <select name="project" >
                     {% for project in projects %}
-                        <option  value={{ project.id }}> {{ project }}</option>
+                        <option value={{ project.id }}> {{ project }}</option>
                     {% endfor %}
                     </select>
                 </span></p>

@@ -270,8 +270,8 @@ def time_edit(request, time_id):
       return redirect('task_show', task_id=task_id)
   else:
     time_form = TimeForm(instance=time)
-  projects = Project.objects.filter(creator=request.user.profile)
-  context = {'time' : time, 'time_form': time_form, 'projects': projects }
+  tasks = Task.objects.filter(creator=request.user.profile)
+  context = {'time' : time, 'time_form': time_form, 'tasks': tasks }
   return render (request, 'time/edit.html', context)
 
 # --- TIME DELETE ---
