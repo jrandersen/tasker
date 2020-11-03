@@ -19,12 +19,12 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 // SHOW & CLOSE MODAL - DELETE  =========================
-$("#showDeleteModal").click(function() {
-  $("#deleteModal").addClass("is-active");
+$("#showProfileDeleteModal").click(function() {
+  $("#deleteProfile").addClass("is-active");
 });
 
 $(".closeModal").click(function() {
-  $("#deleteModal").removeClass("is-active");
+  $("#deleteProfile").removeClass("is-active");
 });
 
 // SHOW & CLOSE MODAL - TIME  =========================

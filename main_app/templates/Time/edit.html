@@ -45,6 +45,35 @@
       </p>
     </div>   
 </form>
+
+<!-- MODAL FOR DELETE TIME -->
+<div class="modal" id="deleteTime">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head" id="is-red">
+      <button class="delete closeModal" aria-label="close"></button>
+    </header>
+    <section class="modal-card-body" id="is-background">
+      <form action="" method="POST">
+        {% csrf_token %}
+        <div class="columns is-mobile is-centered">
+            <div class="field">
+                <p class="subtitle">Are you sure you would like to delete this time?</p>     
+          </div>
+        </div>
+      </form> 
+    </section>
+    <footer class="modal-card-foot">
+      <div class="buttons has-addons is-right">
+        <button class="button closeModal">Cancel</button>
+        <a class="button is-red" href={% url 'time_delete' time.id %}>Delete</a>
+      </div>
+    </footer>
+  </div>
+</div>
+
 {% endblock %}
+
+
 
 

@@ -128,3 +128,8 @@ text-align: center;
     border: 3px solid var(--taskerBlue);
 }
 
+.no-info{
+    color: var(--taskerRed);
+    font-weight: bold;
+}
+

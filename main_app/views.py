@@ -3,6 +3,7 @@ from .models import Profile, Project, Task, Note, Time
 from .forms import TaskForm, ProjectForm, ProfileForm, SignUpForm, NoteForm, TimeForm
 from django.http import HttpResponse
 from django.contrib.auth import login, authenticate
+from django.contrib.auth.models import User
 from taggit.models import Tag
 import datetime
 from datetime import date, timedelta
@@ -109,6 +110,8 @@ def task_complete(request, task_id):
   else:
     task.taskComplete = True
     task.taskCompletedDate = datetime.date.today()
+    x = date(2020,10,29)
+    print(x)
     task.save()
   context = {'task': task, 'notes': notes, 'times': times, 'totalTime': totalTime}
   return render(request, 'tasks/show.html', context)
@@ -201,6 +204,12 @@ def profile_edit(request, profile_id):
   print(profile_form)
   return render(request, 'profile/edit.html', context)
 
+# --- PROFILE DELETE ROUTE ---
+def profile_delete(request, profile_id):
+  user = User.objects.get(id=profile_id)
+  if request.user.id == user.id: 
+    user.delete()
+  return redirect('/')
 
 
 # PROJECTS ====================================
@@ -222,6 +231,7 @@ def project_show(request, project_id):
   tasks = Task.objects.filter(project=project_id)
   context = { 'project': project, 'tasks': tasks }
   return render( request, 'projects/show.html', context )
+
 
 # --- PROJECT SHOW ROUTE ---
 def project_edit(request, project_id):

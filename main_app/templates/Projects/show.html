@@ -57,6 +57,6 @@
         </div>
     {%  if forloop.counter|divisibleby:"4" or forloop.last %}</div><!-- row closing --><hr>{%  endif %}
 {% empty %}<!-- fi empty show this-->
-<p>You have no Tasks yet, add them on the Tasks page </p>       
+<p class="no-info">You have no Tasks yet, add them on the Task page </p>       
 {% endfor %}
 {% endblock %}

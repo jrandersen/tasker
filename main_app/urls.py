@@ -23,7 +23,7 @@ urlpatterns = [
     # PROFILE & PROJECT =============== 
     path('profile/<int:profile_id>/', views.profile_show, name='profile_show'),
     path('profile/<int:profile_id>/edit/', views.profile_edit, name='profile_edit'),
-    # path('profile/<int:profile_id>/delete/', views.profile_delete, name='profile_delete'),
+    path('profile/<int:profile_id>/delete/', views.profile_delete, name='profile_delete'),
 
     # PROFILE & PROJECT ===============
     path('projects/', views.projects, name='projects'),
