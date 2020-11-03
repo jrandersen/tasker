@@ -54,10 +54,6 @@ $(".closeModal").click(function() {
   $("#deleteTask").removeClass("is-active");
 });
 
-
-
-
-
 // SHOW & CLOSE MODAL - ADD NEW TIME  =========================
 $("#showAddTimeModal").click(function() {
   $("#addTime").addClass("is-active");
@@ -65,4 +61,13 @@ $("#showAddTimeModal").click(function() {
 
 $(".closeModal").click(function() {
   $("#addTime").removeClass("is-active");
+});
+
+// SHOW & CLOSE MODAL - ADD NEW TIME  =========================
+$("#showEditTimeModal").click(function() {
+  $("#editTime").addClass("is-active");
+});
+
+$(".closeModal").click(function() {
+  $("#editTime").removeClass("is-active");
 });

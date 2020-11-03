@@ -1,12 +1,21 @@
+# EXTERNAL IMPORTS DJANGO -----------------------------------
 from django.shortcuts import render, redirect
-from .models import Profile, Project, Task, Note, Time
-from .forms import TaskForm, ProjectForm, ProfileForm, SignUpForm, NoteForm, TimeForm
 from django.http import HttpResponse
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
+from django.contrib import messages
+
+# EXTERNAL IMPORTS OTHER -----------------------------------
 from taggit.models import Tag
-import datetime
 from datetime import date, timedelta
+import datetime
+
+# INTERNAL IMPORTS -----------------------------------
+from .models import Profile, Project, Task, Note, Time
+from .forms import TaskForm, ProjectForm, ProfileForm, SignUpForm, NoteForm, TimeForm
+
+
+
 
 
 # ADMIN ====================================
@@ -38,6 +47,8 @@ def signup(request):
     form = SignUpForm()
   context = {'form': form, 'error_message': error_message }
   return render( request, 'registration/signup.html', context )
+
+
 
 
 # TASKS ====================================
@@ -97,39 +108,27 @@ def task_edit(request, task_id):
 
 # --- COMPLETE TASK ROUTE ---
 def task_complete(request, task_id):
-  task = Task.objects.get(id=task_id)
-  notes = task.note_set.all()
   times = Time.objects.filter(task=task_id)
-  durations = []
-  for time in times:
-    durations.append(time.getDuration())
-  totalTime = sum(durations, datetime.timedelta())
   if len(times) == 0:
-    return render(request, 'modal_complete_error.html')
+    messages.success(request, 'Please add time to complete a task!')
+    return redirect('task_show', task_id=task_id)
   else:
+    task = Task.objects.get(id=task_id)
     task.taskComplete = True
     task.taskCompletedDate = datetime.date.today()
     x = date(2020,10,29)
     print(x)
     task.save()
-  context = {'task': task, 'notes': notes, 'times': times, 'totalTime': totalTime}
-  return render(request, 'tasks/show.html', context)
+  return redirect('task_show', task_id=task_id)
 
 # --- UN-COMPLETE A TASK ROUTE ---
 def task_uncomplete(request, task_id):
   task = Task.objects.get(id=task_id)
-  notes = task.note_set.all()
-  times = Time.objects.filter(task=task_id)
-  durations = []
-  for time in times:
-    durations.append(time.getDuration())
-  totalTime = sum(durations, datetime.timedelta())
   if task.taskComplete == True:
     task.taskComplete = False
     task.taskCompletedDate = None
     task.save()
-  context = {'task': task, 'notes': notes, 'times': times, 'totalTime': totalTime}
-  return render(request, 'tasks/show.html', context)
+  return redirect('task_show', task_id=task_id)
 
 # --- DELETE TASK ROUTE ---
 def task_delete(request, task_id):
@@ -137,6 +136,8 @@ def task_delete(request, task_id):
   if task.creator.id == request.user.id:
     task.delete()
   return redirect('tasks')
+
+
 
 
 
@@ -179,6 +180,8 @@ def note_delete(request, note_id):
 
 
 
+
+
 # PROFILE ====================================
 # --- PROFILE SHOW ROUTE ---
 def profile_show(request, profile_id):
@@ -209,6 +212,10 @@ def profile_delete(request, profile_id):
   if request.user.id == user.id: 
     user.delete()
   return redirect('/')
+
+
+
+
 
 
 # PROJECTS ====================================
@@ -256,6 +263,10 @@ def project_delete(request, project_id):
   return redirect('projects')
 
 
+
+
+
+
 # TIME ====================================
 # --- ADD TIME TO TASK ---
 def time_add(request):
@@ -269,6 +280,8 @@ def time_add(request):
 
 # --- TIME EDIT ---
 def time_edit(request, time_id):
+  print(request.POST)
+  print(request.POST.get('task'))
   time = Time.objects.get(id=time_id)
   task_id = time.task.id
   if request.method == 'POST':
@@ -281,8 +294,8 @@ def time_edit(request, time_id):
       return redirect('task_show', task_id=task_id)
   else:
     time_form = TimeForm(instance=time)
-  tasks = Task.objects.filter(creator=request.user.profile)
-  context = {'time' : time, 'time_form': time_form, 'tasks': tasks }
+  task = Task.objects.get(id=task_id)
+  context = {'time' : time, 'time_form': time_form, 'task': task }
   return render (request, 'time/edit.html', context)
 
 # --- TIME DELETE ---

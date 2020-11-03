@@ -14,13 +14,14 @@ from pathlib import Path
 import os
 import django_on_heroku
 import environ
+from django.contrib.messages import constants as message_constants
 
-env = environ.Env(
-    # set casting, default value
-    DEBUG=(bool, True)
-)
-# reading .env file
+# SETTING UP ENV =============
+env = environ.Env(DEBUG=(bool, True))
 environ.Env.read_env()
+
+# MESSAGES =============
+MESSAGE_LEVEL = message_constants.DEBUG
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent

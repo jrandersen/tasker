@@ -28,7 +28,13 @@
             </div>
             <div class="level-item has-text-centered">
                 <div>
-                    <!-- stuff here -->
+                {% if messages %}
+                    <p class="messages no-info">
+                        {% for message in messages %}
+                        <p class="{{ message.tags }}">{{ message }}</p>
+                        {% endfor %}
+                    </p>
+                {% endif %}
                 </div>
             </div>
             </div>

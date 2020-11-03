@@ -28,15 +28,12 @@
                 <p class="field">
                     <label for="id_tags"></label>
                     <input type="text" name="tags" required id="id_tags" class="input" {{ time_form.tags }}</p>
+                    
+                <!-- APPLIES A HIDDEN INPUT TO PUSH TASK ID INTO REQUEST DOT POST -->
                 <p class="field">
-                <span class="select" >
-                    <label for="task"></label>  
-                    <select name="task">
-                    {% for task in tasks %}
-                        <option value={{ task.id }}> {{ task }}</option>
-                    {% endfor %}
-                    </select>
-                </span></p>
+                    <label for="task"></label>
+                    <input class="input" type="hidden" name="task" value={{ task.id }}>
+                
         </div>
         <div class="buttons has-addons is-left">
             <input type="submit" class="button" id="is-green" value="Update">

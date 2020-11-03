@@ -133,3 +133,8 @@ text-align: center;
     font-weight: bold;
 }
 
+.messages{
+    color: var(--taskerRed);
+    font-weight: bold;
+}
+

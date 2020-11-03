@@ -11,7 +11,6 @@
           <p class="field">
           {% for field in project_form %}
             {{ field.errors }}
-              {{ field.label_tag }}
               <input class="input" {{ field }}
               {% if field.help_text %}
               <p class="help">{{ field.help_text|safe }}</p>
