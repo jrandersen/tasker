@@ -45,7 +45,7 @@
                     <a method="POST" href={% url 'task_uncomplete' task.id %}>uncomplete</a>
                 </button>
                 <button class="button is-fullwidth" id="is-green">
-                    <a method="POST" href={% url 'time_add' %}>add time</a>
+                    <a method="POST" id="showAddTimeModal">add time</a>
                 </button>
             </div>
         </div>
@@ -123,6 +123,50 @@
             </div>
         </div>
     </div> 
+</div>
+
+<!-- MODAL FOR TIME INPUTS -->
+<div class="modal" id="addTime">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head" id="is-green">
+      <button class="delete closeModal" aria-label="close"></button>
+    </header>
+    <section class="modal-card-body" id="is-background">
+      <form action={% url 'time_add' %} method="POST">
+        {% csrf_token %}
+        <div class="columns is-mobile is-centered">
+          <div class="column is-half">
+            <div class="field">
+                <p class="control has-icons-left has-icons-right">
+                <p class="field">
+                    <label for="id_date"></label>
+                    <input type="date" name="date" required id="id_date" class="input"></p>
+                
+                <p class="field">
+                    <label for="id_startTime"></label>
+                    <input type="time" name="startTime" required id="id_startTime" class="input"></p>
+                
+                <p class="field">
+                    <label for="id_endTime"></label>
+                    <input type="time" name="endTime" required id="id_endTime" class="input"></p>
+                
+                <p class="field">
+                    <label for="id_tags"></label>
+                    <input type="text" name="tags" required id="id_tags" class="input" placeholder="...enter a tag to organize your time"></p>
+                
+                <!-- APPLIES A HIDDEN INPUT TO PUSH TASK ID INTO REQUEST DOT POST -->
+                <p class="field">
+                    <label for="id_task"></label>
+                    <input class="input" type="hidden" name="task" value={{ task.id }}>
+                <br>
+                <button class="button" id="is-green" type="submit">add time</button>
+            </div>
+          </div>
+        </div>
+      </form> 
+    </section>
+  </div>
 </div>
 {% endblock %}
 

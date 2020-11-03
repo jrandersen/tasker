@@ -59,10 +59,10 @@ $(".closeModal").click(function() {
 
 
 // SHOW & CLOSE MODAL - ADD NEW TIME  =========================
-$("#showTimeModal").click(function() {
-  $("#timeModal").addClass("is-active");
+$("#showAddTimeModal").click(function() {
+  $("#addTime").addClass("is-active");
 });
 
 $(".closeModal").click(function() {
-  $("#timeModal").removeClass("is-active");
+  $("#addTime").removeClass("is-active");
 });

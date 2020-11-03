@@ -73,7 +73,6 @@ def task_show(request, task_id):
   for time in times:
     durations.append(time.getDuration())
     tags.append(time.getTags())
-  print(tags)
   timeDates = list(zip(times, tags))
   totalTime = sum(durations, datetime.timedelta())
   context = {'task': task, 'notes': notes, 'times': times, 'totalTime': totalTime, "timeDates": timeDates}
@@ -262,14 +261,11 @@ def project_delete(request, project_id):
 def time_add(request):
   if request.method == 'POST':
     time_form = TimeForm(request.POST)
-    print(time_form)
+    task_id = request.POST.get('task')
     if time_form.is_valid():
       time_form.save()
-      # time_form.save_m2m()# <--- Django-Taggit docs say this if you save(commit=False)
-    return redirect('tasks')
-  tasks = Task.objects.filter(creator=request.user.profile)
-  context = { 'tasks':tasks }
-  return render (request, 'time/new.html', context)
+    return redirect('task_show', task_id=task_id)
+  return redirect('task_show', task_id=task_id)
 
 # --- TIME EDIT ---
 def time_edit(request, time_id):
