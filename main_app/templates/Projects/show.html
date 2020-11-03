@@ -34,13 +34,25 @@
                     <a href="{% url 'task_show' task.id %}">
                         <p class="title is-5">{{ task.taskName }}</p>
                         <p class="subtitle is-6">{{ task.creator }}</p>
-                        <p class="subtitle is-6">{{ task.createdDate }}</p>
+                        {% if task.taskComplete == True %}
+                            <p class="subtitle is-6">Date Completed: {{ task.taskCompletedDate }}</p>
+                        {% endif %}
+                        {% if task.taskComplete == False %}
+                            <p class="subtitle is-6">... in process</p
+                        {% endif %}
                     </a>
-                </div> 
+                </div>
+                {% if task.taskComplete == True %}
+                <footer class="card-footer" id='is-project-card-footer'>
+                    <a href="#" class="card-footer-item" id="is-blue">uncomplete</a>
+                </footer> 
+                {% endif %}
+                {% if task.taskComplete == False %}
                 <footer class="card-footer" id='is-project-card-footer'>
                     <a href="#" class="card-footer-item" id="is-blue">complete</a>
-                    <a class="card-footer-item is-green" id="showModalTime">add time</a>
-                </footer>   
+                    <a class="card-footer-item is-green">add time</a>
+                </footer>  
+                {% endif %} 
             </div>
         </div>
     {%  if forloop.counter|divisibleby:"4" or forloop.last %}</div><!-- row closing --><hr>{%  endif %}

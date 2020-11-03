@@ -26,25 +26,28 @@
 <!-- TASK GROUPINGS BELOW -->
 <div class="tile is-ancestor is-mobile">
         <!-- LEFT TILE -->
-    <div class="tile is-3 is-vertical is-parent">
-        <div class="tile is-child box" id="is-button-box">
-        <p class="heading">Filter by Project:</p>
-            <button class="button is-fullwidth" id="is-blue">filter</button>
-        </div>
+    <div class="tile is-3 is-parent">
         <div class="tile is-child box">
-            <p class="heading">Tasks yesterday:</p>
+            <p class="heading">Prior Tasks:</p>
             {% for task in priorTasks %}
+                {% if task.taskComplete == True %}
+                <div class="card" id="is-complete">
+                    <div class="card-content">
+                        <p class="card-title is-size-6">{{ task.taskName }}</p>
+                    </div>
+                </div>
+                {% endif %}
+                {% if task.taskComplete == False %}
                 <div class="card" id="is-red-outline">
                     <div class="card-content">
                         <p class="card-title is-size-6">{{ task.taskName }}</p>
-                        <p>{{ task.projectName }}</p>
                     </div>   
                 </div>
+                {% endif %}    
+
             {% endfor %}
         </div>
     </div>
-    <!-- LEFT TILE -->
-
     <!-- RIGHT TILE -->
     <div class="tile is-parent">
         <div class="tile is-child box">
@@ -60,7 +63,7 @@
                             </div>   
                         </div>
                         <div class="level-right">
-                            <a class="button" id="complete"><strong>complete</strong></a>
+                            <!-- <a class="button" id="complete"><strong>complete</strong></a> -->
                         </div>  
                     </div>
                 </a>

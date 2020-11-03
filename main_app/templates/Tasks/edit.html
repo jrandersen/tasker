@@ -1,15 +1,38 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<!-- EDIT FORM -->
-<form action="{% url 'task_edit' task.id %}" method="POST">
-    {% csrf_token %}
-    {{ task_form.as_p}}
-    <input type="submit" class="button" id="is-green" value="Update">
-    <br>
-    <br>
-    <a class="button" id="is-red" href={% url 'task_delete' task.id %}>Delete</a><br>
+<!-- TASK EDIT FORM -->
+<form action={% url 'task_edit' task.id %} method="POST">
+  {% csrf_token %}
+    <div class="columns is-mobile is-centered">
+      <div class="column is-half">
+        <div class="field">
+          <p class="control has-icons-left has-icons-right">
+          <p class="field">
+            {% if field.errors %}
+                <p class="errors">{{ field.errors }}</p>
+            {% endif %}
+            {{ field.label_tag }}
+            <input class="input" {{ task_form.taskName }}
+                <p class="control">
+                <span class="select" >
+                    <label for="project"></label>  
+                    <select name="project" >
+                    {% for project in projects %}
+                        <option value={{ project.id }}> {{ project }}</option>
+                    {% endfor %}
+                    </select>
+                </span></p>
 
+            {% if field.help_text %}
+                <p class="help">{{ field.help_text|safe }}</p>
+            {% endif %}
+        </div>
+        <div class="buttons has-addons is-left">
+            <input type="submit" class="button" id="is-green" value="Update">
+            <a class="button is-red" id="showDeleteModal">Delete</a><br> 
+        </div>
+      </p>
+    </div>   
 </form>
-
 {% endblock %}

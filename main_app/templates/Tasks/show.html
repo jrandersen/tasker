@@ -109,9 +109,9 @@
         <div class="tile is-child box">
             <p class="heading">Times</p>
             <p class="subtitle is-5">
-            {% for time in times %}
-                <a class=" is-small" method="POST" href={% url 'time_edit' time.id %}>
-                <span class="tag is-normal" id="is-blue">{{ time }} &nbsp &nbsp
+            {% for item1, item2 in timeDates %}
+                <a class=" is-small" method="POST" href={% url 'time_edit' item1.id %}>
+                <span class="tag is-normal" id="is-blue">{{ item2 }}-{{ item1 }} &nbsp &nbsp
                     
                     <i class= "fas fa-edit" ></i>
                     

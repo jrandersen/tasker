@@ -2,11 +2,22 @@
 {% block content %}
 
 <!-- EDIT FORM -->
-<form action="{% url 'note_edit' note.id %}" method="POST">
+<form action={% url 'note_edit' note.id %} method="POST">
     {% csrf_token %}
-    {{ note_form.as_p}}
-    <input type="submit" class="button" id="is-green" value="Update">
-
+    <div class="columns is-mobile is-centered">
+        <div class="column is-half">
+            <div class="field">
+                <p class="control has-icons-left has-icons-right">
+                <p class="field">
+                    <label for="id_note"></label>
+                    {% for field  in note_form %}
+                        <textarea name="note" required id="id_note" cols="91" rows="5">{{field.value}}</textarea>
+                    {% endfor %}
+            </div>
+            <div class="buttons has-addons is-left">
+                <button class="button" id="is-green" type="submit">Update</button>   
+            </div>
+        </div>
+    </div>
 </form>
-
 {% endblock %}

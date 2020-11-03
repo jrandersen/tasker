@@ -52,7 +52,17 @@ text-align: center;
     color: var(--backgroundcolor);
 }
 
+.is-blue {
+    background-color: var(--taskerBlue);
+    color: var(--backgroundcolor);
+}
+
 #is-red {
+    background-color: var(--taskerRed);
+    color: var(--backgroundcolor);  
+}
+
+.is-red {
     background-color: var(--taskerRed);
     color: var(--backgroundcolor);  
 }
@@ -63,6 +73,15 @@ text-align: center;
     border-radius: 5px;
     line-height: 10px;
     color: var(--taskerRed);  
+}
+
+#is-complete{
+    background-color: white;
+    border: 2px solid var(--taskerBlue);
+    border-radius: 5px;
+    line-height: 10px;
+    color: var(--taskerBlue);
+    text-decoration: line-through; 
 }
 
 #is-background-color {
@@ -89,14 +108,6 @@ text-align: center;
     color: var(--taskerRed);
 }
 
-#is-project-card{
-   
-}
-
-#is-project-card-footer{
-  
-}
-
 .card-content{
     margin: 3px;
     padding: 10px;
@@ -106,9 +117,14 @@ text-align: center;
     height: 10px;
 }
 
-
 .avatar-image{
     width: 32px;
     height: 32px;
     border-radius: 50%;
 }
+
+.profile-image {
+    border-radius: 10px;
+    border: 3px solid var(--taskerBlue);
+}
+

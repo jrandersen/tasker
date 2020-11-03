@@ -45,7 +45,7 @@ class Project(models.Model):
 # MODEL TASK ====================================
 class Task(models.Model):
     taskName = models.CharField(max_length=50)
-    createdDate = models.DateField(auto_now=True)
+    createdDate = models.DateField(auto_now_add=True)
     taskComplete = models.BooleanField(auto_created=False)
     taskCompletedDate = models.DateField(null=True, blank=True)
     creator = models.ForeignKey(Profile, on_delete=models.CASCADE)

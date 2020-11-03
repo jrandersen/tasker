@@ -1,12 +1,9 @@
 // NAVBAR BURGER =========================
 document.addEventListener('DOMContentLoaded', () => {
-
     // Get all "navbar-burger" elements
     const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
-
     // Check if there are any navbar burgers
     if ($navbarBurgers.length > 0) {
-
       // Add a click event on each of them
       $navbarBurgers.forEach( el => {
         el.addEventListener('click', () => {
@@ -21,24 +18,29 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-
-
 // SHOW & CLOSE MODAL - DELETE  =========================
-$("#showModalDelete").click(function() {
-  $(".modal").addClass("is-active");
+$("#showDeleteModal").click(function() {
+  $("#deleteModal").addClass("is-active");
 });
 
 $(".closeModal").click(function() {
-  $(".modal").removeClass("is-active");
+  $("#deleteModal").removeClass("is-active");
 });
-
 
 // SHOW & CLOSE MODAL - TIME  =========================
-$("#showModalTime").click(function() {
-  $(".modal").addClass("is-active");
+$("#showTimeModal").click(function() {
+  $("#timeModal").addClass("is-active");
 });
 
 $(".closeModal").click(function() {
-  $(".modal").removeClass("is-active");
+  $("#timeModal").removeClass("is-active");
 });
 
+// SHOW & CLOSE MODAL - TIME  =========================
+$("#showTimeDeleteModal").click(function() {
+  $("#deleteTime").addClass("is-active");
+});
+
+$(".closeModal").click(function() {
+  $("#deleteTime").removeClass("is-active");
+});

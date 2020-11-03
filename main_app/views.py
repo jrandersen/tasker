@@ -50,11 +50,12 @@ def tasks(request):
     new_task.taskComplete = False
     new_task.save()
     return redirect('tasks')
-  tasks = Task.objects.filter(creator=request.user.profile)
+  tasks = Task.objects.filter(creator=request.user.profile, taskComplete=False)
   projects = Project.objects.filter(creator=request.user.profile)
   creator = Profile.objects.get(id=request.user.id)
   priorTasks = []
-  for task in tasks:
+  tasklist = Task.objects.filter(creator=request.user.profile)
+  for task in tasklist:
     if task.createdDate < date.today() - timedelta(days=1):
       priorTasks.append(task)
   task_form = TaskForm()
@@ -67,10 +68,14 @@ def task_show(request, task_id):
   notes = task.note_set.all()
   times = Time.objects.filter(task=task_id)
   durations = []
+  tags = []
   for time in times:
     durations.append(time.getDuration())
+    tags.append(time.getTags())
+  print(tags)
+  timeDates = list(zip(times, tags))
   totalTime = sum(durations, datetime.timedelta())
-  context = {'task': task, 'notes': notes, 'times': times, 'totalTime': totalTime}
+  context = {'task': task, 'notes': notes, 'times': times, 'totalTime': totalTime, "timeDates": timeDates}
   return render(request, 'tasks/show.html', context)
 
 # --- EDIT TASK ROUTE ---
@@ -86,7 +91,8 @@ def task_edit(request, task_id):
       return redirect('task_show', task_id=task_id)
   else:
     task_form = TaskForm(instance=task)
-  context = { 'task': task, 'task_form': task_form }
+  projects = Project.objects.filter(creator=request.user.profile)
+  context = { 'task': task, 'task_form': task_form, 'projects': projects }
   return render(request, 'tasks/edit.html', context)
 
 # --- COMPLETE TASK ROUTE ---
@@ -159,6 +165,7 @@ def note_edit(request, note_id):
   else:
     note_form = NoteForm(instance=note)
   context = {'note' : note, 'note_form': note_form }
+  print(note_form)
   return render (request, 'notes/edit.html', context)
 
 def note_delete(request, note_id):
@@ -191,6 +198,7 @@ def profile_edit(request, profile_id):
   else:
     profile_form = ProfileForm(instance=profile)
   context = { 'profile': profile, 'profile_form': profile_form}
+  print(profile_form)
   return render(request, 'profile/edit.html', context)
 
 
@@ -267,7 +275,8 @@ def time_edit(request, time_id):
       return redirect('task_show', task_id=task_id)
   else:
     time_form = TimeForm(instance=time)
-  context = {'time' : time, 'time_form': time_form }
+  tasks = Task.objects.filter(creator=request.user.profile)
+  context = {'time' : time, 'time_form': time_form, 'tasks': tasks }
   return render (request, 'time/edit.html', context)
 
 # --- TIME DELETE ---
@@ -277,8 +286,3 @@ def time_delete(request, time_id):
     time.delete()
     task_id = time.task.id
     return redirect('task_show', task_id=task_id)
-
-
-
-
- 
