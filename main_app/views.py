@@ -30,6 +30,7 @@ def about(request):
 # --- SIGNUP NEW USER & CREATE NEW PROFILE WITH RECIEVER IN MODEL
 def signup(request):
   error_message = ''
+  print(request.POST)
   form = SignUpForm(request.POST)
   if form.is_valid():
     user = form.save()
@@ -49,14 +50,14 @@ def signup(request):
   return render( request, 'registration/signup.html', context )
 
 # --- LOGIN USER 
-def login(request):
-  if request.method == 'POST':
-    # do stuff
-    return redirect('/')
-  login_form = LoginForm()
-  print(login_form)
-  context = { 'login_form': login_form }
-  return render(request, "login.html", context)
+# def login(request):
+#   if request.method == 'POST':
+#     # do stuff
+#     return redirect('/')
+#   login_form = LoginForm()
+#   print(login_form)
+#   context = { 'login_form': login_form }
+#   return render(request, "login.html", context)
 
 
 

@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
-{% comment %} MODEL PROFILE ==================================== {% endcomment %}
+<!-- MODEL PROFILE ==================================== -->
 <form method="post" action={% url 'login' %}>
 <!-- OOTB django user uses 'form' as login form -->
   {% csrf_token %}
@@ -9,7 +9,7 @@
     <div class="column is-half">
       <div class="tile is-ancestor">
         <div class="tile is-vertical is-parent">
-          <div class="tile is-child box is-shadowless is-message">
+          <div class="tile is-child box is-message-box">
             <!-- errors -->
             {% if form.errors %}
               {% for field in form %}
@@ -47,7 +47,7 @@
             </div>
             <div class="field">
               <p class="control">
-                <button class="button is-success" id="is-green">Login</button></p>
+                <button class="button is-medium" id="is-blue"><strong>Login</strong></button></p>
                 <input type="hidden" name="next" value="{{ next }}">
             </div>
           </div>
