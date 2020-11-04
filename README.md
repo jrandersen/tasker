@@ -109,7 +109,7 @@ As a stretch goal, I would like to make roll-up functions in the project and pro
 
 
 ### ERD 
-![Imgur](https://i.imgur.com/6MMSX2km.jpg)
+![Imgur](https://i.imgur.com/6MMSX2kh.jpg)
 
 <br>
 <hr>
