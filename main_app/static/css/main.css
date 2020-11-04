@@ -19,7 +19,9 @@ body {
 .navbar {
     background-color: var(--taskerBlue);
 }
-
+.navbar-burger{
+    color: var(--backgroundcolor);
+}
 .card { margin-top: 5px; }
 .dropdown{ margin-top: 5px; }
 
