@@ -46,6 +46,7 @@ As a stretch goal, I would like to make roll-up functions in the project and pro
 * AAU, I would like to see a total of how many hours I have worked on a Project.
 * AAU, I would like to see a total of how many hours I have worked on a Project in a Week.
 
+---
 ### SCHEDULE 
 ![Imgur](https://i.imgur.com/rZyRipah.jpg)
 
