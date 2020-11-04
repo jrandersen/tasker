@@ -26,8 +26,9 @@ body {
 }
 
 .navbar-item:hover{
-    background-color: var(--taskerRed);
+    /* background-color: var(--taskerRed); */
 }
+
 .card { margin-top: 5px; }
 .dropdown{ margin-top: 5px; }
 
