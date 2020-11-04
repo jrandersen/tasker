@@ -44,22 +44,10 @@ def signup(request):
     # login(request, user)
     return redirect('login')
   else:
-    # error_message = 'Invalid sign up - try again'
+    error_message = 'Invalid sign up - try again'
     form = SignUpForm()
   context = {'form': form, 'error_message': error_message }
   return render( request, 'registration/signup.html', context )
-
-# --- LOGIN USER 
-# def login(request):
-#   if request.method == 'POST':
-#     # do stuff
-#     return redirect('/')
-#   login_form = LoginForm()
-#   print(login_form)
-#   context = { 'login_form': login_form }
-#   return render(request, "login.html", context)
-
-
 
 
 # TASKS ====================================

@@ -1,3 +1,4 @@
+/* MAIN ROOT STYLES ======================= */
 :root {
     --backgroundcolor:#f5f5f5ff;
     --taskerBlue: #364f6bff;
@@ -6,15 +7,13 @@
     --iconSizeSmall: 16px;
     --iconSizeMedium: 24px;
 }
+
+/* BODY & NAVBAR ======================= */
 body {
     min-height: 100vh;
     background-color: var(--backgroundcolor);
 }
 
-footer {
-padding-top: 0;
-text-align: center;
-}
 
 .navbar {
     background-color: var(--taskerBlue);
@@ -37,6 +36,7 @@ text-align: center;
     margin: 3px;
 }
 
+/* BUTTONS & COLORS ======================= */
 #is-green {
     background-color: var(--taskerGreen);
     color: var(--backgroundcolor);
@@ -88,11 +88,13 @@ text-align: center;
     background-color: var(--backgroundcolor);
 }
 
+/* TILES? ======================= */
 .field {
     margin-top: 5px;
     margin-bottom: 5px;
 }
 
+/* TASKER ICONS ======================= */
 .is-tasker-small-edit-icon{
     font-size: var(--iconSizeSmall);
     color: var(--taskerBlue);
@@ -108,15 +110,14 @@ text-align: center;
     color: var(--taskerRed);
 }
 
+/* PROJECT SHOW ======================= */
 .card-content{
     margin: 3px;
     padding: 10px;
 }
 
-#is-button-box {
-    height: 10px;
-}
 
+/* PROFILE ======================= */
 .avatar-image{
     width: 32px;
     height: 32px;
