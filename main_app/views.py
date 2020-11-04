@@ -84,6 +84,7 @@ def task_show(request, task_id):
     durations.append(time.getDuration())
     tags.append(time.getTags())
   timeDates = list(zip(times, tags))
+  print(durations)
   totalTime = sum(durations, datetime.timedelta())
   context = {'task': task, 'notes': notes, 'times': times, 'totalTime': totalTime, "timeDates": timeDates}
   return render(request, 'tasks/show.html', context)
@@ -109,7 +110,7 @@ def task_edit(request, task_id):
 def task_complete(request, task_id):
   times = Time.objects.filter(task=task_id)
   if len(times) == 0:
-    messages.success(request, 'Please add time to complete the task!')
+    messages.success(request, 'Add time to complete a task!')
     return redirect('task_show', task_id=task_id)
   else:
     task = Task.objects.get(id=task_id)
@@ -234,9 +235,18 @@ def projects(request):
 def project_show(request, project_id):
   project = Project.objects.get(id=project_id)
   tasks = Task.objects.filter(project=project_id)
-  context = { 'project': project, 'tasks': tasks }
+  taskTotal = len(tasks)
+  durations = []
+  tasksCompleted = 0
+  for task in tasks:
+    times = Time.objects.filter(task=task.id)
+    for time in times:
+      durations.append(time.getDuration())
+    if task.taskComplete == True:
+      tasksCompleted += 1
+  timeTotal = sum(durations, datetime.timedelta())
+  context = { 'project': project, 'tasks': tasks, 'taskTotal': taskTotal, 'timeTotal': timeTotal, 'tasksCompleted': tasksCompleted }
   return render( request, 'projects/show.html', context )
-
 
 # --- PROJECT SHOW ROUTE ---
 def project_edit(request, project_id):

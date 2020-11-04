@@ -3,25 +3,44 @@
 
 <!-- PROJECT TILES-->
 <div class="tile is-ancestor">
-  <div class="tile is-4 is-vertical is-parent">
-    <div class="tile is-child box">
-        <p class="title">{{ project.projectName }} &nbsp 
-            <a class="is-tasker-medium-edit-icon"
-                method='POST'
-                href={% url 'project_edit' project.id %} >
-                    <i class="fas fa-edit"></i>
-            </a></p>
-        <p>Created on: {{ project.creator.name }}</p>
-        <p>Completed: {{ project.startDate }}</p>
-    </div>
-  </div>
-  <div class="tile  is-parent">
-    <div class="tile is-child box">
-        <p class="subtitle is-6">DATA</p>
-        <div class="buttons has-addons is-right">
+    <!-- LEFT TILE -->
+    <div class="tile is-4 is-vertical is-parent">
+        <div class="tile is-child box">
+            <p class="title">{{ project.projectName }} &nbsp 
+                <a class="is-tasker-medium-edit-icon"
+                    method='POST'
+                    href={% url 'project_edit' project.id %} >
+                        <i class="fas fa-edit"></i>
+                </a></p>
+            <p>Created on: {{ project.creator.name }}</p>
+            <p>Completed: {{ project.startDate }}</p>
         </div>
     </div>
-  </div>
+    <!-- RIGHT TILE -->
+    <div class="tile  is-parent">
+        <div class="tile is-child box">
+            <div class="level">
+                <div class="level-item has-text-centered data-level">
+                    <div>
+                        <p class="heading is-green-text">Tasks</p>
+                        <p class="title is-green-text">{{ taskTotal }}</p>
+                    </div>
+                </div>
+                <div class="level-item has-text-centered data-level">
+                    <div>
+                        <p class="heading is-green-text">Complete</p>
+                        <p class="title is-green-text">{{ tasksCompleted }}</p>
+                    </div>
+                </div>
+                <div class="level-item has-text-centered data-level">
+                    <div>
+                        <p class="heading is-green-text">Time</p>
+                        <p class="title is-green-text">{{ timeTotal }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <!-- TASK CARDS -->

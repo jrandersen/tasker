@@ -115,7 +115,9 @@ body {
     margin: 3px;
     padding: 10px;
 }
-
+.is-green-text{
+    color: var(--taskerGreen);
+}
 
 /* PROFILE ======================= */
 .avatar-image{
@@ -132,6 +134,10 @@ body {
 .no-info{
     color: var(--taskerRed);
     font-weight: bold;
+}
+
+.data-level{
+    padding-top: 20px;
 }
 
 
