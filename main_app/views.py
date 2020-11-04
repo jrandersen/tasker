@@ -187,7 +187,25 @@ def note_delete(request, note_id):
 # --- PROFILE SHOW ROUTE ---
 def profile_show(request, profile_id):
   profile = Profile.objects.get(id=profile_id)
-  context = { 'profile': profile, 'projects': projects }
+  projects = Project.objects.filter(creator=profile_id)
+  tasks = Task.objects.filter(creator=profile_id)
+  durations = []
+  tasksCompleted = 0
+  tags = []
+  for task in tasks:
+    times = Time.objects.filter(task=task.id)
+    for time in times:
+      durations.append(time.getDuration())
+      tags.append(time.getTags())
+    if task.taskComplete == True:
+      tasksCompleted += 1
+  #  form data
+  projectsTotal = len(projects)
+  taskTotal = len(tasks)
+  timeTotal = sum(durations, datetime.timedelta())
+  task_tags = zip(tasks, tags)
+  print(task_tags)
+  context = {'profile': profile, 'projects': projects, 'tasks': tasks, 'projectsTotal': projectsTotal, 'taskTotal': taskTotal, 'timeTotal': timeTotal, 'tasksCompleted': tasksCompleted, 'tags': tags, 'task_tags': task_tags }
   return render(request, 'profile/show.html', context)
 
 # --- PROFILE EDIT ROUTE ---

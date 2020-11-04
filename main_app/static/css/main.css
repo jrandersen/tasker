@@ -10,7 +10,6 @@
 
 /* BODY & NAVBAR ======================= */
 body {
-    overflow: hidden;
     height: 100vh;
     background-color: var(--backgroundcolor);
 }
