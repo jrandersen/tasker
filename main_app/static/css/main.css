@@ -18,17 +18,28 @@ body {
 .navbar {
     background-color: var(--taskerBlue);
 }
+
+/*  burger to white */
 .navbar-burger{
     color: var(--backgroundcolor);
+    font-weight: bold;
 }
+
+/* aria sam color as nav */
 .navbar-menu{
     background-color: var(--taskerBlue);
 }
-
-.navbar-item:hover{
-    /* background-color: var(--taskerRed); */
+/* navbar item hover */
+.navbar-link.is-active, .navbar-link:focus, .navbar-link:focus-within, .navbar-link:hover, a.navbar-item.is-active, a.navbar-item:focus, a.navbar-item:focus-within, a.navbar-item:hover {
+    background-color: var(--taskerGreen);
+    color: var(--backgroundcolor)
+}
+/* navbar item focus on hover */
+.has-text-white:focus, a.has-text-white:hover {
+    color: #000000!important;
 }
 
+/* project Cards */
 .card { margin-top: 5px; }
 .dropdown{ margin-top: 5px; }
 

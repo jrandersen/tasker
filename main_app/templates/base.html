@@ -33,18 +33,18 @@
     <!-- NAVBAR LEFT & RIGHT -->
     <div id="navbarBasicExample" class="navbar-menu">
       <div class="navbar-start">
-      {% if user.is_authenticated %}
-              <a class="navbar-item has-text-white" href="{% url 'tasks' %}">
-          <strong>Tasks</strong>
-        </a>
-        <a class="navbar-item has-text-white" href="{% url 'projects' %}">
-          <strong>Projects</strong>
-        </a>  
-      {% endif %}
+        {% if user.is_authenticated %}
+          <a href="{% url 'tasks' %}" class="navbar-item has-text-white">
+              <strong>Tasks</strong>
+          </a>
+          <a href={% url 'projects' %} class="navbar-item has-text-white">
+            <strong>Projects</strong>
+          </a>  
+        {% endif %}
       </div>
       <div class="navbar-end">
         <div class="navbar-item">
-          <div class="buttons">
+          <div class="buttons nav-button">
             {% if user.is_authenticated %}
               <a href="{% url 'logout' %}" class="button" id="is-background-color">
                 <strong>Logout</strong>

@@ -141,6 +141,6 @@ LOGIN_REDIRECT_URL = '/projects/'
 LOGOUT_REDIRECT_URL = '/'
 
 # SIGNUP REDIRECTS TO ===============
-SIGNUP_REDIRECT_URL = '/'
+SIGNUP_REDIRECT_URL = '/login'
 
 django_on_heroku.settings(locals())

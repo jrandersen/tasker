@@ -44,7 +44,7 @@ def signup(request):
     # login(request, user)
     return redirect('login')
   else:
-    error_message = 'Invalid sign up - try again'
+    # error_message = 'Invalid sign up - try again'
     form = SignUpForm()
   context = {'form': form, 'error_message': error_message }
   return render( request, 'registration/signup.html', context )
