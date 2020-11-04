@@ -54,9 +54,11 @@
                         <p class="title is-5">{{ task.taskName }}</p>
                         <p class="subtitle is-6">{{ task.creator }}</p>
                         {% if task.taskComplete == True %}
+                            <p class="subtitle is-6">Date Created: {{ task.createdDate }}</p>
                             <p class="subtitle is-6">Date Completed: {{ task.taskCompletedDate }}</p>
                         {% endif %}
                         {% if task.taskComplete == False %}
+                            <p class="subtitle is-6">Date Created: {{ task.createdDate }}</p>
                             <p class="subtitle is-6">... in process</p
                         {% endif %}
                     </a>

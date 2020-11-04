@@ -115,8 +115,10 @@ def task_complete(request, task_id):
     task = Task.objects.get(id=task_id)
     task.taskComplete = True
     task.taskCompletedDate = datetime.date.today()
-    x = date(2020,10,29)
-    print(x)
+    # for demo, had to set some tasks back in time in new db
+    # new_date = date(2020,10,28)
+    # task.createdDate = new_date
+    # print(task.createdDate)
     task.save()
   return redirect(request.META.get('HTTP_REFERER'))
 
