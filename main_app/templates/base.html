@@ -18,7 +18,7 @@
 </head>
 <body>
   <!-- NAVBAR -->
- <nav class="navbar" role="navigation" aria-label="main navigation">
+  <nav class="navbar" role="navigation" aria-label="main navigation">
     <!-- NAVBAR BRAND & BURGER -->
     <div class="navbar-brand">
       <a class="navbar-item" href="{% url 'home' %}">
@@ -30,7 +30,6 @@
         <span aria-hidden="true"></span>
       </a>
     </div>
-
     <!-- NAVBAR LEFT & RIGHT -->
     <div id="navbarBasicExample" class="navbar-menu">
       <div class="navbar-start">
@@ -66,12 +65,14 @@
       </div>
     </div>
   </nav> 
-
   <!-- MAIN CONTENT --> 
   <main class="container">
     {% block content %}
     {% endblock %}
   </main>
-  {% include 'modal.html' %}
 </body>
+<!-- FOOTER CONTENT --> 
+<footer>
+  <p></p>
+</footer>
 </html>

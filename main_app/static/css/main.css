@@ -10,7 +10,8 @@
 
 /* BODY & NAVBAR ======================= */
 body {
-    min-height: 100vh;
+    overflow: hidden;
+    height: 100vh;
     background-color: var(--backgroundcolor);
 }
 
@@ -115,9 +116,7 @@ body {
     margin: 3px;
     padding: 10px;
 }
-.is-green-text{
-    color: var(--taskerGreen);
-}
+
 
 /* PROFILE ======================= */
 .avatar-image{
@@ -141,7 +140,21 @@ body {
 }
 
 
+
+/* MAIN PAGE  ======================= */
 .is-main-page{
-    font-size: 68px;
+    font-size: 78px;
     font-weight: bold;
+}
+
+.is-green-text{
+    color: var(--taskerGreen);
+}
+
+.is-blue-text{
+    color: var(--taskerBlue);
+}
+
+.is-red-text{
+    color: var(--taskerRed);
 }
