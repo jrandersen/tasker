@@ -9,12 +9,14 @@
 }
 
 /* BODY & NAVBAR ======================= */
+
 body {
-    height: 100vh;
+    min-height: calc(100vh - 30px);
     background-color: var(--backgroundcolor);
 }
 
 .navbar {
+    height: 30px;
     background-color: var(--taskerBlue);
 }
 
@@ -38,6 +40,7 @@ body {
     color: #000000!important;
 }
 
+
 /* project Cards */
 .card { margin-top: 5px; }
 .dropdown{ margin-top: 5px; }
@@ -55,6 +58,11 @@ body {
 .tag {
     margin: 3px;
 }
+/* footer */
+
+
+
+
 
 /* BUTTONS & COLORS ======================= */
 #is-green {
