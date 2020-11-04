@@ -1,4 +1,4 @@
-# Capstone - README
+# Tasker
 
 ---
 
@@ -8,20 +8,18 @@ Creator: Jason Andersen <br>
 
 ---
 
-# Tasker
-
 
 ## SECTION 01 Scope:
 A task app that is solely meant for a user’s daily tasks. Or in another persepctive "Your daily tasks rollover if not completed".  I believe that I can implement: <br>
-* user Auth
-* user Profile 
-* account signup/login/logout 
-* a the main page to input Tasks (full crud) 
-    * Tasks 
-    * add Task to Projects (full crud) 
-    * add Notes (full crud)
-    * Add Time 
-        * add Tags to time (full crud)
+0. user Auth
+0. user Profile. 
+0. account signup/login/logout. 
+0. a the main page to input Tasks (full crud). 
+0. Tasks 
+    *add Task to Projects (full crud) 
+    *add Notes (full crud)
+    *Add Time 
+    *add Tags to time (full crud)
 
 As a stretch goal, I would like to make roll-up functions in the project and profile models to graph time. In addition as a stretch, I would like to add google login.
 
