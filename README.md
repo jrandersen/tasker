@@ -24,10 +24,11 @@ A task app that is solely meant for a user’s daily tasks. Or in another persep
 As a stretch goal, I would like to make roll-up functions in the project and profile models to graph time. In addition as a stretch, I would like to add google login.
 
 
- ### SECTION 01 Technologies used:
+ ### Technologies used:
  * Django
  * Postgre
  * Bulma
+ * Django-Taggit
 
 
 <br>
@@ -45,10 +46,71 @@ As a stretch goal, I would like to make roll-up functions in the project and pro
 * AAU, I would like to see a total of how many hours I have worked on a Project.
 * AAU, I would like to see a total of how many hours I have worked on a Project in a Week.
 
-### SECTION 2 User stories [ Stretch-goal ]
+### SCHEDULE 
+![Imgur](https://i.imgur.com/rZyRipam.jpg)
+
+
+### [ Stretch-goal ]
 * AAU, I would like to see a graph of time worked  on a project (implement Chart.js for time page)
 * AAU, I would like to start and stop a timer on each task (timer would only run on one at a time)
 * AAU I would like to use google to log in.
 
 <br>
 <hr>
+
+## Wireframes
+### MAIN LANDING PAGE 
+![Imgur](https://i.imgur.com/wD0J1CIm.jpg)
+
+<br>
+<hr>
+
+### ACCOUNT SIGNUP 
+![Imgur](https://i.imgur.com/ptofudym.jpg)
+
+<br>
+<hr>
+
+### ACCOUNT LOGIN 
+![Imgur](https://i.imgur.com/TgpXlFbm.jpg)
+
+<br>
+<hr>
+
+### PROFILE 
+![Imgur](https://i.imgur.com/TXh44Ejm.jpg)
+
+<br>
+<hr>
+
+### PROJECT SHOW 
+![Imgur](https://i.imgur.com/sEs8cyYm.jpg)
+
+<br>
+<hr>
+
+### TASKS PAGE 
+![Imgur](https://i.imgur.com/L5F3RIAm.jpg)
+
+<br>
+<hr>
+
+### TASK SHOW 
+![Imgur](https://i.imgur.com/lvrR6QPm.jpg)
+
+<br>
+<hr>
+
+### TIME ADD 
+![Imgur](https://i.imgur.com/VKO7H3Ym.jpg)
+
+<br>
+<hr>
+
+
+### ERD 
+![Imgur](https://i.imgur.com/6MMSX2km.jpg)
+
+<br>
+<hr>
+
