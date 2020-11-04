@@ -10,12 +10,12 @@ Creator: Jason Andersen <br>
 
 
 ## SECTION 01 Scope:
-A task app that is solely meant for a user’s daily tasks. Or in another persepctive "Your daily tasks rollover if not completed".  I believe that I can implement: <br>
-0. user Auth
-0. user Profile. 
-0. account signup/login/logout. 
-0. a the main page to input Tasks (full crud). 
-0. Tasks 
+A task app that is solely meant for a user’s daily tasks. Or in another persepctive "Your daily tasks rollover if not completed".  In this iteration I will implement: <br>
+* user Auth
+* user Profile. 
+* account signup/login/logout. 
+* a the main page to input Tasks (full crud). 
+* Tasks 
     *add Task to Projects (full crud) 
     *add Notes (full crud)
     *Add Time 
