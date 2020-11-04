@@ -48,9 +48,7 @@ class SignUpForm(UserCreationForm):
         fields = ('username', 'email', 'name', 'password1', 'password2')
 
 
-
 # TIME FORM ===============
-
 class TimeForm(ModelForm):
     class Meta:
         model = Time

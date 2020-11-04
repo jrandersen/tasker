@@ -44,13 +44,12 @@
                 </div>
                 {% if task.taskComplete == True %}
                 <footer class="card-footer" id='is-project-card-footer'>
-                    <a href="#" class="card-footer-item" id="is-blue">uncomplete</a>
+                    <a href={% url 'task_uncomplete' task.id %} class="card-footer-item" id="is-blue">uncomplete</a>
                 </footer> 
                 {% endif %}
                 {% if task.taskComplete == False %}
                 <footer class="card-footer" id='is-project-card-footer'>
-                    <a href="#" class="card-footer-item" id="is-blue">complete</a>
-                    <a class="card-footer-item is-green">add time</a>
+                    <a class="card-footer-item is-green" id="showAddTimeModal">add time</a>
                 </footer>  
                 {% endif %} 
             </div>

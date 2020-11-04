@@ -3,36 +3,58 @@
 
 {% comment %} MODEL PROFILE ==================================== {% endcomment %}
 <form method="post" action={% url 'login' %}>
+<!-- OOTB django user uses 'form' as login form -->
   {% csrf_token %}
-  <div class="columns is-mobile is-centered">
+  <div class="columns is-mobile is-centered ">
     <div class="column is-half">
-      <div class="field">
-        <p class="control has-icons-left has-icons-right">
-          <input class="input" type="text" name="username" placeholder="Username">
-          <span class="icon is-small is-left">
-            <i class="fas fa-user"></i>
-          </span>
-          <span class="icon is-small is-right">
-            <i class="fas fa-check"></i>
-          </span>
-        </p>
+      <div class="tile is-ancestor">
+        <div class="tile is-vertical is-parent">
+          <div class="tile is-child box is-shadowless is-message">
+            <!-- errors -->
+            {% if form.errors %}
+              {% for field in form %}
+                  {% for error in field.errors %}
+                      <div class="alert alert-danger">
+                          <strong>{{ error|escape }}</strong>
+                      </div>
+                  {% endfor %}
+              {% endfor %}
+              {% for error in form.non_field_errors %}
+                  <div class="alert alert-danger">
+                      <strong>{{ error|escape }}</strong>
+                  </div>
+              {% endfor %}
+            {% endif %} 
+          </div>
+          <div class="tile is-child box">
+            <!-- form -->
+            <div class="field">
+              <p class="control has-icons-left has-icons-right">
+                    <input class="input" type="text" name="username" placeholder="Username">
+                    <span class="icon is-small is-left">
+                      <i class="fas fa-user"></i>
+                    </span>
+                    <span class="icon is-small is-right">
+                      <i class="fas fa-check"></i>
+                    </span></p>
+            </div>
+            <div class="field">
+              <p class="control has-icons-left">
+                <input class="input" type="password" name="password" placeholder="Password">
+                <span class="icon is-small is-left">
+                  <i class="fas fa-lock"></i>
+                </span></p>   
+            </div>
+            <div class="field">
+              <p class="control">
+                <button class="button is-success" id="is-green">Login</button></p>
+                <input type="hidden" name="next" value="{{ next }}">
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="field">
-        <p class="control has-icons-left">
-          <input class="input" type="password" name="password" placeholder="Password">
-          <span class="icon is-small is-left">
-            <i class="fas fa-lock"></i>
-          </span>
-        </p>
-      </div>
-      <div class="field">
-        <p class="control">
-          <button class="button is-success" id="is-green">
-            Login
-          </button>
-        </p>
-        <input type="hidden" name="next" value="{{ next }}">
-      </div>
+    </div>
   </div>
 </form>
 {% endblock %}
+

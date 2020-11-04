@@ -48,6 +48,16 @@ def signup(request):
   context = {'form': form, 'error_message': error_message }
   return render( request, 'registration/signup.html', context )
 
+# --- LOGIN USER 
+def login(request):
+  if request.method == 'POST':
+    # do stuff
+    return redirect('/')
+  login_form = LoginForm()
+  print(login_form)
+  context = { 'login_form': login_form }
+  return render(request, "login.html", context)
+
 
 
 
@@ -110,7 +120,7 @@ def task_edit(request, task_id):
 def task_complete(request, task_id):
   times = Time.objects.filter(task=task_id)
   if len(times) == 0:
-    messages.success(request, 'Please add time to complete a task!')
+    messages.success(request, 'Please add time to complete the task!')
     return redirect('task_show', task_id=task_id)
   else:
     task = Task.objects.get(id=task_id)
@@ -119,7 +129,7 @@ def task_complete(request, task_id):
     x = date(2020,10,29)
     print(x)
     task.save()
-  return redirect('task_show', task_id=task_id)
+  return redirect(request.META.get('HTTP_REFERER'))
 
 # --- UN-COMPLETE A TASK ROUTE ---
 def task_uncomplete(request, task_id):
@@ -128,7 +138,7 @@ def task_uncomplete(request, task_id):
     task.taskComplete = False
     task.taskCompletedDate = None
     task.save()
-  return redirect('task_show', task_id=task_id)
+  return redirect(request.META.get('HTTP_REFERER'))
 
 # --- DELETE TASK ROUTE ---
 def task_delete(request, task_id):
