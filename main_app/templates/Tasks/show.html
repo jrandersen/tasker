@@ -118,9 +118,7 @@
             {% for item1, item2 in timeDates %}
                 <a class=" is-small" method="POST" href={% url 'time_edit' item1.id %}>
                 <span class="tag is-normal" id="is-blue">{{ item2 }}-{{ item1 }} &nbsp &nbsp
-                    
                     <i class= "fas fa-edit" ></i>
-                    
                 </span></a>
                 <br>
             {% empty %}

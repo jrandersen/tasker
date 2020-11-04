@@ -63,18 +63,21 @@
                 </div>
                 {% if task.taskComplete == True %}
                 <footer class="card-footer" id='is-project-card-footer'>
-                    <a href={% url 'task_uncomplete' task.id %} class="card-footer-item" id="is-blue">uncomplete</a>
+                    <a class="card-footer-item is-blue" href={% url 'task_show' task.id %}>uncomplete</a>
+                    <!-- {% for item1, item2 in task_tags %}
+                        <p>{{ item2 }}</p>
+                    {% endfor %} -->
                 </footer> 
                 {% endif %}
                 {% if task.taskComplete == False %}
                 <footer class="card-footer" id='is-project-card-footer'>
-                    <a class="card-footer-item is-green" id="showAddTimeModal">add time</a>
+                    <a class="card-footer-item is-green" href={% url 'task_show' task.id %}>add time</a>
                 </footer>  
                 {% endif %} 
             </div>
         </div>
     {%  if forloop.counter|divisibleby:"4" or forloop.last %}</div><!-- row closing --><hr>{%  endif %}
-{% empty %}<!-- fi empty show this-->
+{% empty %}<!-- if empty show this-->
 <p class="no-info">You have no Tasks yet, add them on the Task page </p>       
 {% endfor %}
 {% endblock %}
