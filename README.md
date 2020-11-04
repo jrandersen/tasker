@@ -47,7 +47,7 @@ As a stretch goal, I would like to make roll-up functions in the project and pro
 * AAU, I would like to see a total of how many hours I have worked on a Project in a Week.
 
 ### SCHEDULE 
-![Imgur](https://i.imgur.com/rZyRipal.jpg)
+![Imgur](https://i.imgur.com/rZyRipah.jpg)
 
 
 ### [ Stretch-goal ]
@@ -60,49 +60,49 @@ As a stretch goal, I would like to make roll-up functions in the project and pro
 
 ## Wireframes
 ### MAIN LANDING PAGE 
-![Imgur](https://i.imgur.com/wD0J1CIl.jpg)
+![Imgur](https://i.imgur.com/wD0J1CIh.jpg)
 
 <br>
 <hr>
 
 ### ACCOUNT SIGNUP 
-![Imgur](https://i.imgur.com/ptofudyl.jpg)
+![Imgur](https://i.imgur.com/ptofudyh.jpg)
 
 <br>
 <hr>
 
 ### ACCOUNT LOGIN 
-![Imgur](https://i.imgur.com/TgpXlFbl.jpg)
+![Imgur](https://i.imgur.com/TgpXlFbh.jpg)
 
 <br>
 <hr>
 
 ### PROFILE 
-![Imgur](https://i.imgur.com/TXh44Ejl.jpg)
+![Imgur](https://i.imgur.com/TXh44Ejh.jpg)
 
 <br>
 <hr>
 
 ### PROJECT SHOW 
-![Imgur](https://i.imgur.com/sEs8cyYl.jpg)
+![Imgur](https://i.imgur.com/sEs8cyYh.jpg)
 
 <br>
 <hr>
 
 ### TASKS PAGE 
-![Imgur](https://i.imgur.com/L5F3RIAl.jpg)
+![Imgur](https://i.imgur.com/L5F3RIAh.jpg)
 
 <br>
 <hr>
 
 ### TASK SHOW 
-![Imgur](https://i.imgur.com/lvrR6QPl.jpg)
+![Imgur](https://i.imgur.com/lvrR6QPh.jpg)
 
 <br>
 <hr>
 
 ### TIME ADD 
-![Imgur](https://i.imgur.com/VKO7H3Yl.jpg)
+![Imgur](https://i.imgur.com/VKO7H3Yh.jpg)
 
 <br>
 <hr>
@@ -113,4 +113,3 @@ As a stretch goal, I would like to make roll-up functions in the project and pro
 
 <br>
 <hr>
-
