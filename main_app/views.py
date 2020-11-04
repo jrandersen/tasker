@@ -219,6 +219,7 @@ def profile_delete(request, profile_id):
 
 # PROJECTS ====================================
 # --- SHOW ALL PROJECTS & NEW PROJECT ROUTE ---
+
 def projects(request):
   if request.method == 'POST':
     projectName = request.POST.get('project')
