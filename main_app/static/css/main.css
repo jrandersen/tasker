@@ -10,13 +10,12 @@
 
 /* BODY & NAVBAR ======================= */
 
-body {
-    min-height: calc(100vh - 30px);
+html, body {
+    height: 100%;
     background-color: var(--backgroundcolor);
 }
 
 .navbar {
-    height: 30px;
     background-color: var(--taskerBlue);
 }
 

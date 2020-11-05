@@ -46,7 +46,7 @@
 <!-- TASK CARDS -->
 <div class="title is-4">Tasks</div>
 {% for task in tasks %}
-    {% if forloop.counter0|divisibleby:"4" %} <div class="columns is-desktop"><!-- bulma row open --> {% endif %}
+    {% if forloop.counter0|divisibleby:"4" %} <div class="columns"><!-- bulma row open --> {% endif %}
         <div class="column is-3"> <!-- this has to work with above divisor -->
             <div class="card" id='is-project-card'>
                 <div class="card-content">
