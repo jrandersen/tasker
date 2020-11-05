@@ -130,11 +130,12 @@ def task_complete(request, task_id):
 @login_required
 def task_uncomplete(request, task_id):
   task = Task.objects.get(id=task_id)
-  if task.taskComplete == True:
-    task.taskComplete = False
-    task.taskCompletedDate = None
-    task.save()
-  return redirect(request.META.get('HTTP_REFERER'))
+  if request.user.id == task.creator.user.id:
+    if task.taskComplete == True:
+      task.taskComplete = False
+      task.taskCompletedDate = None
+      task.save()
+    return redirect(request.META.get('HTTP_REFERER'))
 
 # --- DELETE TASK ROUTE ---
 @login_required
@@ -143,7 +144,6 @@ def task_delete(request, task_id):
   if task.creator.id == request.user.id:
     task.delete()
   return redirect('tasks')
-
 
 
 
