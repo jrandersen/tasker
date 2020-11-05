@@ -3,54 +3,51 @@
 
 <!-- PROFILE TILES-->
 <div class="tile is-ancestor">
-  <div class="tile is-4 is-vertical is-parent">
-    <div class="tile is-child box">
-        <figure class="image is-128x128">
-            <img class="profile-image" src={{ profile.image }}>
-        </figure>
-    </div>
-   
-    <div class="tile is-child box">
+    <div class="tile is-4 is-vertical is-parent">
+        <div class="tile is-child box">
+            <figure class="image is-128x128">
+                <img class="profile-image" src={{ profile.image }}>
+            </figure>
+        </div>
+    
+        <div class="tile is-child box">
 
-        <p class="title">{{ profile.name }} &nbsp 
-            <a class="is-tasker-medium-edit-icon"
-                method='POST'
-                href={% url 'profile_edit' profile.id %} >
-                    <i class="fas fa-edit"></i>
-            </a></p>
-            <p class="subtitle is-6"> name: {{ profile.name }}</p>
-            <p class="subtitle is-6 ">email: {{ profile.email }}</p>
-            <p class="subtitle is-6 ">joined: {{ profile.dateJoined }}</p>
-        </p>
-    </div>
-  </div>
-
-  <div class="tile  is-parent">
-    <div class="tile is-child box">
-      <div class="level">
-                  <div class="level-item has-text-centered data-level">
-                      <div>
-                          <p class="heading is-green-text">Projects</p>
-                          <p class="title is-green-text">{{ projectsTotal }}</p>
-                      </div>
-                  </div>
-                  <div class="level-item has-text-centered data-level">
-                      <div>
-                          <p class="heading is-green-text">Tasks Complete</p>
-                          <p class="title is-green-text">{{ tasksCompleted }}</p>
-                      </div>
-                  </div>
-                  <div class="level-item has-text-centered data-level">
-                      <div>
-                          <p class="heading is-green-text"> Total Time</p>
-                          <p class="title is-green-text">{{ timeTotal }}</p>
-                      </div>
-                  </div>
-              </div>
-            </div>
-          </div>
+            <p class="title">{{ profile.name }} &nbsp 
+                <a class="is-tasker-medium-edit-icon"
+                    method='POST'
+                    href={% url 'profile_edit' profile.id %} >
+                        <i class="fas fa-edit"></i>
+                </a></p>
+                <p class="subtitle is-6"> name: {{ profile.name }}</p>
+                <p class="subtitle is-6 ">email: {{ profile.email }}</p>
+                <p class="subtitle is-6 ">joined: {{ profile.dateJoined }}</p>
+            </p>
         </div>
     </div>
-  </div>
+
+   <div class="tile  is-parent">
+        <div class="tile is-child box">     
+            <div class="level">
+                <div class="level-item has-text-centered data-level">
+                    <div>
+                        <p class="heading is-green-text">Projects</p>
+                        <p class="title is-green-text">{{ projectsTotal }}</p>
+                    </div>
+                </div>
+                <div class="level-item has-text-centered data-level">
+                    <div>
+                        <p class="heading is-green-text">Tasks Complete</p>
+                        <p class="title is-green-text">{{ tasksCompleted }}</p>
+                    </div>
+                </div>
+                <div class="level-item has-text-centered data-level">
+                    <div>
+                        <p class="heading is-green-text"> Total Time</p>
+                        <p class="title is-green-text">{{ timeTotal }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
 </div>
 {% endblock %}

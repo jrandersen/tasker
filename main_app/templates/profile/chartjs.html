@@ -1,0 +1,35 @@
+    {% comment %} <!-- <div class="tile  is-parent">
+        <div class="tile is-child box">
+        <!-- projects -->
+        <canvas id="myChart" width="60" height="30"></canvas>
+        <script>
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'horizontalBar',
+            data: {
+                labels: ["Projects","Tasks"],
+                datasets: [
+                    {
+                        label: "Nums",
+                        data: [
+                            {{projectsTotal}},
+                            {{tasksCompleted}},
+                        ],
+                        backgroundColor : "rgba(252, 81, 133, 0.5)",
+                        borderColor :  "rgba(252, 81, 133, 0.5)",
+                        borderWidth: 3
+                    }],
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: false
+                        }
+                    }]
+                }
+            }
+        });
+        </script>
+        </div>
+    </div> --> {% endcomment %}
