@@ -86,7 +86,8 @@ def task_show(request, task_id):
     tags.append(time.getTags())
   timeDates = list(zip(times, tags))
   totalTime = sum(durations, datetime.timedelta())
-  context = {'task': task, 'notes': notes, 'times': times, 'totalTime': totalTime, "timeDates": timeDates}
+  project = Project.objects.get(task=task_id)
+  context = {'task': task, "project": project, 'notes': notes, 'times': times, 'totalTime': totalTime, "timeDates": timeDates}
   return render(request, 'tasks/show.html', context)
 
 # --- EDIT TASK ROUTE ---

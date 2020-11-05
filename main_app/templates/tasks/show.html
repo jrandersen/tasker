@@ -12,7 +12,9 @@
                     href={% url 'task_edit' task.id %}>
                         <i class="fas fa-edit"></i>
                 </a></p>
-            <p>Created on: {{ task.createdDate }}</p>
+            <a href={% url 'project_show' project.id %}>
+                <p>{{ project }}</p>
+            </a>
             <p>Completed: {{ task.taskCompletedDate }}</p>
         </div>
     </div>
