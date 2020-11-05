@@ -67,9 +67,6 @@
                 {% if task.taskComplete == True %}
                 <footer class="card-footer" id='is-project-card-footer'>
                     <a class="card-footer-item is-blue" href={% url 'task_uncomplete' task.id %}>uncomplete</a>
-                    <!-- {% for item1, item2 in task_tags %}
-                        <p>{{ item2 }}</p>
-                    {% endfor %} -->
                 </footer> 
                 {% endif %}
                 {% if task.taskComplete == False %}
