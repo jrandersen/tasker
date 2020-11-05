@@ -27,21 +27,21 @@
 <!-- TASK GROUPINGS BELOW -->
 <div class="tile is-ancestor is-mobile">
         <!-- LEFT TILE -->
-    <div class="tile is-3 is-parent">
+    <div class="tile is-4 is-parent">
         <div class="tile is-child box">
             <p class="heading">Prior Tasks:</p>
             {% for task in priorTasks %}
                 {% if task.taskComplete == True %}
                 <div class="card" id="is-complete">
                     <div class="card-content">
-                        <p class="card-title is-size-6">{{ task.taskName }}</p>
+                        <p class="card-title is-size-6">{{ task.taskName }} - {{task.createdDate}}</p>
                     </div>
                 </div>
                 {% endif %}
                 {% if task.taskComplete == False %}
                 <div class="card" id="is-red-outline">
                     <div class="card-content">
-                        <p class="card-title is-size-6">{{ task.taskName }}</p>
+                        <p class="card-title is-size-6">{{ task.taskName }} - {{task.createdDate}}</p>
                     </div>   
                 </div>
                 {% endif %}    

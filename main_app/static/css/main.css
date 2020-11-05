@@ -25,7 +25,7 @@ html, body {
     font-weight: bold;
 }
 
-/* aria sam color as nav */
+/* aria same color as nav */
 .navbar-menu{
     background-color: var(--taskerBlue);
 }
