@@ -4,6 +4,8 @@ from django.http import HttpResponse
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
 from django.contrib import messages
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
 
 # EXTERNAL IMPORTS OTHER -----------------------------------
 from taggit.models import Tag
@@ -52,6 +54,7 @@ def signup(request):
 
 # TASKS ====================================
 # --- SHOW ALL TASKS & NEW TASK ROUTE ---
+@login_required
 def tasks(request):
   if request.method == 'POST':
     taskName = request.POST.get('taskName')
@@ -74,6 +77,7 @@ def tasks(request):
   return render(request, 'tasks/index.html', context )
 
 # --- SHOW TASK ROUTE ---
+@login_required
 def task_show(request, task_id):
   task = Task.objects.get(id=task_id)
   notes = task.note_set.all()
@@ -89,6 +93,7 @@ def task_show(request, task_id):
   return render(request, 'tasks/show.html', context)
 
 # --- EDIT TASK ROUTE ---
+@login_required
 def task_edit(request, task_id):
   task = Task.objects.get(id=task_id)
   if request.method == 'POST':
@@ -106,6 +111,7 @@ def task_edit(request, task_id):
   return render(request, 'tasks/edit.html', context)
 
 # --- COMPLETE TASK ROUTE ---
+@login_required
 def task_complete(request, task_id):
   times = Time.objects.filter(task=task_id)
   if len(times) == 0:
@@ -123,6 +129,7 @@ def task_complete(request, task_id):
   return redirect(request.META.get('HTTP_REFERER'))
 
 # --- UN-COMPLETE A TASK ROUTE ---
+@login_required
 def task_uncomplete(request, task_id):
   task = Task.objects.get(id=task_id)
   if task.taskComplete == True:
@@ -132,6 +139,7 @@ def task_uncomplete(request, task_id):
   return redirect(request.META.get('HTTP_REFERER'))
 
 # --- DELETE TASK ROUTE ---
+@login_required
 def task_delete(request, task_id):
   task = Task.objects.get(id=task_id)
   if task.creator.id == request.user.id:
@@ -144,6 +152,7 @@ def task_delete(request, task_id):
 
 # NOTES ====================================
 # --- ADD NOTES ROUTE TO TASK ---
+@login_required
 def note_add(request, task_id):
   if request.method == 'POST':
     note = request.POST.get('note')
@@ -155,6 +164,7 @@ def note_add(request, task_id):
   # this is in the Task_show page
   return render ('Nothing here yet')
 
+@login_required
 def note_edit(request, note_id):
   note = Note.objects.get(id=note_id)
   task_id = note.task.id
@@ -172,6 +182,7 @@ def note_edit(request, note_id):
   print(note_form)
   return render (request, 'notes/edit.html', context)
 
+@login_required
 def note_delete(request, note_id):
   note = Note.objects.get(id=note_id)
   task_id = note.task.id
@@ -185,6 +196,7 @@ def note_delete(request, note_id):
 
 # PROFILE ====================================
 # --- PROFILE SHOW ROUTE ---
+@login_required
 def profile_show(request, profile_id):
   profile = Profile.objects.get(id=profile_id)
   projects = Project.objects.filter(creator=profile_id)
@@ -208,6 +220,7 @@ def profile_show(request, profile_id):
   context = {'profile': profile, 'projects': projects, 'tasks': tasks, 'projectsTotal': projectsTotal, 'taskTotal': taskTotal, 'timeTotal': timeTotal, 'tasksCompleted': tasksCompleted, 'tags': tags, 'task_tags': task_tags }
   return render(request, 'profile/show.html', context)
 
+@login_required
 # --- PROFILE EDIT ROUTE ---
 def profile_edit(request, profile_id):
   profile = Profile.objects.get(id=profile_id)
@@ -225,6 +238,7 @@ def profile_edit(request, profile_id):
   print(profile_form)
   return render(request, 'profile/edit.html', context)
 
+@login_required
 # --- PROFILE DELETE ROUTE ---
 def profile_delete(request, profile_id):
   user = User.objects.get(id=profile_id)
@@ -239,7 +253,7 @@ def profile_delete(request, profile_id):
 
 # PROJECTS ====================================
 # --- SHOW ALL PROJECTS & NEW PROJECT ROUTE ---
-
+@login_required
 def projects(request):
   if request.method == 'POST':
     projectName = request.POST.get('project')
@@ -252,6 +266,7 @@ def projects(request):
   return render(request, 'projects/index.html', context )
 
 # --- PROJECT SHOW ROUTE ---
+@login_required
 def project_show(request, project_id):
   project = Project.objects.get(id=project_id)
   tasks = Task.objects.filter(project=project_id)
@@ -273,6 +288,7 @@ def project_show(request, project_id):
   return render( request, 'projects/show.html', context )
 
 # --- PROJECT SHOW ROUTE ---
+@login_required
 def project_edit(request, project_id):
   project = Project.objects.get(id=project_id)
   if request.method == 'POST':
@@ -289,6 +305,7 @@ def project_edit(request, project_id):
   return render(request, 'projects/edit.html', context)
 
 # --- PROJECT DELETE ROUTE ---
+@login_required
 def project_delete(request, project_id):
   project = Project.objects.get(id=project_id)
   if project.creator.id == request.user.id:
@@ -302,6 +319,7 @@ def project_delete(request, project_id):
 
 # TIME ====================================
 # --- ADD TIME TO TASK ---
+@login_required
 def time_add(request):
   if request.method == 'POST':
     time_form = TimeForm(request.POST)
@@ -312,6 +330,7 @@ def time_add(request):
   return redirect('task_show', task_id=task_id)
 
 # --- TIME EDIT ---
+@login_required
 def time_edit(request, time_id):
   print(request.POST)
   print(request.POST.get('task'))
@@ -332,6 +351,7 @@ def time_edit(request, time_id):
   return render (request, 'time/edit.html', context)
 
 # --- TIME DELETE ---
+@login_required
 def time_delete(request, time_id):
    time = Time.objects.get(id=time_id)
    if time.task.creator.id == request.user.id:
