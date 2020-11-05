@@ -40,11 +40,8 @@ def signup(request):
     user.profile.email = form.cleaned_data.get('email')
     user.profile.name = form.cleaned_data.get('name')
     user.save()
-    # username = form.cleaned_data('user.username')
-    # password = form.cleaned_data('password1')
-    # user = authenticate(username=username, password=password)
-    # login(request, user)
-    return redirect('login')
+    login(request, user)
+    return redirect('projects')
   else:
     # error_message = 'Invalid sign up - try again'
     form = SignUpForm()
